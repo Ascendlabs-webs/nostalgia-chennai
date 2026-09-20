@@ -740,6 +740,23 @@
   /* ---------- Meme sticker pop-ups + confetti ---------- */
   .hero-stage{position:relative; max-width:860px; margin:52px auto 0;}
   .hero-stage .hero-media{margin:0 auto; max-width:none;}
+  /* ---------- Meme page-transition loader ---------- */
+  .page-loader{position:fixed; inset:0; z-index:200; background:rgba(10,10,12,0.94);
+    display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s ease;}
+  body.is-loading{overflow:hidden;}
+  body.is-loading .page-loader{opacity:1;}
+  .pl-card{width:min(420px,86vw); text-align:center; transform:scale(.96); transition:transform .25s ease;}
+  body.is-loading .pl-card{transform:none;}
+  .pl-media{border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.15);}
+  .pl-media img{width:100%; height:auto; display:block;}
+  .pl-row{display:flex; align-items:center; justify-content:center; gap:10px; margin:16px 0 12px;
+    color:#fff; font-size:12px; letter-spacing:.24em; font-weight:600;}
+  .pl-rec{width:11px; height:11px; border-radius:50%; background:#ff3b30; animation:blink 1s steps(2,start) infinite;}
+  @keyframes blink{to{visibility:hidden;}}
+  .pl-bar{height:3px; border-radius:3px; background:rgba(255,255,255,0.15); overflow:hidden;}
+  .pl-bar i{display:block; height:100%; width:40%; border-radius:3px;
+    background:linear-gradient(90deg,#FFD23F,#FF5D8F,#22D3EE); animation:slide 1s linear infinite;}
+  @keyframes slide{from{transform:translateX(-100%);} to{transform:translateX(350%);}}
   .sticker{position:absolute; z-index:3; font-family:var(--sans); font-weight:700;
     font-size:12px; letter-spacing:.1em; padding:10px 18px; border-radius:999px;
     color:var(--navy); border:2px solid var(--navy); box-shadow:4px 4px 0 var(--navy);
@@ -2126,6 +2143,32 @@
   paintWish();
   paintIconCounts();
   window.addEventListener('storage', paintIconCounts);
+  function showPageLoader(href){
+    if(document.querySelector('.page-loader')) return;
+    var d = document.createElement('div');
+    d.className = 'page-loader';
+    d.innerHTML = '<div class="pl-card"><div class="pl-media"><img src="assets/img/loader.gif" alt="Loading"></div><div class="pl-row"><span class="pl-rec"></span><span class="pl-txt">LOADING...</span></div><div class="pl-bar"><i></i></div></div>';
+    document.body.appendChild(d);
+    setTimeout(function(){ document.body.classList.add('is-loading'); }, 20);
+    setTimeout(function(){ location.href = href; }, 700);
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a') : null;
+    if(!a) return;
+    var href = a.getAttribute('href');
+    if(!href || href.charAt(0) === '#' || a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var url;
+    try{ url = new URL(href, location.href); }catch(err){ return; }
+    if(url.origin !== location.origin) return;
+    if(url.pathname === location.pathname && url.search === location.search) return;
+    e.preventDefault();
+    showPageLoader(href);
+  });
+  window.addEventListener('pageshow', function(){
+    var l = document.querySelector('.page-loader');
+    if(l){ l.remove(); }
+    document.body.classList.remove('is-loading');
+  });
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }

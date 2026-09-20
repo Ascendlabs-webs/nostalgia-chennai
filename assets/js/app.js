@@ -145,5 +145,33 @@
     window.addEventListener("resize", onScroll);
     frame();
   }
-  document.addEventListener("DOMContentLoaded", function(){ mountChrome(); reveal(document); scrollBands(); });
+  function showPageLoader(href){
+    if(document.querySelector(".page-loader")) return;
+    var d = document.createElement("div");
+    d.className = "page-loader";
+    d.innerHTML = '<div class="pl-card"><div class="pl-media"><img src="assets/img/loader.gif" alt="Loading"></div><div class="pl-row"><span class="pl-rec"></span><span class="pl-txt">LOADING...</span></div><div class="pl-bar"><i></i></div></div>';
+    document.body.appendChild(d);
+    setTimeout(function(){ document.body.classList.add("is-loading"); }, 20);
+    setTimeout(function(){ location.href = href; }, 700);
+  }
+  function initPageLoader(){
+    document.addEventListener("click", function(e){
+      var a = e.target.closest ? e.target.closest("a") : null;
+      if(!a) return;
+      var href = a.getAttribute("href");
+      if(!href || href.charAt(0)==="#" || a.target==="_blank" || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var url;
+      try{ url = new URL(href, location.href); }catch(err){ return; }
+      if(url.origin !== location.origin) return;
+      if(url.pathname === location.pathname && url.search === location.search) return;
+      e.preventDefault();
+      showPageLoader(href);
+    });
+    window.addEventListener("pageshow", function(){
+      var l = document.querySelector(".page-loader");
+      if(l){ l.remove(); }
+      document.body.classList.remove("is-loading");
+    });
+  }
+  document.addEventListener("DOMContentLoaded", function(){ mountChrome(); reveal(document); scrollBands(); initPageLoader(); });
 })();

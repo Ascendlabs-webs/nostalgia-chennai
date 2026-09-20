@@ -228,6 +228,20 @@ footer ul a:hover{color:#fff}
 @media(max-width:768px){.grid{grid-template-columns:repeat(2,1fr);gap:12px}.coll-grid,.brand-grid{grid-template-columns:repeat(2,1fr)}.foot-grid{grid-template-columns:1fr 1fr}.hero{padding:72px 0 60px}.page-hero{padding:64px 0 40px}}
 @media(max-width:560px){section{padding:64px 0}.wrap{padding:0 20px}.foot-grid{grid-template-columns:1fr}
 .p-row{flex-direction:column;align-items:stretch;gap:10px}.p-add{width:100%;text-align:center}
+/* meme page-transition loader */
+.page-loader{position:fixed;inset:0;z-index:200;background:rgba(10,10,12,.94);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s ease}
+body.is-loading{overflow:hidden}
+body.is-loading .page-loader{opacity:1}
+.pl-card{width:min(420px,86vw);text-align:center;transform:scale(.96);transition:transform .25s ease}
+body.is-loading .pl-card{transform:none}
+.pl-media{border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.15)}
+.pl-media img{width:100%;height:auto;display:block}
+.pl-row{display:flex;align-items:center;justify-content:center;gap:10px;margin:16px 0 12px;color:#fff;font-size:12px;letter-spacing:.24em;font-weight:600}
+.pl-rec{width:11px;height:11px;border-radius:50%;background:#ff3b30;animation:blink 1s steps(2,start) infinite}
+@keyframes blink{to{visibility:hidden}}
+.pl-bar{height:3px;border-radius:3px;background:rgba(255,255,255,.15);overflow:hidden}
+.pl-bar i{display:block;height:100%;width:40%;border-radius:3px;background:linear-gradient(90deg,#FFD23F,#FF5D8F,#22D3EE);animation:slide 1s linear infinite}
+@keyframes slide{from{transform:translateX(-100%)}to{transform:translateX(350%)}}
 .coll-tile{min-height:150px;padding:16px}.coll-tile h3{font-size:1.1rem}
 .page-hero h1{font-size:clamp(2rem,9vw,2.6rem)}
 .cart-line{grid-template-columns:64px 1fr}.cart-thumb{width:64px;height:64px;font-size:1.2rem}
