@@ -994,6 +994,39 @@
   .cat-card:nth-child(5)::after{background:var(--pink);}
   .cat-card:nth-child(6)::after{background:var(--gold);}
   .cat-card:hover::after{transform:scaleX(1);}
+  /* ---------- Photographic category tiles (reference match) ---------- */
+  .cat-photo{position:relative; min-height:230px; border-radius:12px; overflow:hidden;
+    background-size:cover; background-position:center; display:flex; align-items:flex-end; padding:22px;
+    border:1.5px solid var(--ink); box-shadow:4px 4px 0 var(--ink);
+    transition:transform .2s ease, box-shadow .2s ease;}
+  .cat-photo:hover{transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--ink);}
+  .cat-photo::before{content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(10,10,10,0) 40%, rgba(10,10,10,0.72));}
+  .cat-photo > *{position:relative; z-index:1;}
+  .cp-badge{position:absolute; top:14px; left:14px; background:var(--yellow); color:var(--ink);
+    font-family:var(--mono); font-size:10.5px; font-weight:700; letter-spacing:.08em;
+    padding:5px 12px; border-radius:4px; border:1.5px solid var(--ink); transform:rotate(-3deg);}
+  .cp-label{font-family:var(--serif); font-weight:800; font-size:1.35rem; color:#fff; line-height:1.1;}
+  .cp-label small{display:block; font-family:var(--sans); font-weight:500; font-size:11px; letter-spacing:.12em; opacity:.85; margin-top:6px;}
+  /* ---------- Vivid sale band ---------- */
+  #sale{background:linear-gradient(135deg,#FF2E4D,#8F0E24) !important;}
+  #sale .section-head h2{color:#fff !important;}
+  #sale .section-head p{color:rgba(255,255,255,0.82) !important;}
+  #sale .sale-red{color:#FFD23F !important;}
+  /* ---------- Museum showcase feature ---------- */
+  .museum{display:grid; grid-template-columns:1.1fr .9fr; background:#fff; border:1.5px solid var(--ink);
+    border-radius:12px; overflow:hidden; box-shadow:6px 6px 0 var(--ink); margin-bottom:34px;}
+  .museum-img{position:relative; min-height:340px; background:#F4EFE6;}
+  .museum-img img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .museum-img .p-tag{position:absolute; top:16px; left:16px; z-index:2;}
+  .tag-hot{background:var(--red) !important; color:#fff !important;}
+  .museum-body{padding:44px 40px; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:14px;}
+  .museum-body h3{font-family:var(--serif); font-weight:800; font-size:clamp(1.5rem,2.6vw,2.1rem); margin:0; line-height:1.1;}
+  .museum-body p{color:var(--muted); margin:0;}
+  /* ---------- Dark newsletter CTA ---------- */
+  .cta-band{background:#0B0F19 !important; background-image:none !important;}
+  .cta-band h2{color:#fff !important;}
+  .cta-band p{color:rgba(255,255,255,0.65) !important;}
   #new .kicker{color:var(--anime) !important;}
   #bestsellers .kicker{color:var(--gold) !important;}
   .p-badges .b-sale{background:#B3261E !important; color:#fff !important; border-color:#B3261E !important;}
@@ -1137,6 +1170,9 @@
     .nav-icons a:not(:last-child){display:none;}
   }
   @media (max-width: 900px){
+    .museum{grid-template-columns:1fr;}
+    .museum-img{min-height:260px;}
+    .museum-body{padding:30px 24px;}
     .hero{padding:72px 20px 60px !important; text-align:left !important;}
     .hero-grid{grid-template-columns:1fr; gap:44px;}
     .hero h1{font-size:clamp(2.5rem,10vw,3.4rem) !important;}
@@ -1505,36 +1541,28 @@
   </div>
   <div class="wrap" style="padding:0;">
   <div class="cat-grid">
-    <div class="cat-card">
-      <span class="cat-icon">M</span>
-      <h3>Marvel</h3>
-      <p>Legends, statues, and 1/6 scale figures</p>
-    </div>
-    <div class="cat-card">
-      <span class="cat-icon">D</span>
-      <h3>DC Comics</h3>
-      <p>Multiverse, McFarlane, and premium statues</p>
-    </div>
-    <div class="cat-card">
-      <span class="cat-icon">ア</span>
-      <h3>Anime</h3>
-      <p>Naruto, One Piece, Demon Slayer and more</p>
-    </div>
-    <div class="cat-card">
-      <span class="cat-icon">R</span>
-      <h3>Retro</h3>
-      <p>Classic toys and nostalgic lines — explore →</p>
-    </div>
-    <div class="cat-card">
-      <span class="cat-icon">G</span>
-      <h3>Gaming</h3>
-      <p>Game-inspired figures and collectibles — explore →</p>
-    </div>
-    <div class="cat-card">
-      <span class="cat-icon">S</span>
-      <h3>Star Wars</h3>
-      <p>Black Series, vintage and statues — explore →</p>
-    </div>
+    <a class="cat-photo" href="marvel.html" style="background-image:url('assets/img/hero-marvel.jpg')">
+      <span class="cp-badge">HOT!</span>
+      <span class="cp-label">MARVEL<small>Legends • Statues</small></span>
+    </a>
+    <a class="cat-photo" href="dc.html" style="background-image:url('assets/img/batman.jpg')">
+      <span class="cp-badge">NEW!</span>
+      <span class="cp-label">DC MULTIVERSE<small>Multiverse • Statues</small></span>
+    </a>
+    <a class="cat-photo" href="anime.html" style="background-image:url('assets/img/hero-anime.jpg')">
+      <span class="cp-badge">HOT!</span>
+      <span class="cp-label">ANIME<small>Naruto • One Piece • More</small></span>
+    </a>
+    <a class="cat-photo" href="collection.html?c=retro" style="background-image:url('assets/img/heman.jpg')">
+      <span class="cp-label">RETRO<small>Classic • Nostalgic</small></span>
+    </a>
+    <a class="cat-photo" href="collection.html?c=gaming" style="background-image:url('assets/img/chunli.jpg')">
+      <span class="cp-label">GAMING<small>Street Fighter • More</small></span>
+    </a>
+    <a class="cat-photo" href="collection.html?c=star-wars" style="background-image:url('assets/img/stormtrooper.jpg')">
+      <span class="cp-badge">NEW!</span>
+      <span class="cp-label">STAR WARS<small>Black Series • Vintage</small></span>
+    </a>
   </div>
   </div>
 </section>
@@ -1547,6 +1575,18 @@
       <h2>The Collector's Edit</h2>
       </div><a class="view-all" href="shop.html">View all <span>›</span></a></div>
     </div>
+    <div class="museum">
+      <div class="museum-img">
+        <img src="assets/img/batman.jpg" alt="Batman Statue" loading="lazy">
+        <span class="p-tag tag-hot">VAULT GRAIL</span>
+      </div>
+      <div class="museum-body">
+        <div class="kicker">MUSEUM SHOWCASE</div>
+        <h3>Batman Statue</h3>
+        <p>Museum-style Batman statue in collector-grade finish. Deposit secures your unit — balance on arrival in Chennai.</p>
+        <span class="p-price">₹24,999</span>
+        <a class="btn btn-solid" href="product.html?slug=batman-statue">View This Grail</a>
+      </div>
     </div>
     <div class="shop-grid">
       <div class="p-card">
@@ -2245,7 +2285,7 @@
       if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
     });
   }, {threshold:0.12});
-  document.querySelectorAll('.p-card, .cat-card, .coll-tile, .voice-card, .source-card, .sale-banner').forEach(function(el){
+  document.querySelectorAll('.p-card, .cat-card, .cat-photo, .museum, .coll-tile, .voice-card, .source-card, .sale-banner').forEach(function(el){
     el.classList.add('reveal'); io.observe(el);
   });
 })();
