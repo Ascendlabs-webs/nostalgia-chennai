@@ -1,4 +1,7 @@
 /* Nostalgia Chennai — shared design system (multi-page) */
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap");
+:root{--stitch-red:#FF334B;--stitch-blue:#2563EB;--stitch-ink:#11141D;
+--serif:"Syne",sans-serif;--sans:"Plus Jakarta Sans",system-ui,sans-serif;--mono:"Space Mono",monospace}
 :root{
   --bg:#FAF9F6; --white:#FFFFFF; --beige:#EDE5D6; --beige-2:#D8C8AE;
   --navy:#142033; --muted:#5E6673; --line:#DED7CB;
@@ -260,3 +263,19 @@ body{-webkit-tap-highlight-color:transparent}
 .stickybuy .sp-price{font-weight:700}
 .stickybuy .btn{flex:1;text-align:center;padding:14px 10px}
 @media(max-width:768px){.stickybuy.on{display:flex}}
+/* stitch reference reskin: blister cards, pop buttons, mono type */
+.page-hero h1,.pd-info h1{font-weight:800;letter-spacing:-.02em}
+.btn{border:1.5px solid #11141D;box-shadow:3px 3px 0 #11141D;font-weight:700;text-transform:uppercase;transition:transform .15s ease,box-shadow .15s ease}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 #11141D}
+.btn:active{transform:translate(1px,1px);box-shadow:1px 1px 0 #11141D}
+.btn-solid{background:var(--stitch-red);color:#fff}
+.p-card{border:1.5px solid #11141D;border-radius:8px;background:#F4EFE6;box-shadow:4px 4px 0 #11141D}
+.p-card:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 #11141D}
+.p-price{font-family:var(--mono)}
+.badges span{font-family:var(--mono);text-transform:uppercase;border:1.5px solid #11141D;border-radius:4px;transform:rotate(-2deg)}
+.p-wish{border-radius:8px;border:1.5px solid #11141D}
+.field input,.field select,.field textarea{border:1.5px solid #11141D;border-radius:4px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--stitch-blue);outline-offset:1px}
+.filters input[type="checkbox"]{accent-color:var(--stitch-red)}
+.coll-tile,.brand-card{border:1.5px solid #11141D;box-shadow:4px 4px 0 #11141D}
+.spec td:first-child{font-family:var(--mono);font-size:12px;text-transform:uppercase}

@@ -6,7 +6,7 @@
 <title>Nostalgia Chennai — Superhero &amp; Anime Pop Culture Collectibles</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦸</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#0a0a08;
@@ -891,6 +891,30 @@
   .cta-band{background:linear-gradient(135deg, var(--beige), #FDEFE3 55%, #E9E4F7) !important;}
   footer{border-top:4px solid transparent !important;
     border-image:linear-gradient(90deg, #E62429, #1B3FBF, #E62429) 1 !important;}
+  /* ---------- STITCH REFERENCE RESKIN: museum 70 / streetwear 30 ---------- */
+  :root{
+    --paper:#FAF8F5; --bg:#FAF8F5; --white:#FFFFFF;
+    --ink:#11141D; --navy:#11141D;
+    --red:#FF334B; --blue:#2563EB; --yellow:#FBBF24; --lime:#84CC16; --purple:#8B5CF6; --pink:#EC4899; --orange:#F97316;
+    --serif:"Syne", sans-serif; --sans:"Plus Jakarta Sans", system-ui, sans-serif; --mono:"Space Mono", monospace;
+    --shadow:4px 4px 0 #11141D; --shadow-soft:4px 4px 0 #11141D;
+  }
+  .hero h1, .section-head h2{font-weight:800 !important; letter-spacing:-0.02em !important;}
+  .kicker, .b-eyebrow, .p-line, .step-index, .section-head .kicker{font-family:var(--mono) !important;}
+  .btn{border:1.5px solid var(--ink) !important; box-shadow:3px 3px 0 var(--ink) !important;
+    font-weight:700 !important; text-transform:uppercase; transition:transform .15s ease, box-shadow .15s ease !important;}
+  .btn:hover{transform:translate(-2px,-2px) !important; box-shadow:5px 5px 0 var(--ink) !important;}
+  .btn:active{transform:translate(1px,1px) !important; box-shadow:1px 1px 0 var(--ink) !important;}
+  .btn-solid, .hero .cta-row .btn-solid{background:var(--red) !important; color:#fff !important;}
+  .p-card{border:1.5px solid var(--ink) !important; border-radius:8px !important; background:#F4EFE6 !important;
+    box-shadow:4px 4px 0 var(--ink) !important;}
+  .p-card:hover{transform:translate(-2px,-2px) !important; box-shadow:6px 6px 0 var(--ink) !important;}
+  .p-price{font-family:var(--mono) !important;}
+  .p-tag, .p-badges span{font-family:var(--mono) !important; text-transform:uppercase;
+    border:1.5px solid var(--ink) !important; border-radius:4px !important; transform:rotate(-2deg);}
+  .p-wish{border-radius:8px !important; border:1.5px solid var(--ink) !important;}
+  .sale-strip{background-image:radial-gradient(rgba(17,20,29,0.07) 1px, transparent 1.5px); background-size:14px 14px;}
+  .cta-band{background-image:radial-gradient(rgba(17,20,29,0.07) 1px, transparent 1.5px); background-size:14px 14px;}
   #collection .shop-grid .p-card{border-top:3px solid var(--line);}
   #collection .shop-grid .p-card:nth-child(1){border-top-color:var(--marvel);}
   #collection .shop-grid .p-card:nth-child(2){border-top-color:var(--dc);}
@@ -1678,7 +1702,7 @@
     <div class="section-head center">
       <div class="kicker sale-red">LIMITED TIME • WHILE STOCK LASTS</div>
       <h2><span class="sale-red">SALE</span> — collector deals, while they last</h2>
-      <p>Discounted figures, statues, and retro toys in collector-checked condition. When they're gone, they're gone.</p>
+      <p>Your wallet is not ready. Discounted grails in collector-checked condition — when they're gone, they're gone.</p>
     </div>
     <div class="sale-banner">
       <div>
@@ -1976,7 +2000,7 @@
 </section>
 
 <section class="cta-band" id="contact">
-  <h2>Give your collection a new home.</h2>
+  <h2>Don't miss the drop.</h2>
   <p>Send us the character and line on WhatsApp — most collectors get an answer within the hour.</p>
   <a class="btn btn-solid" href="contact.html" style="background:var(--ink); color:var(--paper);">Message on WhatsApp</a>
 </section>
