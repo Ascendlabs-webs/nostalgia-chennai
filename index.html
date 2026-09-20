@@ -670,7 +670,7 @@
   .offers-track span{border-right:1px solid rgba(237,229,214,0.2);}
 
   /* header — clean white */
-  header{background:rgba(255,255,255,0.92) !important; backdrop-filter:blur(12px);
+  header{background:rgba(255,255,255,0.92) !important; -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
     border-bottom:1px solid var(--line) !important; transition:box-shadow .25s ease;}
   header .wrap{padding:16px 28px !important; flex-wrap:nowrap !important; gap:28px !important; align-items:center !important;}
   .brandmark{display:inline-flex !important; align-items:center !important; gap:10px !important; flex-shrink:0 !important; min-width:0;
@@ -1096,6 +1096,7 @@
     input, select, textarea{font-size:16px !important;}
   }
   /* ---------- Phone polish: no sideways scroll, calm taps, readable forms ---------- */
+  html, body{overflow-x:hidden;}
   html, body{overflow-x:clip;}
   body{-webkit-tap-highlight-color:transparent;}
   img{height:auto;}

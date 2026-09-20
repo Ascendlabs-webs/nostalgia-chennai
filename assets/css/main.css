@@ -29,7 +29,7 @@ h1,h2.serif{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;line-
 .offers-track{display:inline-flex;animation:tick 28s linear infinite;padding:9px 0}
 .offers-track span{padding:0 28px;border-right:1px solid rgba(237,229,214,.2)}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 header.site .wrap{display:flex;align-items:center;gap:26px;padding-top:16px;padding-bottom:16px;flex-wrap:nowrap}
 header.site.scrolled{box-shadow:0 10px 30px -20px rgba(20,32,51,.18)}
 header.site.scrolled .wrap{padding-top:10px;padding-bottom:10px}
@@ -233,6 +233,7 @@ footer ul a:hover{color:#fff}
 .cart-line{grid-template-columns:64px 1fr}.cart-thumb{width:64px;height:64px;font-size:1.2rem}
 input,select,textarea{font-size:16px}
 .filters{padding:18px}.pd-info .btn{flex:1 1 100%;text-align:center}}
+html,body{overflow-x:hidden}
 html,body{overflow-x:clip}
 body{-webkit-tap-highlight-color:transparent}
 /* sticky mobile buy bar (product page) */
