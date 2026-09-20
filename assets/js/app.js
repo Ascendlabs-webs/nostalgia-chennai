@@ -56,7 +56,7 @@
     '<div><h5>SHOP</h5><ul><li><a href="new-arrivals.html">New Arrivals</a></li><li><a href="best-sellers.html">Best Sellers</a></li><li><a href="pre-orders.html">Pre-Orders</a></li><li><a href="collections.html">Collections</a></li></ul></div>'+
     '<div><h5>EXPLORE</h5><ul><li><a href="marvel.html">Marvel</a></li><li><a href="dc.html">DC</a></li><li><a href="anime.html">Anime</a></li><li><a href="collections.html">Retro</a></li></ul></div>'+
     '<div><h5>HELP</h5><ul><li><a href="shipping-returns.html">Shipping</a></li><li><a href="shipping-returns.html">Returns</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li><li><a href="search.html">Search</a></li></ul></div>'+
-    '</div><div class="foot-bottom"><span>© Nostalgia Chennai · Instagram · WhatsApp</span><span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span></div></div></footer>';
+    '</div><div class="foot-bottom"><span>© Nostalgia Chennai · Instagram · WhatsApp · Product photos: Flickr contributors via Openverse (CC BY / CC BY-SA)</span><span><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></span></div></div></footer>';
   }
   function mountChrome(){
     var hb = document.querySelector("[data-header]"); if(hb){ hb.innerHTML = headerHTML(); }
@@ -86,7 +86,7 @@
     return '<article class="p-card reveal"><div class="p-fig" style="background:'+p.bg+'">'+
       '<div class="badges"><span class="'+badgeClass(p.badge)+'">'+p.badge+'</span></div>'+
       '<button class="p-wish'+w+'" data-wish="'+p.slug+'" aria-label="Wishlist">♡</button>'+
-      '<a href="product.html?slug='+p.slug+'" style="display:contents"><span class="glyph" style="color:#fff">'+p.glyph+'</span></a></div>'+
+      '<a href="product.html?slug='+p.slug+'" style="display:contents">'+(p.img?'<img src="'+p.img+'" alt="'+p.name+'" loading="lazy">':'<span class="glyph" style="color:#fff">'+p.glyph+'</span>')+'</a></div>'+
       '<div class="p-body"><div class="p-brand">'+p.brand.toUpperCase()+'</div>'+
       '<h3 class="p-name"><a href="product.html?slug='+p.slug+'">'+p.name+'</a></h3>'+
       '<div class="p-row">'+price+'<button class="p-add" data-add="'+p.slug+'">Quick Add</button></div>'+

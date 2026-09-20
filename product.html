@@ -54,9 +54,9 @@
   document.getElementById("pname-crumb").textContent = p.name;
   document.getElementById("pbrand").textContent = p.brand.toUpperCase();
   document.getElementById("pname").textContent = p.name;
-  document.getElementById("pglyph").textContent = p.glyph;
-  document.getElementById("pglyph").style.background = p.bg;
-  document.getElementById("pglyph").style.color = "#fff";
+  var gal = document.getElementById("pglyph");
+  if(p.img){ gal.innerHTML = '<img src="'+p.img+'" alt="'+p.name+'">'; gal.style.background = "#F4F1EA"; }
+  else { gal.textContent = p.glyph; gal.style.background = p.bg; gal.style.color = "#fff"; }
   document.getElementById("pprice").innerHTML = NC.money(p.price) + (p.was ? '<span class="was">'+NC.money(p.was)+'</span>' : '');
   document.getElementById("pavail").textContent = (p.pre ? "PRE-ORDER · " : "") + p.status + " · " + p.category;
   var rows = [["Brand",p.brand],["Franchise",p.franchise],["Category",p.category],["Scale",(p.specs&&p.specs.Scale)||"—"],["Material",(p.specs&&p.specs.Material)||"—"],["Release",(p.specs&&p.specs.Release)||"—"],["Description",p.desc]];
