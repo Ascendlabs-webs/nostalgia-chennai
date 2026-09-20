@@ -741,6 +741,14 @@
   .hero-stage{position:relative; max-width:860px; margin:52px auto 0;}
   .hero-stage .hero-media{margin:0 auto; max-width:none;}
   .hero-grid{max-width:1240px; margin:0 auto; display:grid; grid-template-columns:1.02fr .98fr; gap:60px; align-items:center;}
+  .hero{position:relative; overflow:hidden; min-height:88vh; display:flex; align-items:center;}
+  .hero-grid{position:relative; z-index:2; width:100%;}
+  .hero-bgvid{display:none; position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; animation:bgDrift 28s ease-in-out infinite alternate;}
+  body.has-vid .hero-bgvid{display:block;}
+  body.has-vid .hero-media{display:none;}
+  .hero::before{content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:linear-gradient(90deg, rgba(250,249,246,0.97) 20%, rgba(250,249,246,0.82) 48%, rgba(250,249,246,0.35));}
+  @keyframes bgDrift{from{transform:scale(1);} to{transform:scale(1.08);}}
   .hero-copy{min-width:0;}
   .hero-stage{margin:0 !important; max-width:none; width:100%;}
   .hero-cap{position:absolute; left:16px; bottom:14px; z-index:2; background:rgba(255,255,255,0.92);
@@ -1060,7 +1068,7 @@
   @media (prefers-reduced-motion: reduce){
     .reveal{opacity:1; transform:none; transition:none;}
     .hero h1, .hero p.lede, .hero .cta-row, .hero-media{animation:none;}
-    .hero-media img, .sticker, .confetti, .hw-card{animation:none !important;}
+    .hero-media img, .sticker, .confetti, .hw-card, .hero-bgvid{animation:none !important;}
     .offers-track, .ticker-track, .marquee-track{animation:none;}
   }
 
@@ -1129,6 +1137,8 @@
     .cta-band{padding:60px 20px !important;}
     input, select, textarea{font-size:16px !important;}
     .hw-card{display:none;}
+    .hero{min-height:0;}
+    .hero::before{background:linear-gradient(180deg, rgba(250,249,246,0.96), rgba(250,249,246,0.78));}
   }
   /* ---------- Phone polish: no sideways scroll, calm taps, readable forms ---------- */
   html, body{overflow-x:hidden;}
@@ -1356,6 +1366,7 @@
 </header>
 
 <section class="hero" id="top">
+  <video class="hero-bgvid" muted loop playsinline preload="auto" poster="assets/img/spiderman.jpg" aria-hidden="true"></video>
 <div class="hero-grid">
 <div class="hero-copy">
   <div class="eyebrow-line">NOSTALGIA CHENNAI — SUPERHERO • ANIME • POP-CULTURE</div>
@@ -2113,6 +2124,20 @@
   window.addEventListener('scroll', bandScroll, {passive:true});
   window.addEventListener('resize', bandScroll);
   bandFrame();
+  try{
+    fetch('assets/vid/hero.mp4', {method:'HEAD'}).then(function(r){
+      if(!r.ok) return;
+      var v = document.querySelector('.hero-bgvid');
+      if(!v) return;
+      v.muted = true;
+      v.setAttribute('muted', '');
+      v.setAttribute('playsinline', '');
+      v.src = 'assets/vid/hero.mp4';
+      var tryPlay = function(){ v.play().catch(function(){}); };
+      v.addEventListener('canplay', function(){ document.body.classList.add('has-vid'); tryPlay(); });
+      tryPlay();
+    }).catch(function(){});
+  }catch(e){}
   }
   var WISH_KEY = 'nc_wish';
   function getWish(){ try{ return JSON.parse(localStorage.getItem(WISH_KEY)) || []; }catch(e){ return []; } }
