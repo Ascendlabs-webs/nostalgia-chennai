@@ -25,7 +25,7 @@ h1,h2.serif{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;line-
 /* header */
 .infobar{background:var(--white);border-bottom:1px solid var(--line);font-size:12px;color:var(--muted)}
 .infobar .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:9px;padding-bottom:9px}
-.offers{background:var(--navy);color:var(--beige);overflow:hidden;white-space:nowrap;text-align:center;font-size:11.5px;font-weight:600;letter-spacing:.12em}
+.offers{background:linear-gradient(90deg,#142033,#3B2A63 55%,#142033);color:var(--beige);overflow:hidden;white-space:nowrap;text-align:center;font-size:11.5px;font-weight:600;letter-spacing:.12em}
 .offers-track{display:inline-flex;animation:tick 28s linear infinite;padding:9px 0}
 .offers-track span{padding:0 28px;border-right:1px solid rgba(237,229,214,.2)}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -110,6 +110,14 @@ nav.main a.sale{color:var(--sale)}
 .fr-anime{border-top-color:var(--anime)}.fr-transformers{border-top-color:var(--teal)}
 .fr-star-wars{border-top-color:var(--gold)}.fr-retro{border-top-color:var(--orange)}
 .fr-gaming{border-top-color:var(--pink)}.fr-hot-wheels{border-top-color:var(--orange)}
+.fr-marvel .p-fig{background:#FDECEC}.fr-dc .p-fig{background:#EAF1FB}
+.fr-anime .p-fig{background:#F4EAFB}.fr-transformers .p-fig{background:#E6F5F1}
+.fr-star-wars .p-fig{background:#FBF3DC}.fr-retro .p-fig{background:#FDEEE2}
+.fr-gaming .p-fig{background:#FCE8F0}.fr-hot-wheels .p-fig{background:#FDEEE2}
+.fr-marvel .p-brand{color:var(--marvel)}.fr-dc .p-brand{color:var(--dc)}
+.fr-anime .p-brand{color:var(--anime)}.fr-transformers .p-brand{color:var(--teal)}
+.fr-star-wars .p-brand{color:var(--gold)}.fr-retro .p-brand{color:var(--orange)}
+.fr-gaming .p-brand{color:var(--pink)}.fr-hot-wheels .p-brand{color:var(--orange)}
 .p-fig{aspect-ratio:1/1.05;background:#F4F1EA;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .p-fig .glyph{font-family:var(--serif);font-size:3rem}
 .p-fig img{width:100%;height:100%;object-fit:contain;transition:transform .35s ease}
@@ -163,6 +171,14 @@ nav.main a.sale{color:var(--sale)}
 .badges .b-pre{background:#EAA81C;border-color:#EAA81C;color:#142033}
 .badges .b-out{background:#111;border-color:#111;color:#fff}
 .p-add:disabled{background:#c9c2b4;cursor:default}
+/* full-color pass */
+.page-hero{background:linear-gradient(180deg,#FAF9F6,#F1ECFB)}
+.brand-card{border-top:3px solid var(--line)}
+.brand-card:nth-child(8n+1){border-top-color:var(--marvel)}.brand-card:nth-child(8n+2){border-top-color:var(--dc)}
+.brand-card:nth-child(8n+3){border-top-color:var(--anime)}.brand-card:nth-child(8n+4){border-top-color:var(--teal)}
+.brand-card:nth-child(8n+5){border-top-color:var(--gold)}.brand-card:nth-child(8n+6){border-top-color:var(--orange)}
+.brand-card:nth-child(8n+7){border-top-color:var(--pink)}.brand-card:nth-child(8n){border-top-color:var(--navy)}
+footer{border-top:4px solid transparent;border-image:linear-gradient(90deg,var(--marvel),var(--gold),var(--teal),var(--anime)) 1}
 .pd-info .brand{font-size:11px;letter-spacing:.2em;color:var(--muted);font-weight:600}
 .pd-info h1{font-family:var(--serif);font-weight:500;font-size:clamp(1.8rem,3vw,2.5rem);margin:10px 0}
 .pd-price{font-size:1.3rem;font-weight:600;margin:14px 0}
