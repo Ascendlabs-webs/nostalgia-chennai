@@ -752,7 +752,7 @@
   .hero-grid{max-width:1240px; margin:0 auto; display:grid; grid-template-columns:1.02fr .98fr; gap:60px; align-items:center;}
   .hero{position:relative; overflow:hidden; min-height:88vh; display:flex; align-items:center;}
   .hero-grid{position:relative; z-index:2; width:100%;}
-  .hero-bgimg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; animation:bgDrift 28s ease-in-out infinite alternate;}
+  .hero-bgvid{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; animation:bgDrift 28s ease-in-out infinite alternate;}
   .hero .hero-media{display:none;}
   .hero::before{content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
     background:linear-gradient(90deg, rgba(250,249,246,0.97) 20%, rgba(250,249,246,0.82) 48%, rgba(250,249,246,0.35));}
@@ -1435,7 +1435,7 @@
 </header>
 
 <section class="hero" id="top">
-  <img class="hero-bgimg" src="assets/img/spiderman.jpg" alt="" aria-hidden="true">
+  <video class="hero-bgvid" muted loop playsinline preload="auto" poster="assets/img/spiderman.jpg" aria-hidden="true"></video>
 <div class="hero-grid">
 <div class="hero-copy">
   <div class="eyebrow-line">NOSTALGIA CHENNAI — SUPERHERO • ANIME • POP-CULTURE</div>
@@ -2193,6 +2193,14 @@
   window.addEventListener('scroll', bandScroll, {passive:true});
   window.addEventListener('resize', bandScroll);
   bandFrame();
+  var bgv = document.querySelector('.hero-bgvid');
+  if(bgv){
+    bgv.muted = true;
+    bgv.src = 'assets/vid/hero-bg.mp4';
+    var bgPlay = function(){ bgv.play().catch(function(){}); };
+    bgv.addEventListener('canplay', bgPlay);
+    bgPlay();
+  }
   }
   var WISH_KEY = 'nc_wish';
   function getWish(){ try{ return JSON.parse(localStorage.getItem(WISH_KEY)) || []; }catch(e){ return []; } }
