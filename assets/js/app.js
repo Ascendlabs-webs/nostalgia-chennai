@@ -28,6 +28,7 @@
   }
   /* header + footer */
   var NAV = [
+    {t:"Home", h:"index.html"},
     {t:"Shop", h:"shop.html", mega:true},
     {t:"Brands", h:"brands.html"}, {t:"Pre-Orders", h:"pre-orders.html"},
     {t:"New Arrivals", h:"new-arrivals.html"}
@@ -84,18 +85,18 @@
     }
   }
   /* product card */
-  function badgeClass(b){ b=(b||"").toUpperCase(); if(b==="SALE")return "b-sale"; if(b==="PRE-ORDER")return "b-pre"; return ""; }
+  function badgeClass(b){ b=(b||"").toUpperCase(); if(b==="SALE")return "b-sale"; if(b==="PRE-ORDER")return "b-pre"; if(b==="SOLD OUT")return "b-out"; return ""; }
   function cardHTML(p){
     var w = wish().indexOf(p.slug)>-1 ? " on" : "";
     var price = p.was ? '<span class="p-price"><span class="sp">'+money(p.price)+'</span><span class="was">'+money(p.was)+'</span></span>'
                       : '<span class="p-price">'+money(p.price)+'</span>';
-    return '<article class="p-card reveal"><div class="p-fig" style="background:'+p.bg+'">'+
+    return '<article class="p-card reveal fr-'+p.franchise.toLowerCase().replace(/\s+/g,'-')+'"><div class="p-fig" style="background:'+p.bg+'">'+
       '<div class="badges"><span class="'+badgeClass(p.badge)+'">'+p.badge+'</span></div>'+
       '<button class="p-wish'+w+'" data-wish="'+p.slug+'" aria-label="Wishlist">♡</button>'+
       '<a href="product.html?slug='+p.slug+'" style="display:contents">'+(p.img?'<img src="'+p.img+'" alt="'+p.name+'" loading="lazy">':'<span class="glyph" style="color:#fff">'+p.glyph+'</span>')+'</a></div>'+
       '<div class="p-body"><div class="p-brand">'+p.brand.toUpperCase()+'</div>'+
       '<h3 class="p-name"><a href="product.html?slug='+p.slug+'">'+p.name+'</a></h3>'+
-      '<div class="p-row">'+price+'<button class="p-add" data-add="'+p.slug+'">Quick Add</button></div>'+
+      '<div class="p-row">'+price+(p.status==="Sold Out"?'<button class="p-add" disabled>Sold Out</button>':'<button class="p-add" data-add="'+p.slug+'">Quick Add</button>')+'</div>'+
       '<div class="p-status">'+p.status.toUpperCase()+'</div></div></article>';
   }
   function gridHTML(list){ return list.map(cardHTML).join(""); }
@@ -118,5 +119,27 @@
   window.NC = {products:function(){return D.products.slice();}, collections:function(){return D.collections.slice();}, brands:function(){return D.brands.slice();},
     bySlug:bySlug, money:money, cardHTML:cardHTML, gridHTML:gridHTML, bindCards:bindCards, reveal:reveal,
     cart:cart, wish:wish, addCart:addCart, toggleWish:toggleWish, paintCounts:paintCounts, qs:qs, store:store, mountChrome:mountChrome};
-  document.addEventListener("DOMContentLoaded", function(){ mountChrome(); reveal(document); });
+  function scrollBands(){
+    if(!document.querySelector(".reveal-band")) return;
+    if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var bands = document.querySelectorAll(".reveal-band"), ticking = false;
+    function frame(){
+      ticking = false;
+      var vh = window.innerHeight;
+      bands.forEach(function(b){
+        var r = b.getBoundingClientRect();
+        var p = (vh - r.top) / (vh + r.height);
+        p = Math.max(0, Math.min(1, p));
+        var inset = (1 - p) * 34, side = (1 - p) * 6;
+        b.style.clipPath = "inset("+inset.toFixed(2)+"% "+side.toFixed(2)+"% "+inset.toFixed(2)+"% "+side.toFixed(2)+"% round 14px)";
+        var img = b.querySelector("img");
+        if(img){ img.style.transform = "scale(1.12) translateY("+((p - 0.5) * -36).toFixed(1)+"px)"; }
+      });
+    }
+    function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(frame); } }
+    window.addEventListener("scroll", onScroll, {passive:true});
+    window.addEventListener("resize", onScroll);
+    frame();
+  }
+  document.addEventListener("DOMContentLoaded", function(){ mountChrome(); reveal(document); scrollBands(); });
 })();

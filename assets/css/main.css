@@ -99,6 +99,12 @@ nav.main a.sale{color:var(--sale)}
 .grid.cols-3{grid-template-columns:repeat(3,1fr)}
 .p-card{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:transform .25s ease,box-shadow .25s ease}
 .p-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-soft)}
+:root{--marvel:#E23636;--dc:#1B5FBF;--anime:#9B3DDE;--teal:#0E9F8A;--gold:#C9971C;--orange:#E86A1C;--pink:#E14E86}
+.p-card{border-top:3px solid var(--line)}
+.fr-marvel{border-top-color:var(--marvel)}.fr-dc{border-top-color:var(--dc)}
+.fr-anime{border-top-color:var(--anime)}.fr-transformers{border-top-color:var(--teal)}
+.fr-star-wars{border-top-color:var(--gold)}.fr-retro{border-top-color:var(--orange)}
+.fr-gaming{border-top-color:var(--pink)}.fr-hot-wheels{border-top-color:var(--orange)}
 .p-fig{aspect-ratio:1/1.05;background:#F4F1EA;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .p-fig .glyph{font-family:var(--serif);font-size:3rem}
 .p-fig img{width:100%;height:100%;object-fit:contain;transition:transform .35s ease}
@@ -142,6 +148,16 @@ nav.main a.sale{color:var(--sale)}
 .pd-gallery{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
 .pd-gallery .main{aspect-ratio:1/1;background:#F4F1EA;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:4rem;overflow:hidden}
 .pd-gallery .main img{width:100%;height:100%;object-fit:contain}
+/* scroll scroll-reveal editorial bands */
+.band-wrap{padding:0 28px;background:var(--bg)}
+.reveal-band{display:block;position:relative;max-width:1240px;margin:0 auto;border-radius:14px;overflow:hidden;aspect-ratio:21/9;border:1px solid var(--line);box-shadow:var(--shadow-soft);will-change:clip-path}
+.reveal-band img{width:100%;height:100%;object-fit:cover;transform:scale(1.12);will-change:transform}
+.reveal-cap{position:absolute;left:20px;bottom:18px;z-index:2;background:rgba(255,255,255,.92);color:var(--navy);font-size:11px;letter-spacing:.14em;font-weight:600;padding:9px 18px;border-radius:20px;border:1px solid var(--line)}
+@media(max-width:560px){.reveal-band{aspect-ratio:4/3}}
+/* badges */
+.badges .b-pre{background:#EAA81C;border-color:#EAA81C;color:#142033}
+.badges .b-out{background:#111;border-color:#111;color:#fff}
+.p-add:disabled{background:#c9c2b4;cursor:default}
 .pd-info .brand{font-size:11px;letter-spacing:.2em;color:var(--muted);font-weight:600}
 .pd-info h1{font-family:var(--serif);font-weight:500;font-size:clamp(1.8rem,3vw,2.5rem);margin:10px 0}
 .pd-price{font-size:1.3rem;font-weight:600;margin:14px 0}
