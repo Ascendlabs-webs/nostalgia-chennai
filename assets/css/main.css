@@ -170,4 +170,17 @@ footer ul a:hover{color:#fff}
 @media(max-width:1024px){section{padding:80px 0}.grid{grid-template-columns:repeat(3,1fr)}.coll-grid,.brand-grid{grid-template-columns:repeat(3,1fr)}.pd{grid-template-columns:1fr}.shop-layout{grid-template-columns:1fr}.filters{position:static}}
 @media(max-width:1100px){nav.main{display:none}.burger{display:inline-block}.hicons a:not(:last-child){display:none}}
 @media(max-width:768px){.grid{grid-template-columns:repeat(2,1fr);gap:12px}.coll-grid,.brand-grid{grid-template-columns:repeat(2,1fr)}.foot-grid{grid-template-columns:1fr 1fr}.hero{padding:72px 0 60px}.page-hero{padding:64px 0 40px}}
-@media(max-width:560px){section{padding:64px 0}.wrap{padding:0 20px}.foot-grid{grid-template-columns:1fr}}
+@media(max-width:560px){section{padding:64px 0}.wrap{padding:0 20px}.foot-grid{grid-template-columns:1fr}
+.p-row{flex-direction:column;align-items:stretch;gap:10px}.p-add{width:100%;text-align:center}
+.coll-tile{min-height:150px;padding:16px}.coll-tile h3{font-size:1.1rem}
+.page-hero h1{font-size:clamp(2rem,9vw,2.6rem)}
+.cart-line{grid-template-columns:64px 1fr}.cart-thumb{width:64px;height:64px;font-size:1.2rem}
+input,select,textarea{font-size:16px}
+.filters{padding:18px}.pd-info .btn{flex:1 1 100%;text-align:center}}
+html,body{overflow-x:clip}
+body{-webkit-tap-highlight-color:transparent}
+/* sticky mobile buy bar (product page) */
+.stickybuy{display:none;position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:12px 20px calc(12px + env(safe-area-inset-bottom,0px));gap:12px;align-items:center}
+.stickybuy .sp-price{font-weight:700}
+.stickybuy .btn{flex:1;text-align:center;padding:14px 10px}
+@media(max-width:768px){.stickybuy.on{display:flex}}

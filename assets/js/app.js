@@ -65,12 +65,17 @@
     var header = document.querySelector("header.site");
     window.addEventListener("scroll", function(){ if(header){ header.classList.toggle("scrolled", window.scrollY>12); } }, {passive:true});
     var b = document.querySelector(".burger"), n = document.querySelector("nav.main");
+    function closeNav(){ n.style.display=""; b.setAttribute("aria-expanded","false"); }
     if(b && n){ b.addEventListener("click", function(){
-      var open = n.style.display==="flex";
-      n.style.display = open ? "" : "flex"; n.style.flexDirection="column"; n.style.position="absolute";
+      if(n.style.display==="flex"){ closeNav(); return; }
+      n.style.display="flex"; n.style.flexDirection="column"; n.style.position="absolute";
       n.style.top="100%"; n.style.left="0"; n.style.right="0"; n.style.background="#fff";
       n.style.padding="18px 28px 24px"; n.style.borderBottom="1px solid #DED7CB";
-    });}
+      b.setAttribute("aria-expanded","true");
+    });
+    n.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", closeNav); });
+    window.addEventListener("resize", function(){ if(window.innerWidth>1100){ closeNav(); } });
+    }
   }
   /* product card */
   function badgeClass(b){ b=(b||"").toUpperCase(); if(b==="SALE")return "b-sale"; if(b==="PRE-ORDER")return "b-pre"; return ""; }

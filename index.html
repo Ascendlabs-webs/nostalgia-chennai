@@ -886,9 +886,34 @@
     section{padding-top:72px; padding-bottom:72px;}
     .shop-grid{grid-template-columns:repeat(2,1fr) !important; gap:12px !important;}
     .p-body{padding:12px 12px 16px !important;}
+    .p-row{flex-direction:column !important; align-items:stretch !important; gap:10px !important;}
+    .p-add{width:100% !important; text-align:center; padding:11px 10px !important;}
+    .p-price{font-size:13px !important;}
     .hero{padding:60px 20px 48px !important;}
+    .hero h1{font-size:clamp(2.4rem,11vw,3rem) !important;}
+    .hero .cta-row .btn{flex:1 1 100% !important; text-align:center;}
+    .hero-slide-caption{left:12px; bottom:12px; font-size:10px; padding:7px 12px;}
+    .hero-dots button{width:14px; height:14px;}
     .wrap{padding:0 20px;}
+    header .wrap{gap:14px !important; padding:12px 20px !important;}
+    .banner-grid .grid3{grid-template-columns:1fr !important;}
+    .cat-grid{grid-template-columns:1fr !important;}
+    .coll-grid{grid-template-columns:repeat(2,1fr) !important; gap:12px !important;}
+    .coll-tile{min-height:150px !important; padding:16px !important; font-size:1.05rem !important;}
+    .source-steps{grid-template-columns:1fr !important;}
+    .sale-banner{padding:26px 20px !important;}
+    .trust .wrap{grid-template-columns:1fr !important; gap:22px !important;}
+    .process-grid{grid-template-columns:1fr !important;}
+    .voice-grid{grid-template-columns:1fr !important;}
+    .foot-grid{grid-template-columns:1fr !important;}
+    .sell-cta-row .btn{flex:1 1 100% !important; text-align:center;}
+    .cta-band{padding:60px 20px !important;}
+    input, select, textarea{font-size:16px !important;}
   }
+  /* ---------- Phone polish: no sideways scroll, calm taps, readable forms ---------- */
+  html, body{overflow-x:clip;}
+  body{-webkit-tap-highlight-color:transparent;}
+  img{height:auto;}
 </style>
 </head>
 <body>
@@ -1781,10 +1806,12 @@
   }, {passive:true});
   var btn = document.querySelector('.hamburger');
   var nav = document.querySelector('nav.mainnav');
+  function closeMenu(){ nav.style.display = ''; btn.setAttribute('aria-expanded', 'false'); }
   if(btn && nav){
     btn.addEventListener('click', function(){
       var open = nav.style.display === 'flex';
-      nav.style.display = open ? '' : 'flex';
+      if(open){ closeMenu(); return; }
+      nav.style.display = 'flex';
       nav.style.flexDirection = 'column';
       nav.style.position = 'absolute';
       nav.style.top = '100%';
@@ -1793,8 +1820,10 @@
       nav.style.background = '#fff';
       nav.style.padding = '18px 28px 24px';
       nav.style.borderBottom = '1px solid #DED7CB';
-      btn.setAttribute('aria-expanded', String(!open));
+      btn.setAttribute('aria-expanded', 'true');
     });
+    nav.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+    window.addEventListener('resize', function(){ if(window.innerWidth > 1100){ closeMenu(); } });
   }
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
