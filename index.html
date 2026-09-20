@@ -740,6 +740,21 @@
   /* ---------- Meme sticker pop-ups + confetti ---------- */
   .hero-stage{position:relative; max-width:860px; margin:52px auto 0;}
   .hero-stage .hero-media{margin:0 auto; max-width:none;}
+  .hero-grid{max-width:1240px; margin:0 auto; display:grid; grid-template-columns:1.02fr .98fr; gap:60px; align-items:center;}
+  .hero-copy{min-width:0;}
+  .hero-stage{margin:0 !important; max-width:none; width:100%;}
+  .hero-cap{position:absolute; left:16px; bottom:14px; z-index:2; background:rgba(255,255,255,0.92);
+    font-size:11px; letter-spacing:.14em; font-weight:600; padding:8px 16px; border-radius:20px; border:1px solid var(--line);}
+  .hw-card{position:absolute; z-index:4; right:-14px; bottom:-34px; width:198px; margin:0;
+    background:#fff; padding:10px 10px 12px; border:1px solid var(--line); border-radius:6px;
+    box-shadow:6px 6px 0 var(--navy); transform:rotate(5deg);
+    animation:popIn .55s .8s cubic-bezier(.2,1.6,.4,1) both;}
+  .hw-card img{width:100%; height:132px; object-fit:cover; border-radius:3px; display:block;}
+  .hw-card figcaption{font-size:11px; letter-spacing:.14em; font-weight:700; text-align:center; padding-top:8px;}
+  .hw-card::before,.hw-card::after{content:""; position:absolute; top:-12px; width:56px; height:22px;
+    background:rgba(232,160,19,0.8); border:1px solid rgba(20,32,51,0.15);}
+  .hw-card::before{left:-16px; transform:rotate(-38deg);}
+  .hw-card::after{right:-16px; transform:rotate(38deg);}
   /* ---------- Meme page-transition loader ---------- */
   .page-loader{position:fixed; inset:0; z-index:200; background:rgba(10,10,12,0.94);
     display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s ease;}
@@ -1044,7 +1059,7 @@
   @media (prefers-reduced-motion: reduce){
     .reveal{opacity:1; transform:none; transition:none;}
     .hero h1, .hero p.lede, .hero .cta-row, .hero-media{animation:none;}
-    .hero-media img, .sticker, .confetti{animation:none !important;}
+    .hero-media img, .sticker, .confetti, .hw-card{animation:none !important;}
     .offers-track, .ticker-track, .marquee-track{animation:none;}
   }
 
@@ -1081,6 +1096,7 @@
   }
   @media (max-width: 900px){
     .hero{padding:72px 20px 60px !important; text-align:left !important;}
+    .hero-grid{grid-template-columns:1fr; gap:44px;}
     .hero h1{font-size:clamp(2.5rem,10vw,3.4rem) !important;}
     .shop-grid{grid-template-columns:repeat(2,1fr) !important;}
   }
@@ -1111,6 +1127,7 @@
     .sell-cta-row .btn{flex:1 1 100% !important; text-align:center;}
     .cta-band{padding:60px 20px !important;}
     input, select, textarea{font-size:16px !important;}
+    .hw-card{display:none;}
   }
   /* ---------- Phone polish: no sideways scroll, calm taps, readable forms ---------- */
   html, body{overflow-x:hidden;}
@@ -1338,6 +1355,8 @@
 </header>
 
 <section class="hero" id="top">
+<div class="hero-grid">
+<div class="hero-copy">
   <div class="eyebrow-line">NOSTALGIA CHENNAI — SUPERHERO • ANIME • POP-CULTURE</div>
   <h1>Collect what<br>you love.</h1>
   <p class="lede">Premium figures, anime collectibles and pop-culture pieces for collectors who never outgrew the things they loved.</p>
@@ -1348,11 +1367,17 @@
   <div class="hero-chips">
     <span>✓ Authentic collectibles</span><span>✓ Chennai store</span><span>✓ Pan-India shipping</span>
   </div>
+</div>
   <div class="hero-stage">
     <div class="hero-media">
       <video class="hero-vid" muted loop playsinline preload="none" aria-hidden="true"></video>
-      <img src="assets/img/hero-hotwheels.jpg" alt="Hot Wheels cars racing on orange track with Hot Wheels logo">
+      <img src="assets/img/spiderman.jpg" alt="Spider-Man action figure in a wall-crawling pose">
+      <span class="hero-cap">SPIDER-MAN</span>
     </div>
+    <figure class="hw-card">
+      <img src="assets/img/hero-hotwheels.jpg" alt="Hot Wheels track cars">
+      <figcaption>HOT WHEELS</figcaption>
+    </figure>
     <span class="sticker s1">NEW DROP!</span>
     <span class="sticker star s2">HOT!</span>
     <span class="sticker s3">MINT! MINT!</span>
@@ -1360,6 +1385,7 @@
     <i class="confetti c1"></i><i class="confetti c2"></i><i class="confetti c3"></i>
     <i class="confetti c4"></i><i class="confetti c5"></i><i class="confetti c6"></i>
   </div>
+</div>
 </section>
 
 <section class="banner-grid">
