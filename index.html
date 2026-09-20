@@ -6,7 +6,7 @@
 <title>Nostalgia Chennai — Superhero &amp; Anime Pop Culture Collectibles</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦸</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#0a0a08;
@@ -51,6 +51,7 @@
     font-family:var(--sans);
     font-size:12.5px;
     letter-spacing:.04em;
+    overflow:hidden; white-space:nowrap;
   }
   .infobar .wrap{
     display:flex; justify-content:space-between; align-items:center;
@@ -58,6 +59,13 @@
   }
   .infobar span{opacity:.82;}
   .infobar .divider{opacity:.35; margin:0 4px;}
+  .offers-bar{
+    background:var(--amber); color:var(--ink);
+    overflow:hidden; white-space:nowrap; text-align:center;
+    font-size:12px; font-weight:600; letter-spacing:.1em;
+  }
+  .offers-track{display:inline-flex; animation:scrollTicker 28s linear infinite; padding:9px 0;}
+  .offers-track span{padding:0 28px; border-right:1px solid rgba(10,10,8,0.25);}
 
   /* ---------- Header ---------- */
   header{
@@ -120,6 +128,29 @@
     font-size:1.08rem; font-weight:300;
   }
   .hero .cta-row{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  .hero-media{
+    max-width:860px; margin:52px auto 0;
+    border-radius:12px; overflow:hidden;
+    box-shadow:var(--shadow);
+    border:1px solid rgba(242,233,216,0.14);
+    background:#0f0f0d;
+  }
+  .hero-media img{width:100%; height:auto; object-fit:cover; aspect-ratio:16/7;}
+  .hero-slider{position:relative;}
+  .hero-slide{display:none;}
+  .hero-slide.active{display:block; animation:heroFade .5s ease;}
+  @keyframes heroFade{from{opacity:.4;} to{opacity:1;}}
+  .hero-slide-caption{
+    position:absolute; left:18px; bottom:16px;
+    background:rgba(10,10,8,0.78); color:var(--paper);
+    font-size:12px; letter-spacing:.1em; padding:8px 16px; border-radius:20px;
+  }
+  .hero-dots{display:flex; gap:10px; justify-content:center; margin-top:18px;}
+  .hero-dots button{
+    width:10px; height:10px; border-radius:50%; border:1px solid rgba(242,233,216,0.5);
+    background:transparent; cursor:pointer; padding:0;
+  }
+  .hero-dots button.active{background:var(--amber); border-color:var(--amber);}
   .btn{
     display:inline-block; font-family:var(--sans); font-size:13.5px; letter-spacing:.06em;
     padding:15px 30px; border-radius:2px; cursor:pointer; border:1px solid transparent;
@@ -481,9 +512,382 @@
 
   @media (max-width: 900px){
     .brandgrid .bg-grid{grid-template-columns:repeat(3,1fr);}
+    .source-card{padding:30px 22px;}
+    .sale-banner{flex-direction:column; align-items:flex-start;}
   }
   @media (max-width: 560px){
     .brandgrid .bg-grid{grid-template-columns:repeat(2,1fr);}
+    .country-pills{justify-content:flex-start;}
+  }
+
+  /* ---------- Pre-orders / global sourcing ---------- */
+  .preorders{padding:96px 28px; background:var(--ink); color:var(--paper);}
+  .preorders .section-head h2{color:var(--paper);}
+  .preorders .section-head p{color:rgba(242,233,216,0.7);}
+  .preorders .section-head .kicker{color:var(--amber);}
+  .source-card{
+    max-width:760px; margin:0 auto; background:var(--ink-soft);
+    border:1px solid rgba(242,233,216,0.12); border-radius:10px;
+    padding:38px 36px; box-shadow:var(--shadow); text-align:center;
+  }
+  .source-card h3{font-family:var(--serif); font-size:1.4rem; margin:0 0 12px; color:var(--paper);}
+  .source-card > p{color:rgba(242,233,216,0.72); font-size:14.5px; margin:0 0 22px;}
+  .source-steps{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
+    margin:0 0 24px; text-align:left;
+  }
+  .source-steps div{
+    background:rgba(242,233,216,0.06); border:1px solid rgba(242,233,216,0.1);
+    border-radius:8px; padding:16px 14px; font-size:13.5px; color:rgba(242,233,216,0.85);
+  }
+  .source-steps b{display:block; font-size:12px; letter-spacing:.08em; color:var(--amber); margin-bottom:6px;}
+  .country-pills{display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:0 0 26px;}
+  .country-pills span{
+    font-size:12px; letter-spacing:.05em; font-weight:500;
+    border:1px solid rgba(242,233,216,0.22); border-radius:20px;
+    padding:7px 14px; color:var(--paper-dim);
+  }
+  .source-note{margin:18px 0 0 !important; font-size:12px !important; color:rgba(242,233,216,0.45) !important;}
+  @media (max-width: 900px){ .source-steps{grid-template-columns:1fr;} }
+
+  /* ---------- Sale (red) ---------- */
+  .sale-strip{padding:96px 28px; background:var(--paper);}
+  .sale-red{color:#d21f26 !important;}
+  nav.mainnav a.sale-link{color:#ff5a5a; font-weight:600;}
+  nav.mainnav a.sale-link:hover{color:#d21f26; border-color:#d21f26;}
+  .sale-banner{
+    max-width:860px; margin:0 auto; background:#fff;
+    border:2px solid #d21f26; border-radius:12px;
+    padding:34px 32px; display:flex; align-items:center; justify-content:space-between;
+    gap:24px; box-shadow:var(--shadow); flex-wrap:wrap;
+  }
+  .sale-badge{
+    display:inline-block; background:#d21f26; color:#fff;
+    font-size:12px; font-weight:600; letter-spacing:.12em;
+    padding:6px 16px; border-radius:20px; margin-bottom:14px;
+  }
+  .sale-banner h3{font-family:var(--serif); font-size:1.7rem; margin:0 0 10px; color:var(--ink);}
+  .sale-banner h3 .sale-red{font-weight:700;}
+  .sale-banner p{margin:0; color:var(--navy-soft); font-size:14.5px; max-width:52ch;}
+  .btn-sale{background:#d21f26; color:#fff;}
+  .btn-sale:hover{background:#a8161c; color:#fff;}
+
+  /* ---------- Sell your collection ---------- */
+  .sell-intro{color:var(--navy-soft); font-size:1.02rem; max-width:62ch; margin:14px 0 0;}
+  .sell-close{
+    margin-top:36px; background:var(--paper-dim); border:1px solid var(--rule);
+    border-radius:8px; padding:20px 22px; color:var(--navy);
+    font-size:14.5px; max-width:72ch;
+  }
+  .sell-cta-row{display:flex; gap:14px; margin-top:22px; flex-wrap:wrap;}
+  .btn-dark{background:var(--ink); color:var(--paper);}
+  .btn-dark:hover{background:var(--ink-soft);}
+
+  /* ---------- Fatcat-style collection tiles ---------- */
+  .coll-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  .coll-tile{
+    border-radius:10px; min-height:170px; padding:20px;
+    display:flex; align-items:flex-end; color:#fff;
+    font-family:var(--serif); font-weight:700; font-size:1.3rem;
+    box-shadow:var(--shadow); border:1px solid rgba(10,10,8,0.1);
+  }
+  .coll-tile small{display:block; font-family:var(--sans); font-weight:400; font-size:11px; letter-spacing:.1em; opacity:.85;}
+  @media (max-width: 900px){ .coll-grid{grid-template-columns:repeat(2,1fr);} }
+
+  /* ---------- Product price / badges ---------- */
+  .p-badges{position:absolute; top:10px; left:10px; display:flex; gap:6px;}
+  .p-badges span{font-size:10.5px; letter-spacing:.05em; font-weight:600; padding:4px 10px; border-radius:20px; background:rgba(255,255,255,0.92); color:var(--ink);}
+  .p-badges .b-sale{background:#d21f26; color:#fff;}
+  .p-badges .b-pre{background:var(--ink); color:var(--paper);}
+  .p-badges .b-out{background:rgba(10,10,8,0.75); color:#fff;}
+  .p-price .was{color:rgba(35,47,66,0.5); text-decoration:line-through; font-weight:400; margin-left:8px;}
+  .p-price .sale-price{color:#d21f26;}
+
+  /* ---------- Bestsellers (dark) ---------- */
+  .bestsellers{padding:96px 28px; background:var(--ink); color:var(--paper);}
+  .bestsellers .section-head h2{color:var(--paper);}
+  .bestsellers .section-head p{color:rgba(242,233,216,0.6);}
+  .bestsellers .section-head .kicker{color:var(--amber);}
+  .bestsellers .p-card{background:var(--ink-soft); border-color:rgba(242,233,216,0.12);}
+  .bestsellers .p-name{color:var(--paper);}
+  .bestsellers .p-price{color:var(--paper-dim);}
+  .newarrivals{padding:96px 28px; background:var(--paper-dim); border-top:1px solid var(--rule);}
+
+  /* ============================================================
+     PREMIUM MINIMAL REDESIGN — Nostalgia Chennai
+     White + warm beige + deep navy. Photography carries color.
+     ============================================================ */
+  :root{
+    --bg:#FAF9F6;
+    --white:#FFFFFF;
+    --beige:#EDE5D6;
+    --beige-2:#D8C8AE;
+    --navy:#142033;
+    --muted:#5E6673;
+    --line:#DED7CB;
+    --ink:#142033;
+    --ink-soft:#1d2c46;
+    --paper:#FAF9F6;
+    --paper-dim:#EDE5D6;
+    --parchment:#EDE5D6;
+    --parchment-deep:#D8C8AE;
+    --amber:#142033;
+    --amber-deep:#142033;
+    --navy-soft:#5E6673;
+    --rule:#DED7CB;
+    --rule-light:#DED7CB;
+    --shadow:0 20px 45px -24px rgba(20,32,51,0.18);
+    --shadow-soft:0 10px 30px -18px rgba(20,32,51,0.14);
+    --serif:"Playfair Display", Georgia, serif;
+    --sans:"Inter", system-ui, -apple-system, sans-serif;
+  }
+  body{background:var(--bg); color:var(--navy); font-family:var(--sans); font-size:16px; line-height:1.7;}
+  .wrap{max-width:1240px;}
+  section{padding-top:110px; padding-bottom:110px;}
+  section.hero, section.banner-grid, div.ticker, div.marquee, div.offers-bar, div.infobar{padding-top:0; padding-bottom:0;}
+
+  /* micro labels + headings */
+  .kicker, .b-eyebrow, .p-line, .step-index, .section-head .kicker{
+    font-family:var(--sans) !important; font-size:11px !important;
+    letter-spacing:.22em !important; font-weight:600 !important;
+    color:var(--muted) !important;
+  }
+  .section-head h2, .story-copy h2, .cta-band h2, .sale-banner h3,
+  .source-card h3, .process-step h3, .cat-card h3, .p-name,
+  .trust-item h4, .voice-card p, .faq-item summary, .coll-tile{
+    font-family:var(--serif) !important; font-weight:500 !important;
+    letter-spacing:-0.01em !important; color:var(--navy) !important;
+  }
+  .section-head h2{font-size:clamp(2rem,3.4vw,2.9rem) !important; line-height:1.12 !important;}
+  .section-head{max-width:680px;}
+  .section-head p, .story-copy p, .process-step p, .trust-item p,
+  .p-body p, .faq-a, .sell-intro{color:var(--muted) !important;}
+
+  /* top bars — quiet */
+  .infobar{background:var(--white); color:var(--muted); border-bottom:1px solid var(--line);}
+  .infobar span{opacity:1;}
+  .offers-bar{background:var(--navy); color:#EDE5D6; font-weight:500;}
+  .offers-track span{border-right:1px solid rgba(237,229,214,0.2);}
+
+  /* header — clean white */
+  header{background:rgba(255,255,255,0.92) !important; backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line) !important; transition:box-shadow .25s ease;}
+  header .wrap{padding:16px 28px !important; flex-wrap:nowrap !important; gap:28px !important; align-items:center !important;}
+  .brandmark{display:inline-flex !important; align-items:center !important; gap:10px !important; flex-shrink:0 !important; min-width:0;
+    font-family:var(--sans); font-weight:700; letter-spacing:.24em; font-size:14px; color:var(--navy) !important;}
+  .brandmark img{display:none !important;}
+  .brandmark::after{content:"NOSTALGIA"; white-space:nowrap; line-height:1; font-size:17px; letter-spacing:.3em;}
+  nav.mainnav{flex:1 1 auto !important; min-width:0; gap:22px !important; justify-content:center !important; flex-wrap:nowrap !important;}
+  nav.mainnav a{color:var(--navy) !important; font-size:12px !important; letter-spacing:.12em !important; font-weight:500 !important; padding:8px 0 !important; white-space:nowrap !important; flex-shrink:0;}
+  nav.mainnav a:hover{color:var(--navy) !important; border-color:var(--navy) !important;}
+  nav.mainnav a.sale-link{color:#B3261E !important;}
+  nav.mainnav a.sale-link:hover{border-color:#B3261E !important;}
+  .header-cta{background:var(--navy) !important; color:#fff !important; border-radius:4px !important; font-size:12px !important; letter-spacing:.08em !important; padding:12px 20px !important; flex-shrink:0 !important; white-space:nowrap !important;}
+  .header-cta:hover{background:#24365a !important;}
+  .mega-menu{background:#fff !important; border:1px solid var(--line) !important;}
+  .mega-menu::before{background:#fff !important; border-color:var(--line) !important;}
+  .mega-col h5{color:var(--navy) !important;}
+  .mega-col ul a{color:var(--muted) !important;}
+  .mega-col ul a:hover{color:var(--navy) !important;}
+
+  /* buttons */
+  .btn{border-radius:4px !important; font-weight:500 !important; letter-spacing:.08em !important; font-size:12.5px !important; padding:16px 32px !important;}
+  .btn-solid, .p-add{background:var(--navy) !important; color:#fff !important;}
+  .btn-solid:hover, .p-add:hover{background:#24365a !important; transform:none !important;}
+  .btn-outline{border:1px solid var(--navy) !important; color:var(--navy) !important; background:transparent !important;}
+  .btn-outline:hover{color:var(--navy) !important; border-color:var(--navy) !important; background:var(--beige) !important; transform:none !important;}
+  .btn-dark{background:var(--navy) !important; color:#fff !important; border-radius:4px !important;}
+  .btn-sale{background:#B3261E !important;}
+  .btn-sale:hover{background:#8f1d17 !important;}
+
+  /* hero — editorial light */
+  .hero{background:var(--bg) !important; color:var(--navy) !important; text-align:left !important; padding:110px 28px 90px !important; overflow:hidden;}
+  .hero .wrap, .hero-head{max-width:1240px; margin:0 auto;}
+  .hero .eyebrow-line{color:var(--muted) !important; font-size:11px !important; letter-spacing:.24em !important; margin-bottom:28px !important; justify-content:flex-start !important;}
+  .hero .eyebrow-line::before{display:none;}
+  .hero .eyebrow-line::after{display:none;}
+  .hero h1{color:var(--navy) !important; font-family:var(--serif) !important; font-weight:500 !important; font-size:clamp(3rem,7vw,5.4rem) !important; line-height:1.02 !important; margin:0 0 24px !important; max-width:12ch !important; animation:rise .8s ease both;}
+  .hero h1 em{font-style:italic; color:var(--navy) !important;}
+  .hero p.lede{color:var(--muted) !important; font-size:1.1rem !important; max-width:52ch !important; margin:0 0 36px !important; animation:rise .8s .1s ease both;}
+  .hero .cta-row{justify-content:flex-start !important; animation:rise .8s .2s ease both;}
+  .hero-media{border:1px solid var(--line) !important; border-radius:12px !important; box-shadow:var(--shadow-soft) !important; background:#fff !important; animation:imgReveal 1.1s .15s ease both;}
+  .hero-media img{aspect-ratio:16/8 !important;}
+  .hero-slide-caption{background:rgba(255,255,255,0.92) !important; color:var(--navy) !important; border:1px solid var(--line);}
+  .hero-dots button{border-color:var(--line) !important;}
+  .hero-dots button.active{background:var(--navy) !important; border-color:var(--navy) !important;}
+  @keyframes rise{from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:none;}}
+  @keyframes imgReveal{from{opacity:0; transform:translateY(14px) scale(.995);} to{opacity:1; transform:none;}}
+
+  /* ticker / marquee — quiet */
+  .ticker{background:var(--white); color:var(--navy); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .ticker-track span{border-right:1px solid var(--line); font-weight:500;}
+  .marquee{background:var(--bg); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .marquee-track span{-webkit-text-stroke:1px var(--beige-2); color:transparent; font-family:var(--serif); font-weight:500;}
+
+  /* generic light sections */
+  .story, .categories, .shop, .faq, .brandgrid{background:var(--bg) !important;}
+  .newarrivals{background:var(--white) !important; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .banner-grid{background:var(--bg) !important;}
+  .banner-card{border-radius:12px !important; box-shadow:var(--shadow-soft) !important; min-height:260px !important;}
+  .banner-card::after{display:none;}
+  .b-marvel{background:linear-gradient(140deg,#f3ede1,#e6d9c2) !important; color:var(--navy) !important;}
+  .b-dc{background:linear-gradient(140deg,#e9edf3,#d7dee8) !important; color:var(--navy) !important;}
+  .b-anime{background:linear-gradient(140deg,#f1ece4,#e2d6c4) !important; color:var(--navy) !important;}
+  .banner-card h3{color:var(--navy) !important; font-family:var(--serif) !important; font-weight:500 !important;}
+  .banner-card .b-eyebrow{color:var(--muted) !important;}
+  .banner-card a{background:var(--navy) !important; color:#fff !important;}
+
+  /* categories — editorial tiles */
+  .cat-grid{background:var(--line); border:1px solid var(--line); border-radius:12px; overflow:hidden;}
+  .cat-card{background:#fff !important; padding:44px 30px !important;}
+  .cat-card .cat-icon{color:var(--navy) !important; font-family:var(--serif) !important;}
+  .cat-card h3{font-size:1.4rem !important;}
+
+  /* products — white, thin beige border */
+  .p-card{background:#fff !important; border:1px solid var(--line) !important; border-radius:12px !important; box-shadow:none !important; transition:box-shadow .25s ease, transform .25s ease !important;}
+  .p-card:hover{transform:translateY(-3px) !important; box-shadow:var(--shadow-soft) !important;}
+  .p-figure{aspect-ratio:4/4.4 !important; background:#F4F1EA !important;}
+  .p-figure .p-tag, .p-badges span{background:#fff !important; color:var(--navy) !important; border:1px solid var(--line) !important;}
+  .p-badges .b-sale{background:#B3261E !important; color:#fff !important; border-color:#B3261E !important;}
+  .p-badges .b-pre{background:var(--navy) !important; color:#fff !important; border-color:var(--navy) !important;}
+  .p-line{color:var(--muted) !important;}
+  .p-name{font-size:1.05rem !important; line-height:1.4 !important;}
+  .p-price{color:var(--navy) !important;}
+  .p-price .was{color:#9aa0ab !important;}
+  .p-price .sale-price{color:#B3261E !important;}
+  .p-add{border-radius:4px !important; padding:10px 18px !important; font-size:11.5px !important;}
+  .shop-more{color:var(--muted) !important;}
+
+  /* collection tiles */
+  .coll-grid{gap:18px !important;}
+  .coll-tile{border-radius:12px !important; min-height:200px !important; border:1px solid var(--line) !important; box-shadow:none !important; position:relative; overflow:hidden;}
+  .coll-tile > div{position:relative; z-index:1;}
+  .coll-tile small{opacity:.75 !important;}
+
+  /* pre-orders — beige */
+  .preorders{background:var(--beige) !important; color:var(--navy) !important;}
+  .preorders .section-head h2{color:var(--navy) !important;}
+  .preorders .section-head p{color:var(--muted) !important;}
+  .source-card{background:#fff !important; border:1px solid var(--line) !important; border-radius:14px !important; box-shadow:var(--shadow-soft) !important;}
+  .source-card h3{color:var(--navy) !important;}
+  .source-card > p{color:var(--muted) !important;}
+  .source-steps div{background:var(--bg) !important; border:1px solid var(--line) !important; color:var(--navy) !important; border-radius:10px !important;}
+  .source-steps b{color:var(--navy) !important;}
+  .country-pills span{border:1px solid var(--line) !important; color:var(--navy) !important; background:var(--bg);}
+  .source-note{color:var(--muted) !important;}
+
+  /* sale — keep red restrained */
+  .sale-strip{background:var(--white) !important; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .sale-red{color:#B3261E !important;}
+  .sale-banner{background:#fff !important; border:1px solid var(--line) !important; border-left:3px solid #B3261E !important; border-radius:12px !important; box-shadow:var(--shadow-soft) !important;}
+  .sale-badge{background:#B3261E !important;}
+  .sale-banner p{color:var(--muted) !important;}
+
+  /* bestsellers becomes Vault navy — only dark section */
+  .bestsellers{background:#142033 !important; color:#fff !important;}
+  .bestsellers .section-head h2{color:#fff !important;}
+  .bestsellers .section-head p{color:rgba(237,229,214,0.7) !important;}
+  .bestsellers .section-head .kicker{color:#D8C8AE !important;}
+  .bestsellers .p-card{background:#fff !important; border-color:transparent !important;}
+  .bestsellers .p-name{color:var(--navy) !important;}
+  .bestsellers .p-price{color:var(--navy) !important;}
+  .bestsellers .coll-tile{border-color:rgba(255,255,255,0.14) !important;}
+
+  /* trust → why nostalgia */
+  .trust{background:var(--white) !important; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .trust .section-head.center{grid-column:1 / -1; margin-bottom:20px;}
+  .trust-item{border-left:1px solid var(--line) !important;}
+  .trust-item h4{font-size:1.05rem !important;}
+  .trust-item p{color:var(--muted) !important;}
+
+  /* process / sell */
+  .process{background:var(--beige) !important; border-top:1px solid var(--line);}
+  .process-step{border-top:1px solid var(--navy) !important;}
+  .process-step .step-index{color:var(--navy) !important;}
+  .sell-close{background:#fff !important; border:1px solid var(--line) !important; border-radius:10px !important; color:var(--muted) !important;}
+  .sell-intro{color:var(--muted) !important;}
+
+  /* voices — minimal */
+  .voices{background:var(--white) !important; color:var(--navy) !important; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .voices .section-head h2{color:var(--navy) !important;}
+  .voices .section-head p{color:var(--muted) !important;}
+  .voice-card{background:var(--bg) !important; border:1px solid var(--line) !important; border-radius:12px !important;}
+  .voice-card p{color:var(--navy) !important; font-family:var(--serif) !important; font-style:normal !important; font-size:1.25rem !important; line-height:1.5 !important;}
+  .voice-card .who b{color:var(--navy) !important;}
+  .voice-card .who span{color:var(--muted) !important;}
+  .voice-card .avatar{background:var(--navy) !important; color:#fff !important;}
+
+  /* faq */
+  .faq-list{border-top:1px solid var(--line);}
+  .faq-item{border-bottom:1px solid var(--line) !important;}
+  .faq-item summary{font-family:var(--sans) !important; font-weight:500 !important; font-size:1rem !important;}
+  .faq-item summary .plus{color:var(--navy) !important;}
+  .faq-item .faq-a{color:var(--muted) !important;}
+
+  /* cta band — beige editorial */
+  .cta-band{background:var(--beige) !important; border-top:1px solid var(--line);}
+  .cta-band h2{font-weight:500 !important;}
+  .cta-band p{color:var(--muted) !important;}
+
+  /* brand grid + franchises — quiet */
+  .brand-tile{background:#fff !important; border:1px solid transparent;}
+  .brandgrid .bg-grid{background:var(--line); border:1px solid var(--line); border-radius:12px; overflow:hidden;}
+  .franchises{background:var(--bg) !important; border-top:1px solid var(--line);}
+  .franchise-list a{background:#fff !important; border:1px solid var(--line) !important; border-radius:4px !important; color:var(--navy) !important;}
+  .franchise-list a:hover{background:var(--navy) !important; color:#fff !important;}
+
+  /* footer — deep navy editorial */
+  footer{background:#142033 !important; color:rgba(237,229,214,0.72) !important;}
+  footer h5{color:#fff !important; font-size:11px !important; letter-spacing:.2em !important;}
+  footer ul a{color:rgba(237,229,214,0.65) !important;}
+  footer ul a:hover{color:#fff !important;}
+  .foot-brand p{color:rgba(237,229,214,0.55) !important;}
+  .foot-brand img{mix-blend-mode:normal !important;}
+  .foot-bottom{color:rgba(237,229,214,0.45) !important;}
+  .foot-social a{border:1px solid rgba(237,229,214,0.25) !important; color:inherit !important;}
+  .foot-social a:hover{border-color:#fff !important; color:#fff !important;}
+
+  /* reveal on scroll */
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.visible{opacity:1; transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    .hero h1, .hero p.lede, .hero .cta-row, .hero-media{animation:none;}
+    .offers-track, .ticker-track, .marquee-track{animation:none;}
+  }
+
+  /* responsive polish */
+  @media (max-width: 1024px){ section{padding-top:88px; padding-bottom:88px;} }
+  .header-icons{display:flex; gap:18px; align-items:center; margin-left:0; flex-shrink:0;}
+  .header-icons a{font-size:12px; letter-spacing:.1em; font-weight:500; color:var(--navy); padding:8px 0; border-bottom:1px solid transparent; white-space:nowrap;}
+  .header-icons a:hover{border-color:var(--navy);}
+  .hamburger{display:none; background:none; border:1px solid var(--line); border-radius:4px; padding:10px 14px; font-size:12px; letter-spacing:.12em; color:var(--navy); cursor:pointer; flex-shrink:0;}
+  header.scrolled{box-shadow:0 10px 30px -20px rgba(20,32,51,0.18);}
+  header.scrolled .wrap{padding:10px 28px !important;}
+  @media (max-width: 1280px){
+    nav.mainnav{gap:16px !important;}
+    nav.mainnav a{font-size:11px !important; letter-spacing:.08em !important;}
+    .header-icons{gap:12px;}
+    .header-icons a{font-size:11px;}
+    .header-cta{padding:10px 14px !important;}
+  }
+  @media (max-width: 1100px){
+    nav.mainnav{display:none;}
+    .header-icons a:not(:last-child){display:none;}
+    .hamburger{display:inline-block;}
+    .header-cta{display:none;}
+  }
+  @media (max-width: 900px){
+    .hero{padding:72px 20px 60px !important; text-align:left !important;}
+    .hero h1{font-size:clamp(2.5rem,10vw,3.4rem) !important;}
+    .shop-grid{grid-template-columns:repeat(2,1fr) !important;}
+  }
+  @media (max-width: 560px){
+    section{padding-top:72px; padding-bottom:72px;}
+    .shop-grid{grid-template-columns:repeat(2,1fr) !important; gap:12px !important;}
+    .p-body{padding:12px 12px 16px !important;}
+    .hero{padding:60px 20px 48px !important;}
+    .wrap{padding:0 20px;}
   }
 </style>
 </head>
@@ -491,8 +895,14 @@
 
 <div class="infobar">
   <div class="wrap">
-    <span>Chennai, Tamil Nadu<span class="divider">·</span>India's home for superhero &amp; anime collectibles</span>
-    <span>Mon–Sat, 11am–7pm<span class="divider">·</span>WhatsApp for stock checks &amp; pre-orders</span>
+    <span>Chennai, Tamil Nadu<span class="divider">·</span>Superhero &amp; anime collectibles</span>
+    <span>Mon–Sat, 11am–7pm<span class="divider">·</span>WhatsApp for stock checks</span>
+  </div>
+</div>
+<div class="offers-bar">
+  <div class="offers-track">
+    <span>FREE SHIPPING ACROSS INDIA ON ORDERS ABOVE Rs. 2,499</span><span>CHENNAI STORE — MON TO SAT, 11AM TO 7PM</span><span>WHATSAPP US FOR PRE-ORDERS &amp; STOCK CHECKS</span>
+    <span>FREE SHIPPING ACROSS INDIA ON ORDERS ABOVE Rs. 2,499</span><span>CHENNAI STORE — MON TO SAT, 11AM TO 7PM</span><span>WHATSAPP US FOR PRE-ORDERS &amp; STOCK CHECKS</span>
   </div>
 </div>
 
@@ -503,7 +913,7 @@
     </a>
     <nav class="mainnav">
       <div class="nav-item">
-        <a href="#brands">Shop</a>
+        <a href="shop.html">Shop</a>
         <div class="mega-menu">
           <div class="mega-col">
             <h5><span class="brand-icon"><img src="data:image/png;base64,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" alt=""></span>Hot Wheels</h5>
@@ -571,23 +981,52 @@
           </div>
         </div>
       </div>
-      <a href="#collection">In Store</a>
-      <a href="#how-it-works">Sell Your Collection</a>
-      <a href="#story">About</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
+      <a href="shop.html">Shop</a>
+      <a href="anime.html">Anime</a>
+      <a href="marvel.html">Marvel</a>
+      <a href="dc.html">DC</a>
+      <a href="brands.html">Brands</a>
+      <a href="pre-orders.html">Pre-Orders</a>
+      <a href="new-arrivals.html">New Arrivals</a>
+      <a href="shop.html?filter=sale" class="sale-link">Sale</a>
     </nav>
-    <a class="header-cta" href="#contact">Ask About Stock</a>
+    <a class="header-cta" href="contact.html">Ask About Stock</a>
+    <div class="header-icons" aria-label="Account links">
+      <a href="search.html" aria-label="Search">Search</a>
+      <a href="contact.html" aria-label="Account">Account</a>
+      <a href="wishlist.html" aria-label="Wishlist">Wishlist</a>
+      <a href="cart.html" aria-label="Cart">Cart</a>
+    </div>
+    <button class="hamburger" type="button" aria-label="Menu" aria-expanded="false">Menu</button>
   </div>
 </header>
 
 <section class="hero" id="top">
-  <div class="eyebrow-line">SUPERHERO &amp; ANIME COLLECTIBLES</div>
-  <h1>The shelf you always<br>wanted <em>as a kid.</em></h1>
-  <p class="lede">Nostalgia Chennai stocks action figures, statues, and pop-culture collectibles from Marvel, DC, anime and cult classics — sourced, condition-checked, and shipped across India for collectors who never really grew out of it.</p>
+  <div class="eyebrow-line">NOSTALGIA CHENNAI — SUPERHERO • ANIME • POP-CULTURE</div>
+  <h1>Collect what<br>you love.</h1>
+  <p class="lede">Premium figures, anime collectibles and pop-culture pieces for collectors who never outgrew the things they loved.</p>
   <div class="cta-row">
-    <a class="btn btn-solid" href="#collection">See What's In Store</a>
-    <a class="btn btn-outline" href="#how-it-works">Sell Your Collection</a>
+    <a class="btn btn-solid" href="shop.html">Shop Collection</a>
+    <a class="btn btn-outline" href="pre-orders.html">Explore Pre-Orders</a>
+  </div>
+  <div class="hero-media hero-slider">
+    <div class="hero-slide active">
+      <img src="hotwheels-hero.jpg" alt="Hot Wheels cars racing on orange track with Hot Wheels logo">
+      <div class="hero-slide-caption">HOT WHEELS • TRACK FLEET IN STOCK</div>
+    </div>
+    <div class="hero-slide">
+      <img src="hero-marvel.jpg" alt="Marvel Legends action figures lined up on shelf" onerror="this.style.display='none'">
+      <div class="hero-slide-caption">MARVEL LEGENDS • JUST LANDED</div>
+    </div>
+    <div class="hero-slide">
+      <img src="hero-anime.jpg" alt="Anime figures collection with colourful backdrop" onerror="this.style.display='none'">
+      <div class="hero-slide-caption">ANIME FIGURES • NEW ARRIVALS</div>
+    </div>
+  </div>
+  <div class="hero-dots" role="tablist" aria-label="Hero slides">
+    <button type="button" class="active" data-slide="0" aria-label="Slide 1"></button>
+    <button type="button" data-slide="1" aria-label="Slide 2"></button>
+    <button type="button" data-slide="2" aria-label="Slide 3"></button>
   </div>
 </section>
 
@@ -596,17 +1035,17 @@
     <div class="banner-card b-marvel">
       <div class="b-eyebrow">FEATURED LINE</div>
       <h3>Marvel Legends<br>just landed</h3>
-      <a href="#collection">Shop Marvel</a>
+      <a href="marvel.html">Shop Marvel</a>
     </div>
     <div class="banner-card b-dc">
       <div class="b-eyebrow">PRE-ORDERS OPEN</div>
       <h3>DC Multiverse</h3>
-      <a href="#collection">Shop DC</a>
+      <a href="dc.html">Shop DC</a>
     </div>
     <div class="banner-card b-anime">
       <div class="b-eyebrow">NEW ARRIVALS</div>
       <h3>Anime Figures</h3>
-      <a href="#collection">Shop Anime</a>
+      <a href="anime.html">Shop Anime</a>
     </div>
   </div>
 </section>
@@ -663,7 +1102,7 @@
   <div class="wrap">
     <div class="section-head">
       <div class="kicker">BROWSE BY WORLD</div>
-      <h2>Find where your collection is thin.</h2>
+      <h2>Start with the world you love.</h2>
     </div>
   </div>
   <div class="wrap" style="padding:0;">
@@ -685,8 +1124,18 @@
     </div>
     <div class="cat-card">
       <span class="cat-icon">R</span>
-      <h3>Retro &amp; Classic Toys</h3>
-      <p>The lines that shaped a generation of collectors</p>
+      <h3>Retro</h3>
+      <p>Classic toys and nostalgic lines — explore →</p>
+    </div>
+    <div class="cat-card">
+      <span class="cat-icon">G</span>
+      <h3>Gaming</h3>
+      <p>Game-inspired figures and collectibles — explore →</p>
+    </div>
+    <div class="cat-card">
+      <span class="cat-icon">S</span>
+      <h3>Star Wars</h3>
+      <p>Black Series, vintage and statues — explore →</p>
     </div>
   </div>
   </div>
@@ -695,9 +1144,9 @@
 <section class="shop" id="collection">
   <div class="wrap">
     <div class="section-head center">
-      <div class="kicker">IN STORE THIS WEEK</div>
-      <h2>Fresh on the shelf</h2>
-      <p>A snapshot of what's currently in stock or open for pre-order. Message us for full availability.</p>
+      <div class="kicker">COLLECTOR PICKS</div>
+      <h2>The Collector's Edit</h2>
+      <p>A curated selection of pieces worth making room for. Message us for condition photos and availability.</p>
     </div>
     <div class="shop-grid">
       <div class="p-card">
@@ -889,23 +1338,221 @@
   </div>
 </section>
 
+<section class="preorders" id="preorders">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="kicker">PRE-ORDERS • GLOBAL SOURCING</div>
+      <h2>Can't find it anywhere? Don't worry, we'll try our best to find it for you!</h2>
+      <p>If you can't find the toy you're looking for on our website or anywhere else online, simply WhatsApp us a picture and the details of the item you're looking for.</p>
+    </div>
+    <div class="source-card">
+      <h3>We source internationally for you</h3>
+      <p>Our sourcing network extends across the UK, Germany, Ireland, Sweden, Portugal, USA, Canada &amp; Dubai — allowing us to search internationally for hard-to-find and nostalgic collectibles.</p>
+      <div class="source-steps">
+        <div><b>STEP 01</b>Send us the toy image + details on WhatsApp</div>
+        <div><b>STEP 02</b>We search our international seller network</div>
+        <div><b>STEP 03</b>We confirm price, shipping &amp; delivery with you</div>
+      </div>
+      <div class="country-pills">
+        <span>UK</span><span>Germany</span><span>Ireland</span><span>Sweden</span><span>Portugal</span><span>USA</span><span>Canada</span><span>Dubai</span>
+      </div>
+      <a class="btn btn-solid" href="contact.html">Send Toy Image on WhatsApp</a>
+      <p class="source-note">Please note: Sourcing is subject to availability, seller availability, shipping, and import requirements.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sale-strip" id="sale">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="kicker sale-red">LIMITED TIME • WHILE STOCK LASTS</div>
+      <h2><span class="sale-red">SALE</span> — collector deals, while they last</h2>
+      <p>Discounted figures, statues, and retro toys in collector-checked condition. When they're gone, they're gone.</p>
+    </div>
+    <div class="sale-banner">
+      <div>
+        <span class="sale-badge">SALE</span>
+        <h3>Up to <span class="sale-red">30% off</span> selected collectibles</h3>
+        <p>Message us on WhatsApp with a screenshot of the piece you want and we'll confirm the <span class="sale-red" style="font-weight:600;">SALE</span> price, condition photos, and same-day shipping from Chennai.</p>
+      </div>
+      <a class="btn btn-sale" href="shop.html?filter=sale">Shop the SALE</a>
+    </div>
+    <div class="shop-grid" style="margin-top:28px;">
+      <div class="p-card">
+        <div class="p-figure" style="background:linear-gradient(140deg,#1b3a63,#2f5f9e);">
+          <div class="p-badges"><span class="b-sale">SALE</span></div>
+          <span style="font-family:var(--serif); font-size:3rem; color:#fff;">B</span>
+        </div>
+        <div class="p-body">
+          <div class="p-line">DC MULTIVERSE</div>
+          <h3 class="p-name">Batman Action Figure</h3>
+          <div class="p-row"><span class="p-price"><span class="sale-price">Rs. 2,899</span><span class="was">Rs. 3,499</span></span><button class="p-add" type="button">Quick Add</button></div>
+        </div>
+      </div>
+      <div class="p-card">
+        <div class="p-figure" style="background:linear-gradient(140deg,#a3211f,#e0483a);">
+          <div class="p-badges"><span class="b-sale">SALE</span></div>
+          <span style="font-family:var(--serif); font-size:3rem; color:#fff;">M</span>
+        </div>
+        <div class="p-body">
+          <div class="p-line">MARVEL LEGENDS</div>
+          <h3 class="p-name">Spider-Man Action Figure</h3>
+          <div class="p-row"><span class="p-price"><span class="sale-price">Rs. 3,999</span><span class="was">Rs. 4,599</span></span><button class="p-add" type="button">Quick Add</button></div>
+        </div>
+      </div>
+      <div class="p-card">
+        <div class="p-figure" style="background:linear-gradient(140deg,#146356,#1f9c86);">
+          <div class="p-badges"><span class="b-sale">SALE</span></div>
+          <span style="font-family:var(--serif); font-size:3rem; color:#fff;">T</span>
+        </div>
+        <div class="p-body">
+          <div class="p-line">TRANSFORMERS</div>
+          <h3 class="p-name">Optimus Prime Model Kit</h3>
+          <div class="p-row"><span class="p-price"><span class="sale-price">Rs. 9,999</span><span class="was">Rs. 11,999</span></span><button class="p-add" type="button">Quick Add</button></div>
+        </div>
+      </div>
+      <div class="p-card">
+        <div class="p-figure" style="background:linear-gradient(140deg,#6b2e8f,#a24fc9);">
+          <div class="p-badges"><span class="b-sale">SALE</span></div>
+          <span style="font-family:var(--serif); font-size:3rem; color:#fff;">N</span>
+        </div>
+        <div class="p-body">
+          <div class="p-line">NARUTO</div>
+          <h3 class="p-name">Naruto Figure</h3>
+          <div class="p-row"><span class="p-price"><span class="sale-price">Rs. 5,499</span><span class="was">Rs. 6,499</span></span><button class="p-add" type="button">Quick Add</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="newarrivals" id="new">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="kicker">NEW ARRIVALS</div>
+      <h2>New Arrivals</h2>
+      <p>The latest additions to the collector's shelf.</p>
+    </div>
+    <div class="shop-grid">
+      <div class="p-card">
+        <div class="p-figure" style="background:linear-gradient(140deg,#232f42,#3c4a61);">
+          <div class="p-badges"><span>New</span><span class="b-pre">Pre-Order</span></div>
+          <span style="font-family:var(--serif); font-size:3rem; color:#fff;">HW</span>
+        </div>
+        <div class="p-body">
+          <div class="p-line">HOT WHEELS</div>
+          <h3 class="p-name">Track Fleet Race Set</h3>
+          <div class="p-row"><span class="p-price">Rs. 1,999</span><button class="p-add" type="button">Quick Add</button></div>
+        </div>
+      </div>
+      <div class="p-card">
+        <div class="p-figure" style="background:linear-gradient(140deg,#8f6b2e,#c9a04f);">
+          <div class="p-badges"><span>New</span></div>
+          <span style="font-family:var(--serif); font-size:3rem; color:#fff;">OP</span>
+        </div>
+        <div class="p-body">
+          <div class="p-line">ONE PIECE</div>
+          <h3 class="p-name">Luffy Gear 5 Statue</h3>
+          <div class="p-row"><span class="p-price">Rs. 18,999</span><button class="p-add" type="button">Quick Add</button></div>
+        </div>
+      </div>
+      <div class="p-card">
+        <div class="p-figure" style="background:linear-gradient(140deg,#3c3f45,#5c6068);">
+          <div class="p-badges"><span>New</span><span class="b-pre">Pre-Order</span></div>
+          <span style="font-family:var(--serif); font-size:3rem; color:#fff;">SW</span>
+        </div>
+        <div class="p-body">
+          <div class="p-line">STAR WARS</div>
+          <h3 class="p-name">Stormtrooper Figure</h3>
+          <div class="p-row"><span class="p-price">Rs. 2,899</span><button class="p-add" type="button">Quick Add</button></div>
+        </div>
+      </div>
+      <div class="p-card">
+        <div class="p-figure" style="background:linear-gradient(140deg,#a3214f,#e04886);">
+          <div class="p-badges"><span>New</span></div>
+          <span style="font-family:var(--serif); font-size:3rem; color:#fff;">DS</span>
+        </div>
+        <div class="p-body">
+          <div class="p-line">DEMON SLAYER</div>
+          <h3 class="p-name">Tanjiro 1/8 Figure</h3>
+          <div class="p-row"><span class="p-price">Rs. 5,999</span><button class="p-add" type="button">Quick Add</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bestsellers" id="bestsellers">
+  <div class="wrap">
+    <div class="section-head center">
+      <div class="kicker">THE VAULT</div>
+      <h2>The Vault</h2>
+      <p>For collectors who want something extraordinary. Rare and premium pieces, condition-checked.</p>
+    </div>
+    <div class="coll-grid" style="margin-bottom:28px;">
+      <div class="coll-tile" style="background:linear-gradient(140deg,#a3211f,#e0483a);"><div>Marvel<small>ACTION FIGURES • STATUES</small></div></div>
+      <div class="coll-tile" style="background:linear-gradient(140deg,#1b3a63,#2f5f9e);"><div>DC Comics<small>MULTIVERSE • STATUES</small></div></div>
+      <div class="coll-tile" style="background:linear-gradient(140deg,#146356,#1f9c86);"><div>Transformers<small>MODEL KITS • FIGURES</small></div></div>
+      <div class="coll-tile" style="background:linear-gradient(140deg,#6b2e8f,#a24fc9);"><div>Anime<small>NARUTO • ONE PIECE • MORE</small></div></div>
+      <div class="coll-tile" style="background:linear-gradient(140deg,#3c3f45,#5c6068);"><div>Star Wars<small>BLACK SERIES • VINTAGE</small></div></div>
+      <div class="coll-tile" style="background:linear-gradient(140deg,#8f6b2e,#c9a04f);"><div>Masters of the Universe<small>ORIGINS • MASTERVERSE</small></div></div>
+      <div class="coll-tile" style="background:linear-gradient(140deg,#e07a1f,#f2a545);"><div>Hot Wheels<small>TRACK FLEET • IMPORTED</small></div></div>
+      <div class="coll-tile" style="background:linear-gradient(140deg,#232f42,#5c6068);"><div>Retro Toys<small>G.I. JOE • TMNT • MORE</small></div></div>
+    </div>
+    <div class="shop-grid">
+      <div class="p-card">
+        <div class="p-figure" style="background:linear-gradient(140deg,#a3211f,#e0483a);">
+          <div class="p-badges"><span>Bestseller</span></div>
+          <span style="font-family:var(--serif); font-size:3rem; color:#fff;">IM</span>
+        </div>
+        <div class="p-body"><div class="p-line">MARVEL LEGENDS</div><h3 class="p-name">Iron Man Figure</h3><div class="p-row"><span class="p-price">Rs. 12,999</span><button class="p-add" type="button">Quick Add</button></div></div>
+      </div>
+      <div class="p-card">
+        <div class="p-figure" style="background:linear-gradient(140deg,#1b3a63,#2f5f9e);">
+          <div class="p-badges"><span>Bestseller</span></div>
+          <span style="font-family:var(--serif); font-size:3rem; color:#fff;">BM</span>
+        </div>
+        <div class="p-body"><div class="p-line">DC MULTIVERSE</div><h3 class="p-name">Batman Statue</h3><div class="p-row"><span class="p-price">Rs. 24,999</span><button class="p-add" type="button">Quick Add</button></div></div>
+      </div>
+      <div class="p-card">
+        <div class="p-figure" style="background:linear-gradient(140deg,#e07a1f,#f2a545);">
+          <div class="p-badges"><span>Bestseller</span></div>
+          <span style="font-family:var(--serif); font-size:3rem; color:#fff;">NR</span>
+        </div>
+        <div class="p-body"><div class="p-line">NARUTO</div><h3 class="p-name">Yamaguchi Figure</h3><div class="p-row"><span class="p-price">Rs. 6,499</span><button class="p-add" type="button">Quick Add</button></div></div>
+      </div>
+      <div class="p-card">
+        <div class="p-figure" style="background:linear-gradient(140deg,#8f6b2e,#c9a04f);">
+          <div class="p-badges"><span>Bestseller</span></div>
+          <span style="font-family:var(--serif); font-size:3rem; color:#fff;">HM</span>
+        </div>
+        <div class="p-body"><div class="p-line">MASTERS OF THE UNIVERSE</div><h3 class="p-name">He-Man 40th Figure</h3><div class="p-row"><span class="p-price">Rs. 4,999</span><button class="p-add" type="button">Quick Add</button></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="trust">
   <div class="wrap">
+    <div class="section-head center" style="margin-bottom:40px;">
+      <div class="kicker">WHY NOSTALGIA?</div>
+      <h2>Built for collectors.</h2>
+    </div>
     <div class="trust-item">
-      <h4>Checked, not guessed</h4>
-      <p>Every figure and statue is inspected for condition before it's listed or shipped.</p>
+      <h4>Authentic collectibles</h4>
+      <p>Carefully sourced pieces from trusted channels, condition-checked before listing.</p>
+    </div>
+    <div class="trust-item">
+      <h4>Secure packaging</h4>
+      <p>Products packed with collectors in mind — boxed, boarded and padded.</p>
     </div>
     <div class="trust-item">
       <h4>Pan-India shipping</h4>
-      <p>Collectibles travel boxed, boarded, and padded — the way a collector would pack them.</p>
+      <p>Reliable delivery across India from our Chennai store.</p>
     </div>
     <div class="trust-item">
-      <h4>We buy too</h4>
-      <p>Outgrown your collection? We quote fairly and pay on the spot.</p>
-    </div>
-    <div class="trust-item">
-      <h4>Chennai-run</h4>
-      <p>A local shop run by collectors, for collectors — not a dropshipping storefront.</p>
+      <h4>Collector-first support</h4>
+      <p>Help with product details, availability and pre-orders on WhatsApp.</p>
     </div>
   </div>
 </section>
@@ -913,25 +1560,31 @@
 <section class="process" id="how-it-works">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker">SELLING TO US</div>
-      <h2>Turn a shelf of old figures into something useful.</h2>
+      <div class="kicker">SELL YOUR COLLECTION</div>
+      <h2>Ready to let something go?</h2>
+      <p class="sell-intro">Give your collection a new home. Have old toys, collectibles, souvenirs, or freebies you no longer need? Message us — we'll review your collection and get back to you.</p>
     </div>
     <div class="process-grid">
       <div class="process-step">
-        <div class="step-index">01</div>
-        <h3>Send photos</h3>
-        <p>WhatsApp clear photos of the figure or statue, box included if you still have it.</p>
+        <div class="step-index">01 — Photos</div>
+        <h3>Send photos of the items</h3>
+        <p>WhatsApp clear photos of each toy or collectible, box included if you still have it.</p>
       </div>
       <div class="process-step">
-        <div class="step-index">02</div>
-        <h3>Get a quote</h3>
-        <p>We price against current collector demand and confirm a number the same day, no obligation.</p>
+        <div class="step-index">02 — Details</div>
+        <h3>Share product details</h3>
+        <p>Tell us the character, line, brand, age, and condition — working parts, missing pieces, box condition, everything helps.</p>
       </div>
       <div class="process-step">
-        <div class="step-index">03</div>
-        <h3>Trade or sell</h3>
-        <p>Drop by our Chennai counter or courier the piece in. Payment on receipt, or store credit toward something new.</p>
+        <div class="step-index">03 — Price</div>
+        <h3>Tell us your expected price</h3>
+        <p>Share the price you're expecting. We check current collector demand and confirm a fair quote the same day, no obligation.</p>
       </div>
+    </div>
+    <p class="sell-close">Your old collection could be someone else's next favourite find. Drop by our Chennai counter or courier the pieces in — payment on receipt, or store credit toward something new.</p>
+    <div class="sell-cta-row">
+      <a class="btn btn-dark" href="sell-your-collection.html">Sell Your Collection</a>
+      <a class="btn btn-solid" href="shop.html">See What Collectors Want</a>
     </div>
   </div>
 </section>
@@ -940,7 +1593,8 @@
   <div class="wrap">
     <div class="section-head center">
       <div class="kicker">FROM COLLECTORS</div>
-      <h2>What regulars say</h2>
+      <h2>What collectors say</h2>
+      <p style="color:var(--muted); font-size:13px; margin-top:12px;">Sample reviews shown as placeholders — genuine customer testimonials will appear here.</p>
     </div>
     <div class="voice-grid">
       <div class="voice-card">
@@ -1000,9 +1654,9 @@
 </section>
 
 <section class="cta-band" id="contact">
-  <h2>Hunting for something specific?</h2>
+  <h2>Give your collection a new home.</h2>
   <p>Send us the character and line on WhatsApp — most collectors get an answer within the hour.</p>
-  <a class="btn btn-solid" href="#" style="background:var(--ink); color:var(--paper);">Message on WhatsApp</a>
+  <a class="btn btn-solid" href="contact.html" style="background:var(--ink); color:var(--paper);">Message on WhatsApp</a>
 </section>
 
 <section class="brandgrid" id="brands">
@@ -1038,20 +1692,20 @@
       <h2>From every corner of the fandom</h2>
     </div>
     <div class="franchise-list">
-      <a href="#collection">Marvel</a>
-      <a href="#collection">DC Comics</a>
-      <a href="#collection">Naruto</a>
-      <a href="#collection">One Piece</a>
-      <a href="#collection">Demon Slayer</a>
-      <a href="#collection">Attack on Titan</a>
-      <a href="#collection">Jujutsu Kaisen</a>
-      <a href="#collection">Dragon Ball Z</a>
-      <a href="#collection">Transformers</a>
-      <a href="#collection">Star Wars</a>
-      <a href="#collection">G.I. Joe</a>
-      <a href="#collection">TMNT</a>
-      <a href="#collection">Masters of the Universe</a>
-      <a href="#collection">Street Fighter</a>
+      <a href="marvel.html">Marvel</a>
+      <a href="dc.html">DC Comics</a>
+      <a href="anime.html">Naruto</a>
+      <a href="anime.html">One Piece</a>
+      <a href="anime.html">Demon Slayer</a>
+      <a href="anime.html">Attack on Titan</a>
+      <a href="anime.html">Jujutsu Kaisen</a>
+      <a href="anime.html">Dragon Ball Z</a>
+      <a href="collection.html?c=transformers">Transformers</a>
+      <a href="collection.html?c=star-wars">Star Wars</a>
+      <a href="collection.html?c=retro">G.I. Joe</a>
+      <a href="collection.html?c=retro">TMNT</a>
+      <a href="collection.html?c=retro">Masters of the Universe</a>
+      <a href="collection.html?c=gaming">Street Fighter</a>
     </div>
   </div>
 </section>
@@ -1061,32 +1715,34 @@
     <div class="foot-grid">
       <div class="foot-brand">
         <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAQDAwQDAwQEAwQFBAQFBgoHBgYGBg0JCggKDw0QEA8NDw4RExgUERIXEg4PFRwVFxkZGxsbEBQdHx0aHxgaGxr/2wBDAQQFBQYFBgwHBwwaEQ8RGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhoaGhr/wgARCAQABgADASIAAhEBAxEB/8QAHAABAAIDAQEBAAAAAAAAAAAAAAUGAwQHAQII/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAfz+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8gIAQQwAEgcIMAA4MgIYwYgQQAYoAAUAoAAAAIw4QIEwsAAEMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQs0IAAgEkgAQYoYgAQI4AIAA0AIUAAAgIAAAQIAAAgAggAAEIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8I0AAAgIAAAIwUQAIAAAoAAAQ8YIAAIAAAAggAAAAAgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAoIAAAgEAAIgAAAoAAA8AoAAAIAAAEAgAAYUAAAAEoAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAYIAIkAAAAYMAQogAAIAAEoAAEAAoAAAAAAAAAIAAAAcAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAIoAIEAEcAIIEEoAAgEAIgAQIAAAIIMgwUAAoIAIAEAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgwgAAQAAQQggAAggggAAQAAAggAQAwAgAQgAAAwAwgQgAQwAAgAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQgAIcAwQowoMA8cQAEIAwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQgAIAgoAAwAEkoAMUIEwkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAgAgwAwQggAQAAAAQgAgggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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" alt="Nostalgia Chennai">
-        <p>Superhero, anime, and pop-culture collectibles, bought and sold in Chennai for collectors who care about condition.</p>
+        <p>Nostalgia Chennai — superhero, anime and pop-culture collectibles. These are not just toys; pieces of childhood, fandom and identity.</p>
+      </div>
+      <div>
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="new-arrivals.html">New Arrivals</a></li>
+          <li><a href="best-sellers.html">Best Sellers</a></li>
+          <li><a href="pre-orders.html">Pre-Orders</a></li>
+          <li><a href="collections.html">Collections</a></li>
+        </ul>
       </div>
       <div>
         <h5>Explore</h5>
         <ul>
-          <li><a href="#collection">In Store</a></li>
-          <li><a href="#how-it-works">Sell Your Collection</a></li>
-          <li><a href="#story">Our Story</a></li>
-          <li><a href="#faq">FAQ</a></li>
+          <li><a href="marvel.html">Marvel</a></li>
+          <li><a href="dc.html">DC</a></li>
+          <li><a href="anime.html">Anime</a></li>
+          <li><a href="collection.html?c=gaming">Gaming</a></li>
+          <li><a href="collection.html?c=retro">Retro</a></li>
         </ul>
       </div>
       <div>
-        <h5>Categories</h5>
+        <h5>Help</h5>
         <ul>
-          <li><a href="#collection">Marvel</a></li>
-          <li><a href="#collection">DC Comics</a></li>
-          <li><a href="#collection">Anime</a></li>
-          <li><a href="#collection">Retro &amp; Classic Toys</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Get in touch</h5>
-        <ul>
-          <li>Chennai, Tamil Nadu</li>
-          <li>hello@nostalgiachennai.com</li>
-          <li>Mon–Sat · 11am–7pm</li>
+          <li><a href="shipping-returns.html">Shipping</a></li>
+          <li><a href="shipping-returns.html">Returns</a></li>
+          <li><a href="faq.html">FAQs</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
     </div>
@@ -1095,11 +1751,61 @@
       <div class="foot-social">
         <a href="#" aria-label="Instagram">IG</a>
         <a href="#" aria-label="WhatsApp">WA</a>
-        <a href="#" aria-label="Facebook">FB</a>
       </div>
     </div>
   </div>
 </footer>
+
+<script>
+(function(){
+  var slides = document.querySelectorAll('.hero-slide');
+  var dots = document.querySelectorAll('.hero-dots button');
+  var i = 0, timer;
+  function show(n){
+    i = (n + slides.length) % slides.length;
+    slides.forEach(function(s, k){ s.classList.toggle('active', k === i); });
+    dots.forEach(function(d, k){ d.classList.toggle('active', k === i); });
+  }
+  dots.forEach(function(d){
+    d.addEventListener('click', function(){
+      show(parseInt(d.getAttribute('data-slide'), 10));
+      restart();
+    });
+  });
+  function restart(){ clearInterval(timer); timer = setInterval(function(){ show(i + 1); }, 5000); }
+  restart();
+  var header = document.querySelector('header');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 12){ header.classList.add('scrolled'); }
+    else{ header.classList.remove('scrolled'); }
+  }, {passive:true});
+  var btn = document.querySelector('.hamburger');
+  var nav = document.querySelector('nav.mainnav');
+  if(btn && nav){
+    btn.addEventListener('click', function(){
+      var open = nav.style.display === 'flex';
+      nav.style.display = open ? '' : 'flex';
+      nav.style.flexDirection = 'column';
+      nav.style.position = 'absolute';
+      nav.style.top = '100%';
+      nav.style.left = '0';
+      nav.style.right = '0';
+      nav.style.background = '#fff';
+      nav.style.padding = '18px 28px 24px';
+      nav.style.borderBottom = '1px solid #DED7CB';
+      btn.setAttribute('aria-expanded', String(!open));
+    });
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  document.querySelectorAll('.p-card, .cat-card, .coll-tile, .voice-card, .source-card, .sale-banner').forEach(function(el){
+    el.classList.add('reveal'); io.observe(el);
+  });
+})();
+</script>
 
 </body>
 </html>

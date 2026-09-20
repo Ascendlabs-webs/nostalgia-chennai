@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sell Your Collection — Nostalgia Chennai</title>
+<meta name="description" content="Turn your old toys and collectibles into cash. Submit photos, details and your expected price to Nostalgia Chennai.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>N</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<div data-header></div>
+<main>
+  <div class="page-hero"><div class="wrap">
+    <div class="crumbs"><a href="index.html">Home</a> / Sell Your Collection</div>
+    <div class="eyebrow">Sell to us</div>
+    <h1>Ready to let something go?</h1>
+    <p>Give your collection a new home. Message us with photos, product details and the price you're expecting — we'll review and get back to you.</p>
+  </div></div>
+  <section class="band-beige"><div class="wrap shop-layout">
+    <div>
+      <h2 class="serif">How it works</h2>
+      <div class="acc">
+        <details open><summary>01 — Photos of the items</summary><div class="body">WhatsApp clear photos of each toy or collectible, box included if you still have it.</div></details>
+        <details open><summary>02 — Product details</summary><div class="body">Character, line, brand, age and condition — working parts, missing pieces, box condition, everything helps.</div></details>
+        <details open><summary>03 — Your expected price</summary><div class="body">Share the price you're expecting. We check current collector demand and confirm a fair quote — no obligation.</div></details>
+      </div>
+      <p class="note" style="margin-top:18px">Your old collection could be someone else's next favourite find. Drop by our Chennai counter or courier pieces in.</p>
+    </div>
+    <form class="card-white" id="sellform">
+      <h2 class="serif" style="margin:0 0 18px">Submit your collection</h2>
+      <div class="field"><label for="sname">Name</label><input id="sname" required placeholder="Your name"></div>
+      <div class="field"><label for="sphone">Phone / WhatsApp</label><input id="sphone" required placeholder="+91 …"></div>
+      <div class="field"><label for="sitems">Product details</label><textarea id="sitems" rows="4" required placeholder="Character, line, brand, condition…"></textarea></div>
+      <div class="field"><label for="sprice">Expected price (Rs.)</label><input id="sprice" type="number" min="0" placeholder="e.g. 5000"></div>
+      <button class="btn btn-solid" type="submit" style="width:100%">Submit Your Collection</button>
+      <p class="note" id="sellok" hidden style="color:var(--navy)">Thanks — we'll review and get back to you shortly.</p>
+    </form>
+  </div></section>
+</main>
+<div data-footer></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+document.getElementById("sellform").addEventListener("submit", function(e){
+  e.preventDefault(); document.getElementById("sellok").hidden = false; this.reset();
+});
+</script>
+</body>
+</html>

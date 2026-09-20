@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collections — Nostalgia Chennai</title>
+<meta name="description" content="Browse every Nostalgia Chennai collection: Marvel, DC, Anime, Gaming, Retro, Star Wars, Transformers and Hot Wheels.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>N</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<div data-header></div>
+<main>
+  <div class="page-hero"><div class="wrap">
+    <div class="crumbs"><a href="index.html">Home</a> / Collections</div>
+    <div class="eyebrow">Shop by world</div>
+    <h1>Collections</h1>
+    <p>Every fandom on the shelf — pick a world and start exploring.</p>
+  </div></div>
+  <section style="padding-top:56px"><div class="wrap"><div class="coll-grid" id="cgrid"></div></div></section>
+</main>
+<div data-footer></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  var g = document.getElementById("cgrid");
+  g.innerHTML = NC.collections().map(function(c){
+    var n = NC.products().filter(function(p){ return p.franchise.toLowerCase()===c.name.toLowerCase() || (c.slug==="hot-wheels"&&p.franchise==="Hot Wheels"); }).length;
+    return '<a class="coll-tile reveal" style="background:'+c.bg+'" href="collection.html?c='+c.slug+'"><div><h3>'+c.name+'</h3><small>'+c.tag+(n?' · '+n+' PIECES':'')+'</small></div></a>';
+  }).join("");
+  NC.bindCards(g);
+})();
+</script>
+</body>
+</html>

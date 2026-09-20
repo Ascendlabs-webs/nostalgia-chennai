@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cart — Nostalgia Chennai</title>
+<meta name="description" content="Review your cart and checkout at Nostalgia Chennai.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>N</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<div data-header></div>
+<main>
+  <div class="page-hero"><div class="wrap">
+    <div class="crumbs"><a href="index.html">Home</a> / Cart</div>
+    <div class="eyebrow">Almost yours</div>
+    <h1>Cart</h1>
+  </div></div>
+  <section style="padding-top:48px"><div class="wrap shop-layout">
+    <div id="clines"></div>
+    <aside class="totals">
+      <div class="row"><span>Subtotal</span><strong id="tsub">Rs. 0</strong></div>
+      <div class="row"><span>Shipping</span><span>Calculated at checkout</span></div>
+      <div class="row grand"><span>Total</span><span id="ttot">Rs. 0</span></div>
+      <p class="note">Free shipping across India on orders above Rs. 2,499.</p>
+      <a class="btn btn-solid" href="contact.html" style="width:100%;text-align:center">Checkout via WhatsApp</a>
+      <p style="margin:14px 0 0"><a class="btn btn-outline" href="shop.html" style="width:100%;text-align:center">Continue shopping</a></p>
+    </aside>
+  </div></section>
+</main>
+<div data-footer></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  function render(){
+    var lines = NC.cart();
+    var box = document.getElementById("clines");
+    if(!lines.length){
+      box.innerHTML = '<div class="empty"><h2 class="serif">Your cart is empty.</h2><p class="note">Beautiful pieces are waiting.</p><p style="margin-top:20px"><a class="btn btn-solid" href="shop.html">Shop all collectibles</a></p></div>';
+    } else {
+      box.innerHTML = lines.map(function(l){
+        var p = NC.bySlug(l.slug); if(!p) return "";
+        return '<div class="cart-line"><div class="cart-thumb" style="background:'+p.bg+';color:#fff">'+p.glyph+'</div>'+
+        '<div><strong><a href="product.html?slug='+p.slug+'">'+p.name+'</a></strong><div class="note">'+p.brand+' · '+NC.money(p.price)+'</div>'+
+        '<div class="qty" style="margin-top:10px"><button data-dec="'+p.slug+'">−</button><span>'+l.qty+'</span><button data-inc="'+p.slug+'">+</button></div></div>'+
+        '<div style="text-align:right"><strong>'+NC.money(p.price*l.qty)+'</strong><div><button data-rem="'+p.slug+'" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:12px;margin-top:8px">Remove</button></div></div></div>';
+      }).join("");
+    }
+    var sub = lines.reduce(function(a,l){ var p=NC.bySlug(l.slug); return a + (p?p.price*l.qty:0); },0);
+    document.getElementById("tsub").textContent = NC.money(sub);
+    document.getElementById("ttot").textContent = NC.money(sub);
+    box.querySelectorAll("[data-inc]").forEach(function(b){ b.addEventListener("click", function(){ chg(b.getAttribute("data-inc"),1); }); });
+    box.querySelectorAll("[data-dec]").forEach(function(b){ b.addEventListener("click", function(){ chg(b.getAttribute("data-dec"),-1); }); });
+    box.querySelectorAll("[data-rem]").forEach(function(b){ b.addEventListener("click", function(){
+      NC.store.set("nc_cart", NC.cart().filter(function(l){return l.slug!==b.getAttribute("data-rem");})); NC.paintCounts(); render();
+    }); });
+  }
+  function chg(slug,d){
+    var c = NC.cart(); var l = c.find(function(x){return x.slug===slug;}); if(!l) return;
+    l.qty += d; if(l.qty<1) c = c.filter(function(x){return x.slug!==slug;});
+    NC.store.set("nc_cart", c); NC.paintCounts(); render();
+  }
+  render();
+})();
+</script>
+</body>
+</html>

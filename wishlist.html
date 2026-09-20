@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wishlist — Nostalgia Chennai</title>
+<meta name="description" content="Your saved shelf at Nostalgia Chennai.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>N</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<div data-header></div>
+<main>
+  <div class="page-hero"><div class="wrap">
+    <div class="crumbs"><a href="index.html">Home</a> / Wishlist</div>
+    <div class="eyebrow">Saved pieces</div>
+    <h1>Wishlist</h1>
+  </div></div>
+  <section style="padding-top:48px"><div class="wrap">
+    <div class="grid" id="wgrid"></div>
+    <div class="empty" id="wempty" hidden>
+      <h2 class="serif">Your shelf is waiting.</h2>
+      <p class="note">Tap ♡ on any product to keep it here.</p>
+      <p style="margin-top:20px"><a class="btn btn-solid" href="collections.html">Explore Collections</a></p>
+    </div>
+  </div></section>
+</main>
+<div data-footer></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  function render(){
+    var list = NC.products().filter(function(p){return NC.wish().indexOf(p.slug)>-1;});
+    var g = document.getElementById("wgrid");
+    g.innerHTML = NC.gridHTML(list); NC.bindCards(g);
+    document.getElementById("wempty").hidden = list.length>0;
+  }
+  render();
+  window.addEventListener("storage", render);
+  document.addEventListener("click", function(e){ if(e.target.hasAttribute("data-wish")) setTimeout(render,50); });
+})();
+</script>
+</body>
+</html>

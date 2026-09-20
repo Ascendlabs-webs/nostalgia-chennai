@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product — Nostalgia Chennai</title>
+<meta name="description" content="Product details, specifications, shipping and pre-order terms at Nostalgia Chennai.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>N</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<div data-header></div>
+<main>
+  <div class="page-hero" style="padding-bottom:32px"><div class="wrap">
+    <div class="crumbs"><a href="index.html">Home</a> / <a href="shop.html">Shop</a> / <span id="pname-crumb">Product</span></div>
+  </div></div>
+  <section style="padding-top:48px"><div class="wrap pd">
+    <div class="pd-gallery"><div class="main" id="pglyph">N</div></div>
+    <div class="pd-info">
+      <div class="brand" id="pbrand">BRAND</div>
+      <h1 id="pname">Product</h1>
+      <div class="note" id="prating">★ ★ ★ ★ ★ · <span id="rcount">12</span> collector reviews (placeholder)</div>
+      <div class="pd-price" id="pprice"></div>
+      <div class="note" id="pavail" style="margin-bottom:18px"></div>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
+        <div class="qty"><button id="qminus" aria-label="Decrease">−</button><span id="qqty">1</span><button id="qplus" aria-label="Increase">+</button></div>
+        <button class="btn btn-solid" id="padd">Add to Cart</button>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px">
+        <a class="btn btn-outline" href="cart.html">Buy Now</a>
+        <a class="btn btn-outline" href="contact.html">WhatsApp Us</a>
+      </div>
+      <table class="spec" id="pspec"></table>
+      <div class="acc" style="margin-top:26px">
+        <details open><summary>Shipping</summary><div class="body">Boxed, boarded and padded from Chennai. Pan-India delivery; timelines confirmed on WhatsApp. <a href="shipping-returns.html">Full policy →</a></div></details>
+        <details><summary>Returns</summary><div class="body">Placeholder — final returns window to be confirmed by the client. <a href="shipping-returns.html">Details →</a></div></details>
+        <details><summary>Pre-order terms</summary><div class="body">A deposit secures pre-order units; manufacturer timelines can shift. Balance collected on arrival.</div></details>
+      </div>
+    </div>
+  </div>
+  <div class="wrap"><h2 class="serif" style="margin:72px 0 22px">You may also like</h2><div class="grid" id="prel"></div></div>
+  </section>
+</main>
+<div data-footer></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  var p = NC.bySlug(NC.qs("slug")) || NC.products()[0];
+  document.title = p.name+" — Nostalgia Chennai";
+  document.getElementById("pname-crumb").textContent = p.name;
+  document.getElementById("pbrand").textContent = p.brand.toUpperCase();
+  document.getElementById("pname").textContent = p.name;
+  document.getElementById("pglyph").textContent = p.glyph;
+  document.getElementById("pglyph").style.background = p.bg;
+  document.getElementById("pglyph").style.color = "#fff";
+  document.getElementById("pprice").innerHTML = NC.money(p.price) + (p.was ? '<span class="was">'+NC.money(p.was)+'</span>' : '');
+  document.getElementById("pavail").textContent = (p.pre ? "PRE-ORDER · " : "") + p.status + " · " + p.category;
+  var rows = [["Brand",p.brand],["Franchise",p.franchise],["Category",p.category],["Scale",(p.specs&&p.specs.Scale)||"—"],["Material",(p.specs&&p.specs.Material)||"—"],["Release",(p.specs&&p.specs.Release)||"—"],["Description",p.desc]];
+  document.getElementById("pspec").innerHTML = rows.map(function(r){return "<tr><td>"+r[0]+"</td><td>"+r[1]+"</td></tr>";}).join("");
+  var q = 1;
+  function paint(){ document.getElementById("qqty").textContent = q; }
+  document.getElementById("qminus").addEventListener("click", function(){ q=Math.max(1,q-1); paint(); });
+  document.getElementById("qplus").addEventListener("click", function(){ q++; paint(); });
+  document.getElementById("padd").addEventListener("click", function(){ NC.addCart(p.slug,q); this.textContent="Added ✓"; });
+  var rel = NC.products().filter(function(x){return x.slug!==p.slug && (x.franchise===p.franchise || x.category===p.category);}).slice(0,4);
+  var g = document.getElementById("prel"); g.innerHTML = NC.gridHTML(rel); NC.bindCards(g);
+})();
+</script>
+</body>
+</html>

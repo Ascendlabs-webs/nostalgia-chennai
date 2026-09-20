@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DC Collection — Nostalgia Chennai</title>
+<meta name="description" content="Shop DC collectibles at Nostalgia Chennai: Multiverse figures, McFarlane pieces and premium statues.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>N</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<div data-header></div>
+<main>
+  <div class="page-hero"><div class="wrap">
+    <div class="crumbs"><a href="index.html">Home</a> / DC</div>
+    <div class="eyebrow">DC Collection</div>
+    <h1>Gotham to Metropolis.</h1>
+    <p>Batman-led DC Multiverse figures and statues — multiverse, McFarlane and premium pieces.</p>
+  </div></div>
+  <section style="padding-top:56px"><div class="wrap">
+    <div class="eyebrow">Featured characters</div>
+    <div class="pills" style="margin:16px 0 48px"><span>Batman</span><span>Superman</span><span>Joker</span><span>Justice League</span></div>
+    <h2 class="serif" style="margin:0 0 22px">New arrivals</h2><div class="grid" id="dnew"></div>
+    <h2 class="serif" style="margin:56px 0 22px">Pre-orders</h2><div class="grid" id="dpre"></div>
+    <h2 class="serif" style="margin:56px 0 22px">Best sellers</h2><div class="grid" id="dbest"></div>
+  </div></section>
+</main>
+<div data-footer></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  var list = NC.products().filter(function(p){return p.franchise==="DC";});
+  function put(id, arr){ var g=document.getElementById(id); g.innerHTML = NC.gridHTML(arr.length?arr:list.slice(0,4)); NC.bindCards(g); }
+  put("dnew", list.filter(function(p){return p.isNew;}).concat(list).slice(0,4));
+  put("dpre", list.filter(function(p){return p.pre;}).concat(list).slice(0,4));
+  put("dbest", list.filter(function(p){return p.best;}).concat(list).slice(0,4));
+})();
+</script>
+</body>
+</html>

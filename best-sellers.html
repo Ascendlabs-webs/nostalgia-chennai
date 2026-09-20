@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Best Sellers — Nostalgia Chennai</title>
+<meta name="description" content="Customer favourites at Nostalgia Chennai. Bestsellers are labeled from observed demand — no fabricated rankings.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>N</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<div data-header></div>
+<main>
+  <div class="page-hero"><div class="wrap">
+    <div class="crumbs"><a href="index.html">Home</a> / Best Sellers</div>
+    <div class="eyebrow">Customer favourites</div>
+    <h1>Best sellers</h1>
+    <p>The pieces collectors ask for most often. Labels reflect observed demand in-store — not fabricated statistics.</p>
+  </div></div>
+  <section style="padding-top:56px"><div class="wrap"><div class="grid" id="bgrid"></div></div></section>
+</main>
+<div data-footer></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  var list = NC.products().filter(function(p){return p.best;});
+  var g = document.getElementById("bgrid");
+  g.innerHTML = NC.gridHTML(list.length?list:NC.products().slice(0,4)); NC.bindCards(g);
+})();
+</script>
+</body>
+</html>

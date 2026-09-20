@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brands — Nostalgia Chennai</title>
+<meta name="description" content="Discover every brand at Nostalgia Chennai, from Marvel Legends and DC Multiverse to Hot Wheels and Bandai.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>N</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<div data-header></div>
+<main>
+  <div class="page-hero"><div class="wrap">
+    <div class="crumbs"><a href="index.html">Home</a> / Brands</div>
+    <div class="eyebrow">Every label we carry</div>
+    <h1>Brands</h1>
+    <p>An alphabetical directory of the makers behind the shelf.</p>
+  </div></div>
+  <section style="padding-top:56px"><div class="wrap"><div class="brand-grid" id="bgrid"></div></div></section>
+</main>
+<div data-footer></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  var g = document.getElementById("bgrid");
+  var brands = NC.brands().slice().sort(function(a,b){return a.name.localeCompare(b.name);});
+  g.innerHTML = brands.map(function(b){
+    var n = NC.products().filter(function(p){ return p.brand.toLowerCase().indexOf(b.name.toLowerCase().split(" ")[0])>-1; }).length;
+    return '<a class="brand-card reveal" href="brand.html?b='+b.slug+'"><div class="logo">'+b.name.charAt(0)+'</div><strong>'+b.name+'</strong><p>'+(n?n+" piece"+(n===1?"":"s"):"Explore the label")+'</p></a>';
+  }).join("");
+  NC.bindCards(g);
+})();
+</script>
+</body>
+</html>

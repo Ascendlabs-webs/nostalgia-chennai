@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Nostalgia Chennai</title>
+<meta name="description" content="Contact Nostalgia Chennai via WhatsApp, email or Instagram.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>N</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<div data-header></div>
+<main>
+  <div class="page-hero"><div class="wrap">
+    <div class="crumbs"><a href="index.html">Home</a> / Contact</div>
+    <div class="eyebrow">Get in touch</div>
+    <h1>Hunting for something specific?</h1>
+    <p>Send the character and line — most collectors get an answer within the hour during store hours.</p>
+  </div></div>
+  <section style="padding-top:48px"><div class="wrap shop-layout">
+    <div>
+      <h2 class="serif">Reach us</h2>
+      <table class="spec">
+        <tr><td>WhatsApp</td><td>Message us with a photo + details (fastest)</td></tr>
+        <tr><td>Email</td><td>hello@nostalgiachennai.com</td></tr>
+        <tr><td>Instagram</td><td>@nostalgiachennai (placeholder handle)</td></tr>
+        <tr><td>Store</td><td>Chennai, Tamil Nadu · Mon–Sat, 11am–7pm</td></tr>
+      </table>
+    </div>
+    <form class="card-white" id="cform">
+      <h2 class="serif" style="margin:0 0 18px">Send a message</h2>
+      <div class="field"><label for="cname">Name</label><input id="cname" required></div>
+      <div class="field"><label for="cemail">Email</label><input id="cemail" type="email" required></div>
+      <div class="field"><label for="cmsg">Message</label><textarea id="cmsg" rows="4" required placeholder="Character, line, brand…"></textarea></div>
+      <button class="btn btn-solid" style="width:100%">Send</button>
+      <p class="note" id="cok" hidden style="color:var(--navy)">Thanks — we'll reply shortly.</p>
+    </form>
+  </div></section>
+</main>
+<div data-footer></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+document.getElementById("cform").addEventListener("submit", function(e){ e.preventDefault(); document.getElementById("cok").hidden=false; this.reset(); });
+</script>
+</body>
+</html>

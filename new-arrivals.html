@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>New Arrivals — Nostalgia Chennai</title>
+<meta name="description" content="The latest additions to the collector's shelf at Nostalgia Chennai.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>N</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<div data-header></div>
+<main>
+  <div class="page-hero"><div class="wrap">
+    <div class="crumbs"><a href="index.html">Home</a> / New Arrivals</div>
+    <div class="eyebrow">Just landed</div>
+    <h1>New arrivals</h1>
+    <p>The latest additions to the collector's shelf — newest first.</p>
+  </div></div>
+  <section style="padding-top:56px"><div class="wrap">
+    <div class="sortbar"><span class="note" id="ncount"></span>
+      <select id="nsort" aria-label="Sort"><option value="new">Newest</option><option value="lo">Price Low → High</option><option value="hi">Price High → Low</option></select>
+    </div>
+    <div class="grid" id="ngrid"></div>
+  </div></section>
+</main>
+<div data-footer></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  function render(){
+    var list = NC.products().filter(function(p){return p.isNew;});
+    var s = document.getElementById("nsort").value;
+    if(s==="lo") list.sort(function(a,b){return a.price-b.price;});
+    if(s==="hi") list.sort(function(a,b){return b.price-a.price;});
+    var g = document.getElementById("ngrid");
+    g.innerHTML = NC.gridHTML(list); NC.bindCards(g);
+    document.getElementById("ncount").textContent = list.length+" new pieces";
+  }
+  document.getElementById("nsort").addEventListener("input", render); render();
+})();
+</script>
+</body>
+</html>

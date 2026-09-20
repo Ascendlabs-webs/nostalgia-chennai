@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop All Collectibles — Nostalgia Chennai</title>
+<meta name="description" content="Shop all superhero, anime and pop-culture collectibles at Nostalgia Chennai. Filter by category, brand, franchise and price.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>N</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<div data-header></div>
+<main>
+  <div class="page-hero"><div class="wrap">
+    <div class="crumbs"><a href="index.html">Home</a> / Shop</div>
+    <div class="eyebrow">The full shelf</div>
+    <h1>Shop all collectibles</h1>
+    <p>Action figures, statues, die-cast and more — every piece condition-checked in Chennai.</p>
+  </div></div>
+  <section style="padding-top:56px"><div class="wrap shop-layout">
+    <aside class="filters" aria-label="Filters">
+      <h4>SEARCH</h4>
+      <div class="field"><input id="fq" type="search" placeholder="Search figures…"></div>
+      <h4>CATEGORY</h4><div id="fcat"></div>
+      <h4>BRAND</h4><div id="fbrand"></div>
+      <h4>FRANCHISE</h4><div id="ffran"></div>
+      <h4>AVAILABILITY</h4>
+      <div id="favail">
+        <label><input type="checkbox" value="In Stock"> In Stock</label>
+        <label><input type="checkbox" value="Pre-Order"> Pre-Order</label>
+      </div>
+      <h4>MAX PRICE (Rs.)</h4>
+      <div class="field"><input id="fprice" type="number" min="0" placeholder="e.g. 10000"></div>
+      <button class="btn btn-outline" id="fclear" style="width:100%;padding:12px">Clear filters</button>
+    </aside>
+    <div>
+      <div class="sortbar">
+        <span class="note" id="fcount"></span>
+        <select id="fsort" aria-label="Sort">
+          <option value="featured">Featured</option>
+          <option value="new">Newest</option>
+          <option value="lo">Price Low → High</option>
+          <option value="hi">Price High → Low</option>
+        </select>
+      </div>
+      <div class="grid" id="fgrid"></div>
+      <div class="empty" id="fempty" hidden><h2 class="serif">Nothing found.</h2><p class="note">Try clearing a filter — or <a href="collections.html">explore collections</a>.</p></div>
+    </div>
+  </div></section>
+</main>
+<div data-footer></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  var all = NC.products();
+  function uniq(k){ return [...new Set(all.map(function(p){return p[k];}))].sort(); }
+  function checks(el, vals){
+    el.innerHTML = vals.map(function(v){return '<label><input type="checkbox" value="'+v+'"> '+v+'</label>';}).join("");
+  }
+  checks(document.getElementById("fcat"), uniq("category"));
+  checks(document.getElementById("fbrand"), uniq("brand"));
+  checks(document.getElementById("ffran"), uniq("franchise"));
+  var pre = NC.qs("filter")==="sale";
+  if(pre){ document.getElementById("favail").querySelectorAll("input").forEach(function(i){ if(i.value==="In Stock") i.checked=false; }); }
+  function selected(id){ return [...document.querySelectorAll("#"+id+" input:checked")].map(function(i){return i.value;}); }
+  function apply(){
+    var q = (document.getElementById("fq").value||"").toLowerCase();
+    var cats = selected("fcat"), brands = selected("fbrand"), frans = selected("ffran"), av = selected("favail");
+    var max = parseFloat(document.getElementById("fprice").value)||Infinity;
+    var sort = document.getElementById("fsort").value;
+    var list = all.filter(function(p){
+      if(q && (p.name+" "+p.brand+" "+p.franchise).toLowerCase().indexOf(q)<0) return false;
+      if(cats.length && cats.indexOf(p.category)<0) return false;
+      if(brands.length && brands.indexOf(p.brand)<0) return false;
+      if(frans.length && frans.indexOf(p.franchise)<0) return false;
+      if(av.length && av.indexOf(p.status)<0) return false;
+      if(p.price>max) return false;
+      if(pre && !p.was) return false;
+      return true;
+    });
+    if(sort==="lo") list.sort(function(a,b){return a.price-b.price;});
+    if(sort==="hi") list.sort(function(a,b){return b.price-a.price;});
+    if(sort==="new") list.sort(function(a,b){return (b.isNew?1:0)-(a.isNew?1:0);});
+    var g = document.getElementById("fgrid");
+    g.innerHTML = NC.gridHTML(list); NC.bindCards(g);
+    document.getElementById("fempty").hidden = list.length>0;
+    document.getElementById("fcount").textContent = list.length + " piece" + (list.length===1?"":"s");
+  }
+  ["fq","fprice","fsort"].forEach(function(id){ document.getElementById(id).addEventListener("input", apply); });
+  document.querySelectorAll(".filters input").forEach(function(i){ i.addEventListener("change", apply); });
+  document.getElementById("fclear").addEventListener("click", function(){
+    document.querySelectorAll(".filters input").forEach(function(i){ if(i.type==="checkbox") i.checked=false; else i.value=""; });
+    pre=false; apply();
+  });
+  apply();
+})();
+</script>
+</body>
+</html>
