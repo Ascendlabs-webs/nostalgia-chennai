@@ -2092,8 +2092,13 @@
       if(!r.ok) return;
       var v = document.querySelector('.hero-vid');
       if(!v) return;
+      v.muted = true;
+      v.setAttribute('muted', '');
+      v.setAttribute('playsinline', '');
       v.src = 'assets/vid/hero.mp4';
-      v.addEventListener('canplay', function(){ document.body.classList.add('has-vid'); v.play().catch(function(){}); });
+      var tryPlay = function(){ v.play().catch(function(){}); };
+      v.addEventListener('canplay', function(){ document.body.classList.add('has-vid'); tryPlay(); });
+      tryPlay();
     }).catch(function(){});
   }catch(e){}
   }
