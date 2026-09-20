@@ -264,6 +264,16 @@ body{-webkit-tap-highlight-color:transparent}
 .stickybuy .sp-price{font-weight:700}
 .stickybuy .btn{flex:1;text-align:center;padding:14px 10px}
 @media(max-width:768px){.stickybuy.on{display:flex}}
+/* mobile thumb bar */
+.mobilebar{display:none}
+@media(max-width:768px){
+body{padding-bottom:72px}
+.mobilebar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:90;background:rgba(255,255,255,.96);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:8px 6px calc(8px + env(safe-area-inset-bottom,0px))}
+.mobilebar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;letter-spacing:.08em;font-weight:600;color:var(--navy);position:relative;padding:4px 0}
+.mobilebar svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.mobilebar .icount{top:-4px;right:calc(50% - 24px)}
+.stickybuy.on{bottom:72px}
+}
 /* stitch reference reskin: blister cards, pop buttons, mono type */
 .page-hero h1,.pd-info h1{font-weight:800;letter-spacing:-.02em}
 .btn{border:1.5px solid #11141D;box-shadow:3px 3px 0 #11141D;font-weight:700;text-transform:uppercase;transition:transform .15s ease,box-shadow .15s ease}

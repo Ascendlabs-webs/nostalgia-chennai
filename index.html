@@ -1193,7 +1193,10 @@
     .wrap{padding:0 20px;}
     header .wrap{gap:14px !important; padding:12px 20px !important;}
     .banner-grid .grid3{grid-template-columns:1fr !important;}
-    .cat-grid{grid-template-columns:1fr !important;}
+    .cat-grid{grid-template-columns:repeat(2,1fr) !important; gap:12px !important;}
+    .cat-photo{min-height:170px !important; padding:14px !important;}
+    .cp-label{font-size:1rem !important;}
+    .cp-badge{font-size:9px !important; padding:4px 9px !important;}
     .coll-grid{grid-template-columns:repeat(2,1fr) !important; gap:12px !important;}
     .coll-tile{min-height:150px !important; padding:16px !important; font-size:1.05rem !important;}
     .source-steps{grid-template-columns:1fr !important;}
@@ -1208,6 +1211,17 @@
     .hw-card{display:none;}
     .hero{min-height:0;}
     .hero::before{background:linear-gradient(180deg, rgba(250,249,246,0.96), rgba(250,249,246,0.78));}
+  }
+  .mobilebar{display:none;}
+  @media (max-width: 768px){
+    body{padding-bottom:72px;}
+    .mobilebar{display:flex; position:fixed; left:0; right:0; bottom:0; z-index:90;
+      background:rgba(255,255,255,0.96); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+      border-top:1px solid var(--line); padding:8px 6px calc(8px + env(safe-area-inset-bottom,0px));}
+    .mobilebar a{flex:1; display:flex; flex-direction:column; align-items:center; gap:3px;
+      font-size:10px; letter-spacing:.08em; font-weight:600; color:var(--navy); position:relative; padding:4px 0;}
+    .mobilebar svg{width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round;}
+    .mobilebar .icount{top:-4px; right:calc(50% - 24px);}
   }
   /* ---------- Phone polish: no sideways scroll, calm taps, readable forms ---------- */
   html, body{overflow-x:hidden;}
@@ -2141,6 +2155,13 @@
     </div>
   </div>
 </footer>
+
+<nav class="mobilebar" aria-label="Mobile">
+  <a href="index.html" aria-label="Home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7"/><path d="M6.5 9.5V20h11V9.5"/></svg><span>Home</span></a>
+  <a href="shop.html" aria-label="Shop"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg><span>Shop</span></a>
+  <a href="wishlist.html" aria-label="Wishlist"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.3C6.7 16.7 3.5 13.5 3.5 10a4.5 4.5 0 0 1 7.7-3.1l.8.9.8-.9A4.5 4.5 0 0 1 20.5 10c0 3.5-3.2 6.7-8.5 10.3z"/></svg><span class="icount" data-ic-wish>0</span><span>Saved</span></a>
+  <a href="cart.html" aria-label="Cart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 9.5h15l-1.4 8.3a2 2 0 0 1-2 1.7H7.9a2 2 0 0 1-2-1.7L4.5 9.5z"/><path d="M9 9.5 12 4.5l3 5"/></svg><span class="icount" data-ic-cart>0</span><span>Cart</span></a>
+</nav>
 
 <script>
 (function(){
