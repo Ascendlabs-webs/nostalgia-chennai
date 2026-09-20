@@ -149,8 +149,10 @@
     if(document.querySelector(".page-loader")) return;
     var d = document.createElement("div");
     d.className = "page-loader";
-    d.innerHTML = '<div class="pl-card"><div class="pl-media"><img src="assets/img/loader.gif" alt="Loading"></div><div class="pl-row"><span class="pl-rec"></span><span class="pl-txt">LOADING...</span></div><div class="pl-bar"><i></i></div></div>';
+    d.innerHTML = '<div class="pl-card"><div class="pl-media"><video src="assets/vid/hero.mp4" autoplay muted loop playsinline poster="assets/img/loader.gif"></video></div><div class="pl-row"><span class="pl-rec"></span><span class="pl-txt">LOADING...</span></div><div class="pl-bar"><i></i></div></div>';
     document.body.appendChild(d);
+    var pv = d.querySelector("video");
+    if(pv){ pv.muted = true; pv.play().catch(function(){}); }
     setTimeout(function(){ document.body.classList.add("is-loading"); }, 20);
     setTimeout(function(){ location.href = href; }, 700);
   }
