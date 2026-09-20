@@ -228,8 +228,8 @@ footer ul a:hover{color:#fff}
 .sd-item > a{padding:12px 0}}
 @media(max-width:768px){.grid{grid-template-columns:repeat(2,1fr);gap:12px}.coll-grid,.brand-grid{grid-template-columns:repeat(2,1fr)}.foot-grid{grid-template-columns:1fr 1fr}.hero{padding:72px 0 60px}.page-hero{padding:64px 0 40px}}
 @media(max-width:560px){section{padding:64px 0}.wrap{padding:0 20px}.foot-grid{grid-template-columns:1fr}
-.p-row{flex-direction:column;align-items:stretch;gap:10px}.p-add{width:100%;text-align:center}
-/* meme page-transition loader */
+.p-row{flex-direction:column;align-items:stretch;gap:10px}.p-add{width:100%;text-align:center}}
+/* meme page-transition loader (global, all screens) */
 .page-loader{position:fixed;inset:0;z-index:200;background:rgba(10,10,12,.94);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s ease}
 body.is-loading{overflow:hidden}
 body.is-loading .page-loader{opacity:1}
@@ -247,7 +247,7 @@ body.is-loading .pl-card{transform:none}
 .page-hero h1{font-size:clamp(2rem,9vw,2.6rem)}
 .cart-line{grid-template-columns:64px 1fr}.cart-thumb{width:64px;height:64px;font-size:1.2rem}
 input,select,textarea{font-size:16px}
-.filters{padding:18px}.pd-info .btn{flex:1 1 100%;text-align:center}}
+.filters{padding:18px}.pd-info .btn{flex:1 1 100%;text-align:center}
 html,body{overflow-x:hidden}
 html,body{overflow-x:clip}
 body{-webkit-tap-highlight-color:transparent}
