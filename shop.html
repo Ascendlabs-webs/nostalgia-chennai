@@ -63,6 +63,8 @@
   checks(document.getElementById("fcat"), uniq("category"));
   checks(document.getElementById("fbrand"), uniq("brand"));
   checks(document.getElementById("ffran"), uniq("franchise"));
+  var catQ = NC.qs("cat");
+  if(catQ){ document.querySelectorAll("#fcat input").forEach(function(i){ if(i.value.toLowerCase()===catQ.toLowerCase()) i.checked = true; }); }
   var pre = NC.qs("filter")==="sale";
   if(pre){ document.getElementById("favail").querySelectorAll("input").forEach(function(i){ if(i.value==="In Stock") i.checked=false; }); }
   function selected(id){ return [...document.querySelectorAll("#"+id+" input:checked")].map(function(i){return i.value;}); }

@@ -57,7 +57,7 @@ nav.main a.sale{color:var(--sale)}
 .sd-item > a{display:flex !important;align-items:center;justify-content:space-between;gap:24px;padding:14px 18px;font-size:12px;letter-spacing:.14em;font-weight:600;color:var(--navy);border-radius:8px;white-space:nowrap}
 .sd-item > a:hover{background:var(--bg)}
 .sd-item > a i{font-style:normal;color:var(--muted);font-size:15px;line-height:1}
-.sd-fly{display:none;position:absolute;left:calc(100% + 6px);top:-10px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);min-width:240px;padding:10px;z-index:71}
+.sd-fly{display:none;position:absolute;left:calc(100% + 6px);top:-10px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);min-width:240px;padding:10px;z-index:71;max-height:70vh;overflow-y:auto}
 .sd-item:hover .sd-fly,.sd-item:focus-within .sd-fly{display:block}
 .sd-fly a{display:block;padding:11px 16px;font-size:13px;color:var(--muted);letter-spacing:.02em;border-radius:8px;white-space:nowrap}
 .sd-fly a:hover{background:var(--bg);color:var(--navy)}
