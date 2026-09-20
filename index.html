@@ -1356,7 +1356,6 @@
 </header>
 
 <section class="hero" id="top">
-  <video class="hero-bgvid" muted loop playsinline preload="none" aria-hidden="true"></video>
 <div class="hero-grid">
 <div class="hero-copy">
   <div class="eyebrow-line">NOSTALGIA CHENNAI — SUPERHERO • ANIME • POP-CULTURE</div>
@@ -2114,20 +2113,6 @@
   window.addEventListener('scroll', bandScroll, {passive:true});
   window.addEventListener('resize', bandScroll);
   bandFrame();
-  try{
-    fetch('assets/vid/hero.mp4', {method:'HEAD'}).then(function(r){
-      if(!r.ok) return;
-      var v = document.querySelector('.hero-bgvid');
-      if(!v) return;
-      v.muted = true;
-      v.setAttribute('muted', '');
-      v.setAttribute('playsinline', '');
-      v.src = 'assets/vid/hero.mp4';
-      var tryPlay = function(){ v.play().catch(function(){}); };
-      v.addEventListener('canplay', function(){ document.body.classList.add('has-vid'); tryPlay(); });
-      tryPlay();
-    }).catch(function(){});
-  }catch(e){}
   }
   var WISH_KEY = 'nc_wish';
   function getWish(){ try{ return JSON.parse(localStorage.getItem(WISH_KEY)) || []; }catch(e){ return []; } }
