@@ -55,6 +55,10 @@
     '<div class="offers"><div class="offers-track"><span>FREE SHIPPING ACROSS INDIA ON ORDERS ABOVE Rs. 2,499</span><span>CHENNAI STORE — MON TO SAT, 11AM TO 7PM</span><span>WHATSAPP US FOR PRE-ORDERS &amp; STOCK CHECKS</span><span>FREE SHIPPING ACROSS INDIA ON ORDERS ABOVE Rs. 2,499</span><span>CHENNAI STORE — MON TO SAT, 11AM TO 7PM</span><span>WHATSAPP US FOR PRE-ORDERS &amp; STOCK CHECKS</span></div></div>'+
     '<header class="site"><div class="wrap"><a class="brand" href="index.html">NOSTALGIA</a>'+
     '<nav class="main" aria-label="Primary">'+links+'<a class="sale" href="shop.html?filter=sale">Sale</a></nav>'+
+    '<div class="nav-icons"><a href="search.html" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 21 21"/></svg></a>'+
+    '<a href="contact.html" aria-label="Account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.4-3.6 3.9-5.2 7-5.2s5.6 1.6 7 5.2"/></svg></a>'+
+    '<a href="wishlist.html" aria-label="Wishlist"><svg viewBox="0 0 24 24"><path d="M12 20.3C6.7 16.7 3.5 13.5 3.5 10a4.5 4.5 0 0 1 7.7-3.1l.8.9.8-.9A4.5 4.5 0 0 1 20.5 10c0 3.5-3.2 6.7-8.5 10.3z"/></svg><span class="icount" data-wish-count>0</span></a>'+
+    '<a href="cart.html" aria-label="Cart"><svg viewBox="0 0 24 24"><path d="M4.5 9.5h15l-1.4 8.3a2 2 0 0 1-2 1.7H7.9a2 2 0 0 1-2-1.7L4.5 9.5z"/><path d="M9 9.5 12 4.5l3 5"/></svg><span class="icount" data-cart-count>0</span></a></div>'+
     '<button class="burger" type="button" aria-label="Menu">Menu</button></div></header>';
   }
   function footerHTML(){
