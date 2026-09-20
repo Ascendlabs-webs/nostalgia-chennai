@@ -29,17 +29,24 @@
   /* header + footer */
   var NAV = [
     {t:"Shop", h:"shop.html", mega:true},
-    {t:"Anime", h:"anime.html"}, {t:"Marvel", h:"marvel.html"}, {t:"DC", h:"dc.html"},
     {t:"Brands", h:"brands.html"}, {t:"Pre-Orders", h:"pre-orders.html"},
     {t:"New Arrivals", h:"new-arrivals.html"}
   ];
   function headerHTML(active){
     var links = NAV.map(function(n){
       if(n.mega){
-        return '<span class="nav-item"><a href="shop.html">Shop</a><span class="mega">'+
-          '<span><h5>Category</h5><ul><li><a href="shop.html">Action Figures</a></li><li><a href="shop.html">Statues</a></li><li><a href="shop.html">Die-Cast</a></li><li><a href="shop.html">Model Kits</a></li></ul></span>'+
-          '<span><h5>Featured</h5><ul><li><a href="new-arrivals.html">New Arrivals</a></li><li><a href="best-sellers.html">Best Sellers</a></li><li><a href="pre-orders.html">Pre-Orders</a></li></ul></span>'+
-          '<span><h5>Worlds</h5><ul><li><a href="marvel.html">Marvel</a></li><li><a href="anime.html">Anime</a></li><li><a href="dc.html">DC</a></li></ul></span></span></span>';
+        return '<span class="nav-item"><a href="shop.html">Shop</a><span class="shop-drop">'+
+          '<span class="sd-item"><a href="brands.html">Brands<i>›</i></a><span class="sd-fly">'+
+          '<a href="brand.html?b=marvel-legends">Marvel Legends</a><a href="brand.html?b=dc-multiverse">DC Multiverse</a><a href="brand.html?b=hot-wheels">Hot Wheels</a><a href="brand.html?b=bandai">Bandai</a><a href="brands.html">View all brands</a></span></span>'+
+          '<span class="sd-item"><a href="shop.html">Product Type<i>›</i></a><span class="sd-fly">'+
+          '<a href="shop.html">Action Figures</a><a href="shop.html">Statues</a><a href="shop.html">Die-Cast</a><a href="shop.html">Model Kits</a></span></span>'+
+          '<span class="sd-item"><a href="new-arrivals.html">Trending<i>›</i></a><span class="sd-fly">'+
+          '<a href="new-arrivals.html">New Arrivals</a><a href="best-sellers.html">Best Sellers</a><a href="pre-orders.html">Pre-Orders</a><a href="shop.html?filter=sale">Sale</a></span></span>'+
+          '<span class="sd-item"><a href="collections.html">License<i>›</i></a><span class="sd-fly">'+
+          '<a href="marvel.html">Marvel</a><a href="dc.html">DC</a><a href="anime.html">Anime</a><a href="collection.html?c=star-wars">Star Wars</a><a href="collection.html?c=transformers">Transformers</a></span></span>'+
+          '<span class="sd-item"><a href="collections.html">Genres<i>›</i></a><span class="sd-fly">'+
+          '<a href="anime.html">Anime</a><a href="marvel.html">Superhero</a><a href="collection.html?c=gaming">Gaming</a><a href="collection.html?c=retro">Retro</a></span></span>'+
+          '</span></span>';
       }
       return '<a href="'+n.h+'">'+n.t+'</a>';
     }).join("");
