@@ -63,6 +63,11 @@ window.NOSTALGIA_DATA = {
     {slug:"dc-multiverse", name:"DC Multiverse"},
     {slug:"hot-wheels", name:"Hot Wheels"},
     {slug:"bandai", name:"Bandai"},
-    {slug:"takara", name:"Takara Tomy"}
+    {slug:"takara", name:"Takara Tomy"},
+    {slug:"topps", name:"Topps"},
+    {slug:"wwe", name:"WWE"},
+    {slug:"lego", name:"Lego"},
+    {slug:"harry-potter", name:"Harry Potter"},
+    {slug:"majorette", name:"Majorette"}
   ]
 };

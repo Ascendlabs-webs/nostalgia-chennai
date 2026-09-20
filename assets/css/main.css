@@ -69,6 +69,10 @@ nav.main a.sale{color:var(--sale)}
 .sd-item:hover .sd-fly,.sd-item:focus-within .sd-fly{display:block}
 .sd-fly a{display:block;padding:11px 16px;font-size:13px;color:var(--muted);letter-spacing:.02em;border-radius:8px;white-space:nowrap}
 .sd-fly a:hover{background:var(--bg);color:var(--navy)}
+.sd-group{display:block;padding:4px 0 8px;border-bottom:1px solid var(--line)}
+.sd-group:last-of-type{border-bottom:none}
+.sd-group .sd-brand{display:block;font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--navy);padding:10px 16px 4px}
+.sd-fly .sd-group a:not(.sd-brand){padding-top:7px;padding-bottom:7px;padding-left:28px;font-size:12.5px}
 .burger{display:none;background:none;border:1px solid var(--line);border-radius:4px;padding:10px 14px;font-size:12px;letter-spacing:.12em;cursor:pointer}
 /* buttons */
 .btn{display:inline-block;font-size:12.5px;letter-spacing:.08em;font-weight:500;padding:16px 32px;border-radius:4px;border:1px solid transparent;cursor:pointer;transition:background .2s ease}

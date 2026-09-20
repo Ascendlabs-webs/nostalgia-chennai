@@ -704,6 +704,12 @@
   .sd-item:hover .sd-fly, .sd-item:focus-within .sd-fly{display:block;}
   .sd-fly a{display:block; padding:11px 16px; font-size:13px; color:var(--muted); letter-spacing:.02em; border-radius:8px; white-space:nowrap;}
   .sd-fly a:hover{background:var(--bg); color:var(--navy);}
+  .sd-group{padding:4px 0 8px; border-bottom:1px solid var(--line);}
+  .sd-group:last-of-type{border-bottom:none;}
+  .sd-group .sd-brand{display:block; font-size:12px !important; font-weight:700 !important;
+    letter-spacing:.12em !important; color:var(--navy) !important; padding:10px 16px 4px !important;}
+  .sd-group a:not(.sd-brand){padding-top:7px !important; padding-bottom:7px !important;
+    padding-left:28px !important; font-size:12.5px;}
   .sd-fly{max-height:70vh; overflow-y:auto;}
 
   /* buttons */
@@ -1257,39 +1263,43 @@
         <div class="shop-drop" aria-label="Shop categories">
           <div class="sd-item"><a href="brands.html">Brands<i>›</i></a>
             <div class="sd-fly brands-fly">
-              <a href="brand.html?b=inart">INART</a>
-              <a href="brand.html?b=hot-toys">Hot Toys</a>
-              <a href="brand.html?b=iron-studios">Iron Studios</a>
-              <a href="brand.html?b=prime-1-studios">Prime 1 Studios</a>
-              <a href="brand.html?b=sideshow">Sideshow</a>
-              <a href="brand.html?b=blitzway">Blitzway</a>
-              <a href="brand.html?b=threezero">Threezero</a>
-              <a href="brand.html?b=mcfarlane-toys">McFarlane Toys</a>
-              <a href="brand.html?b=mondo">Mondo</a>
-              <a href="brand.html?b=neca">NECA</a>
-              <a href="brand.html?b=four-horsemen">Four Horsemen</a>
-              <a href="brand.html?b=funko">Funko</a>
-              <a href="brand.html?b=hasbro">Hasbro</a>
-              <a href="brand.html?b=super7">Super7</a>
-              <a href="brand.html?b=mezco-toys">Mezco Toys</a>
-              <a href="brand.html?b=diamond-select">Diamond Select</a>
-              <a href="brand.html?b=storm-collectibles">Storm Collectibles</a>
-              <a href="brand.html?b=tsume-art">Tsume Art</a>
-              <a href="brand.html?b=infinity-studios">Infinity Studios</a>
-              <a href="brand.html?b=kotobukiya">Kotobukiya</a>
-              <a href="brand.html?b=bandai-tamashii">Bandai Tamashii</a>
-              <a href="brand.html?b=mattel">Mattel</a>
-              <a href="brand.html?b=figuartszero">Figuartszero</a>
-              <a href="brand.html?b=banpresto">Banpresto</a>
-              <a href="brand.html?b=bandai-namco">Bandai Namco</a>
-              <a href="brand.html?b=enesco">Enesco</a>
-              <a href="brand.html?b=paladone">Paladone</a>
-              <a href="brand.html?b=valaverse">Valaverse</a>
-              <a href="brand.html?b=lego">Lego</a>
-              <a href="brand.html?b=the-loyal-subject">The Loyal Subject</a>
-              <a href="brand.html?b=marvel">Marvel</a>
-              <a href="brand.html?b=dc-comics">DC Comics</a>
-              <a href="brand.html?b=solido">Solido</a>
+              <div class="sd-group"><a class="sd-brand" href="brand.html?b=hot-wheels">HOTWHEELS</a>
+                <a href="search.html?q=Mainlines">Mainlines</a>
+                <a href="search.html?q=Fantasy">Fantasy</a>
+                <a href="search.html?q=Premiums">Premiums</a>
+                <a href="search.html?q=Imported">Imported</a>
+                <a href="search.html?q=Silver%20Series">Silver Series</a>
+              </div>
+              <div class="sd-group"><a class="sd-brand" href="brand.html?b=topps">TOPPS</a>
+                <a href="search.html?q=Cricket%20Attax">Cricket Attax</a>
+                <a href="search.html?q=Slam%20Attax">Slam Attax</a>
+                <a href="search.html?q=Match%20Attax">Match Attax</a>
+                <a href="search.html?q=Hero%20Attax">Hero Attax</a>
+                <a href="search.html?q=Turbo%20Attax">Turbo Attax</a>
+              </div>
+              <div class="sd-group"><a class="sd-brand" href="brand.html?b=wwe">WWE</a>
+                <a href="search.html?q=Funko%20Pops">Funko Pops</a>
+                <a href="search.html?q=Action%20Figures">Action Figures</a>
+                <a href="search.html?q=Stampers">Stampers</a>
+              </div>
+              <div class="sd-group"><a class="sd-brand" href="brand.html?b=lego">LEGO</a>
+                <a href="search.html?q=New%20Sets">New Sets</a>
+                <a href="search.html?q=Pre%20Built%20Sets">Pre Built Sets</a>
+              </div>
+              <div class="sd-group"><a class="sd-brand" href="brand.html?b=harry-potter">HARRY POTTER</a>
+                <a href="search.html?q=Action%20Figures">Action Figures</a>
+                <a href="search.html?q=Kinder%20Joy">Kinder Joy Pops</a>
+                <a href="search.html?q=Funko%20Pop">Funko Pop</a>
+              </div>
+              <div class="sd-group"><a class="sd-brand" href="brand.html?b=dc-comics">DC</a>
+                <a href="search.html?q=Action%20Figures">Action Figures</a>
+                <a href="search.html?q=Kinder%20Joy">Kinder Joy Pops</a>
+              </div>
+              <div class="sd-group"><a class="sd-brand" href="brand.html?b=majorette">MAJORETTE</a>
+                <a href="search.html?q=Street%20Cars">Street Cars</a>
+                <a href="search.html?q=Racing%20Cars">Racing Cars</a>
+                <a href="search.html?q=Collection">Collection</a>
+              </div>
               <a href="brands.html">View all brands</a>
             </div>
           </div>
