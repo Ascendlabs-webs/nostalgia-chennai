@@ -95,7 +95,7 @@
       b.setAttribute("aria-expanded","true");
     });
     n.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", closeNav); });
-    window.addEventListener("resize", function(){ if(window.innerWidth>1100){ closeNav(); } });
+    window.addEventListener("resize", function(){ if(window.innerWidth>1300){ closeNav(); } });
     }
   }
   /* product card */
