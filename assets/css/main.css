@@ -229,7 +229,7 @@ footer ul a:hover{color:#fff}
 /* reveal */
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
 .reveal.vis{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.offers-track{animation:none}.hero h1,.hero .lede,.hero .cta-row,.hero-media{animation:none}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.offers-track{animation:none}.hero h1,.hero .lede,.hero .cta-row,.hero-media{animation:none}.btn::before{content:none}.p-wish.on{animation:none}}
 /* responsive */
 @media(max-width:1024px){section{padding:80px 0}.grid{grid-template-columns:repeat(3,1fr)}.coll-grid,.brand-grid{grid-template-columns:repeat(3,1fr)}.pd{grid-template-columns:1fr}.shop-layout{grid-template-columns:1fr}.filters{position:static}}
 @media(max-width:1100px){nav.main{display:none}.burger{display:inline-block}.hicons a:not(:last-child){display:none}
@@ -276,6 +276,29 @@ body{padding-bottom:72px}
 .mobilebar a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;letter-spacing:.08em;font-weight:600;color:var(--navy);position:relative;padding:4px 0}
 .mobilebar svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .mobilebar .icount{top:-4px;right:calc(50% - 24px)}
+/* hover animations */
+nav.main a{position:relative}
+nav.main a::after{content:"";position:absolute;left:0;bottom:2px;height:2px;width:100%;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .28s ease}
+nav.main a:hover::after{transform:scaleX(1);transform-origin:left}
+.btn{position:relative;overflow:hidden}
+.btn::before{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);transition:left .5s ease;pointer-events:none}
+.btn:hover::before{left:130%}
+.p-card:hover .p-fig img{transform:scale(1.06)}
+.p-add{transition:transform .2s ease,background .2s ease}
+.p-add:hover{transform:translateY(-1px)}
+.p-add:active{transform:scale(.96)}
+.p-wish{transition:transform .2s ease}
+.p-wish:hover{transform:scale(1.15)}
+.p-wish.on{animation:pop .35s ease}
+@keyframes pop{0%{transform:scale(.6)}60%{transform:scale(1.25)}100%{transform:scale(1)}}
+.sd-item > a i{transition:transform .2s ease}
+.sd-item:hover > a i{transform:translateX(4px)}
+.coll-tile{transition:transform .25s ease,box-shadow .25s ease}
+.coll-tile:hover{transform:translateY(-4px)}
+.brand-card{transition:transform .25s ease,background .2s ease}
+.brand-card:hover{transform:translateY(-3px)}
+footer ul a{transition:color .2s ease,padding-left .2s ease}
+footer ul a:hover{padding-left:6px}
 .stickybuy.on{bottom:72px}
 }
 /* stitch reference reskin: blister cards, pop buttons, mono type */

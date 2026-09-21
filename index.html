@@ -779,6 +779,42 @@
     background:rgba(232,160,19,0.8); border:1px solid rgba(20,32,51,0.15);}
   .hw-card::before{left:-16px; transform:rotate(-38deg);}
   .hw-card::after{right:-16px; transform:rotate(38deg);}
+  /* ---------- Hover animations ---------- */
+  nav.mainnav a{position:relative;}
+  nav.mainnav a::after{content:""; position:absolute; left:0; bottom:2px; height:2px; width:100%;
+    background:currentColor; transform:scaleX(0); transform-origin:right; transition:transform .28s ease;}
+  nav.mainnav a:hover::after{transform:scaleX(1); transform-origin:left;}
+  .btn{position:relative; overflow:hidden;}
+  .btn::before{content:""; position:absolute; top:0; left:-80%; width:50%; height:100%;
+    background:linear-gradient(100deg, transparent, rgba(255,255,255,0.45), transparent);
+    transform:skewX(-20deg); transition:left .5s ease; pointer-events:none;}
+  .btn:hover::before{left:130%;}
+  .p-figure{overflow:hidden;}
+  .p-figure img{transition:transform .45s cubic-bezier(.2,.7,.3,1);}
+  .p-card:hover .p-figure img{transform:scale(1.07);}
+  .p-add{transition:transform .2s ease, background .2s ease;}
+  .p-add:hover{transform:translateY(-1px);}
+  .p-add:active{transform:scale(.96);}
+  .p-wish{transition:transform .2s ease;}
+  .p-wish:hover{transform:scale(1.15);}
+  .p-wish.on{animation:pop .35s ease;}
+  @keyframes pop{0%{transform:scale(.6);} 60%{transform:scale(1.25);} 100%{transform:scale(1);}}
+  .cat-photo .cp-label{transition:transform .25s ease;}
+  .cat-photo:hover .cp-label{transform:translateY(-4px);}
+  .banner-card{transition:transform .25s ease, box-shadow .25s ease;}
+  .banner-card:hover{transform:translateY(-4px);}
+  .banner-card a{transition:transform .2s ease;}
+  .banner-card:hover a{transform:translateX(4px);}
+  .sd-item > a i{transition:transform .2s ease;}
+  .sd-item:hover > a i{transform:translateX(4px);}
+  .coll-tile{transition:transform .25s ease, box-shadow .25s ease;}
+  .coll-tile:hover{transform:translateY(-4px);}
+  .brand-card{transition:transform .25s ease, background .2s ease;}
+  .brand-card:hover{transform:translateY(-3px);}
+  footer ul a{transition:color .2s ease, padding-left .2s ease;}
+  footer ul a:hover{padding-left:6px;}
+  .franchise-list a{transition:transform .2s ease, background .2s ease, color .2s ease;}
+  .franchise-list a:hover{transform:translateY(-2px);}
   /* ---------- Meme page-transition loader ---------- */
   .page-loader{position:fixed; inset:0; z-index:200; background:rgba(10,10,12,0.94);
     display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .25s ease;}
@@ -1143,6 +1179,8 @@
     .reveal{opacity:1; transform:none; transition:none;}
     .hero h1, .hero p.lede, .hero .cta-row, .hero-media{animation:none;}
     .hero-media img, .sticker, .confetti, .hw-card, .hero-bgvid{animation:none !important;}
+    .btn::before{content:none !important;}
+    .p-wish.on{animation:none !important;}
     .offers-track, .ticker-track, .marquee-track{animation:none;}
   }
 
