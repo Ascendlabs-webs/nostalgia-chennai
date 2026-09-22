@@ -53,6 +53,8 @@
           '<a href="search.html?q=Action%20Figures">Action Figures</a><a href="search.html?q=Kinder%20Joy">Kinder Joy Pops</a></span>'+
           '<span class="sd-group"><a class="sd-brand" href="brand.html?b=majorette">MAJORETTE</a>'+
           '<a href="search.html?q=Street%20Cars">Street Cars</a><a href="search.html?q=Racing%20Cars">Racing Cars</a><a href="search.html?q=Collection">Collection</a></span>'+
+          '<span class="sd-group"><a class="sd-brand" href="brand.html?b=mcdonalds">MCDONALDS</a>'+
+          '<a href="search.html?q=Happy%20Meal">Happy Meal Toys</a></span>'+
           '<a href="brands.html">View all brands</a></span></span>'+
           '<span class="sd-item"><a href="shop.html">Product Type<i>›</i></a><span class="sd-fly">'+
           '<a href="shop.html?cat=Action%20Figures">Action Figures</a><a href="shop.html?cat=Statues">Statues</a><a href="shop.html?cat=Replicas">Replicas</a><a href="shop.html?cat=Designer%20Figures">Designer Figures</a><a href="shop.html?cat=Dolls%20and%20Plushies">Dolls and Plushies</a><a href="shop.html?cat=1%2F6%20Scale">1/6 Scale</a><a href="shop.html?cat=Merchandise">Merchandise</a><a href="shop.html?cat=Board%20Games">Board Games</a><a href="shop.html?cat=Exclusives">Exclusives</a><a href="shop.html?cat=Diecast%20Cars">Diecast Cars</a></span></span>'+
