@@ -57,7 +57,7 @@
   var gal = document.getElementById("pglyph");
   if(p.img){ gal.innerHTML = '<img src="'+p.img+'" alt="'+p.name+'">'; gal.style.background = "#F4F1EA"; }
   else { gal.textContent = p.glyph; gal.style.background = p.bg; gal.style.color = "#fff"; }
-  document.getElementById("pprice").innerHTML = NC.money(p.price) + (p.was ? '<span class="was">'+NC.money(p.was)+'</span>' : '');
+  document.getElementById("pprice").innerHTML = (p.price==null) ? "PRICE ON REQUEST — message us on WhatsApp" : (NC.money(p.price) + (p.was ? '<span class="was">'+NC.money(p.was)+'</span>' : ''));
   document.getElementById("pavail").textContent = (p.pre ? "PRE-ORDER · " : "") + p.status + " · " + p.category;
   var rows = [["Brand",p.brand],["Franchise",p.franchise],["Category",p.category],["Scale",(p.specs&&p.specs.Scale)||"—"],["Material",(p.specs&&p.specs.Material)||"—"],["Release",(p.specs&&p.specs.Release)||"—"],["Description",p.desc]];
   document.getElementById("pspec").innerHTML = rows.map(function(r){return "<tr><td>"+r[0]+"</td><td>"+r[1]+"</td></tr>";}).join("");
@@ -66,7 +66,7 @@
   document.getElementById("qminus").addEventListener("click", function(){ q=Math.max(1,q-1); paint(); });
   document.getElementById("qplus").addEventListener("click", function(){ q++; paint(); });
   document.getElementById("padd").addEventListener("click", function(){ NC.addCart(p.slug,q); this.textContent="Added ✓"; });
-  document.getElementById("sbprice").textContent = NC.money(p.price);
+  document.getElementById("sbprice").textContent = (p.price==null) ? "ON REQUEST" : NC.money(p.price);
   document.getElementById("sbadd").addEventListener("click", function(){ NC.addCart(p.slug,q); this.textContent="Added ✓"; setTimeout(function(){document.getElementById("sbadd").textContent="Add to Cart";},1200); });
   var bar = document.getElementById("stickybuy"), main = document.getElementById("padd");
   function onScroll(){ var r = main.getBoundingClientRect(); var on = r.bottom < 0 && window.innerWidth <= 768; bar.classList.toggle("on", on); document.body.style.paddingBottom = on ? "76px" : ""; }

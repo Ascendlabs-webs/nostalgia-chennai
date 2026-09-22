@@ -44,7 +44,7 @@
       box.innerHTML = lines.map(function(l){
         var p = NC.bySlug(l.slug); if(!p) return "";
         return '<div class="cart-line"><div class="cart-thumb">'+(p.img?'<img src="'+NC.thumb(p.img)+'" alt="'+p.name+'" loading="lazy">':p.glyph)+'</div>'+
-        '<div><strong><a href="product.html?slug='+p.slug+'">'+p.name+'</a></strong><div class="note">'+p.brand+' · '+NC.money(p.price)+'</div>'+
+        '<div><strong><a href="product.html?slug='+p.slug+'">'+p.name+'</a></strong><div class="note">'+p.brand+' · '+(p.price==null?"price on request":NC.money(p.price))+'</div>'+
         '<div class="qty" style="margin-top:10px"><button data-dec="'+p.slug+'">−</button><span>'+l.qty+'</span><button data-inc="'+p.slug+'">+</button></div></div>'+
         '<div style="text-align:right"><strong>'+NC.money(p.price*l.qty)+'</strong><div><button data-rem="'+p.slug+'" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:12px;margin-top:8px">Remove</button></div></div></div>';
       }).join("");

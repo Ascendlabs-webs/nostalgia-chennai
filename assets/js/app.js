@@ -42,7 +42,7 @@
           '<span class="sd-group"><a class="sd-brand" href="brand.html?b=hot-wheels">HOTWHEELS</a>'+
           '<a href="search.html?q=Mainlines">Mainlines</a><a href="search.html?q=Fantasy">Fantasy</a><a href="search.html?q=Premiums">Premiums</a><a href="search.html?q=Imported">Imported</a><a href="search.html?q=Silver%20Series">Silver Series</a></span>'+
           '<span class="sd-group"><a class="sd-brand" href="brand.html?b=topps">TOPPS</a>'+
-          '<a href="search.html?q=Cricket%20Attax">Cricket Attax</a><span class="sd-years"><a href="search.html?q=Cricket%20Attax%202011">2011</a><a href="search.html?q=Cricket%20Attax%202012">2012</a><a href="search.html?q=Cricket%20Attax%202013">2013</a><a href="search.html?q=Cricket%20Attax%202014">2014</a><a href="search.html?q=Cricket%20Attax%202015">2015</a><a href="search.html?q=Cricket%20Attax%202016">2016</a><a href="search.html?q=Cricket%20Attax%202017">2017</a></span><a href="search.html?q=Slam%20Attax">Slam Attax</a><a href="search.html?q=Match%20Attax">Match Attax</a><a href="search.html?q=Hero%20Attax">Hero Attax</a><a href="search.html?q=Turbo%20Attax">Turbo Attax</a></span>'+
+          '<a href="search.html?q=Cricket%20Attax">Cricket Attax</a><span class="sd-years"><a href="search.html?q=Cricket%20Attax%202011">2011</a><a href="search.html?q=Cricket%20Attax%202012">2012</a><a href="search.html?q=Cricket%20Attax%202013">2013</a><a href="search.html?q=Cricket%20Attax%202014">2014</a><a href="search.html?q=Cricket%20Attax%202015">2015</a><a href="search.html?q=Cricket%20Attax%202016">2016</a><a href="search.html?q=Cricket%20Attax%202017">2017</a></span><a href="search.html?q=Slam%20Attax">Slam Attax</a><span class="sd-years"><a href="search.html?q=Slam%20Attax%20Evolution">Evolution ’09</a><a href="search.html?q=Slam%20Attax%20Mayhem">Mayhem ’10</a><a href="search.html?q=Slam%20Attax%20Rumble">Rumble ’11</a><a href="search.html?q=Slam%20Attax%20Rebellion">Rebellion ’12</a><a href="search.html?q=Slam%20Attax%20Superstars">Superstars ’13</a><a href="search.html?q=Slam%20Attax%2010th%20Edition">10th Ed ’17</a><a href="search.html?q=Slam%20Attax%20Live">Live ’18</a><a href="search.html?q=Slam%20Attax%20Universe">Universe ’19</a><a href="search.html?q=Slam%20Attax%20Reloaded">Reloaded ’20</a><a href="search.html?q=Slam%20Attax%202021">2021</a></span><a href="search.html?q=Match%20Attax">Match Attax</a><a href="search.html?q=Hero%20Attax">Hero Attax</a><a href="search.html?q=Turbo%20Attax">Turbo Attax</a></span>'+
           '<span class="sd-group"><a class="sd-brand" href="brand.html?b=wwe">WWE</a>'+
           '<a href="search.html?q=Funko%20Pops">Funko Pops</a><a href="search.html?q=Action%20Figures">Action Figures</a><a href="search.html?q=Stampers">Stampers</a></span>'+
           '<span class="sd-group"><a class="sd-brand" href="brand.html?b=lego">LEGO</a>'+
@@ -103,15 +103,18 @@
   function badgeClass(b){ b=(b||"").toUpperCase(); if(b==="SALE")return "b-sale"; if(b==="PRE-ORDER")return "b-pre"; if(b==="SOLD OUT")return "b-out"; return ""; }
   function cardHTML(p){
     var w = wish().indexOf(p.slug)>-1 ? " on" : "";
-    var price = p.was ? '<span class="p-price"><span class="sp">'+money(p.price)+'</span><span class="was">'+money(p.was)+'</span></span>'
-                      : '<span class="p-price">'+money(p.price)+'</span>';
+    var price = (p.price==null) ? '<span class="p-price">PRICE ON REQUEST</span>'
+      : p.was ? '<span class="p-price"><span class="sp">'+money(p.price)+'</span><span class="was">'+money(p.was)+'</span></span>'
+      : '<span class="p-price">'+money(p.price)+'</span>';
+    var buyBtn = (p.price==null) ? '<a class="p-add" href="product.html?slug='+p.slug+'">Enquire</a>'
+      : (p.status==="Sold Out" ? '<button class="p-add" disabled>Sold Out</button>' : '<button class="p-add" data-add="'+p.slug+'">Quick Add</button>');
     return '<article class="p-card reveal fr-'+p.franchise.toLowerCase().replace(/\s+/g,'-')+'"><div class="p-fig" style="background:'+p.bg+'">'+
       '<div class="badges"><span class="'+badgeClass(p.badge)+'">'+p.badge+'</span></div>'+
       '<button class="p-wish'+w+'" data-wish="'+p.slug+'" aria-label="Wishlist">♡</button>'+
       '<a href="product.html?slug='+p.slug+'" style="display:contents"><span class="glyph" style="color:#fff">'+p.glyph+'</span>'+(p.img?'<img src="'+thumb(p.img)+'" alt="'+p.name+'" loading="lazy" decoding="async" onerror="this.remove()">':'')+'</a></div>'+
       '<div class="p-body"><div class="p-brand">'+p.brand.toUpperCase()+'</div>'+
       '<h3 class="p-name"><a href="product.html?slug='+p.slug+'">'+p.name+'</a></h3>'+
-      '<div class="p-row">'+price+(p.status==="Sold Out"?'<button class="p-add" disabled>Sold Out</button>':'<button class="p-add" data-add="'+p.slug+'">Quick Add</button>')+'</div>'+
+      '<div class="p-row">'+price+buyBtn+'</div>'+
       '<div class="p-status">'+(p.stock?('ONLY '+p.stock+' LEFT'):p.status.toUpperCase())+'</div></div></article>';
   }
   function gridHTML(list){ return list.map(cardHTML).join(""); }
