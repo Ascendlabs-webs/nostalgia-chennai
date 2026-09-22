@@ -7,6 +7,7 @@
     set:function(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
   };
   function money(n){ return "Rs. " + Number(n).toLocaleString("en-IN"); }
+  function thumb(src){ if(!src) return src; var i = src.lastIndexOf("/"); return src.slice(0,i) + "/sm" + src.slice(i); }
   function bySlug(s){ return D.products.find(function(p){ return p.slug===s; }); }
   function cart(){ return store.get("nc_cart", []); }
   function wish(){ return store.get("nc_wish", []); }
@@ -107,7 +108,7 @@
     return '<article class="p-card reveal fr-'+p.franchise.toLowerCase().replace(/\s+/g,'-')+'"><div class="p-fig" style="background:'+p.bg+'">'+
       '<div class="badges"><span class="'+badgeClass(p.badge)+'">'+p.badge+'</span></div>'+
       '<button class="p-wish'+w+'" data-wish="'+p.slug+'" aria-label="Wishlist">♡</button>'+
-      '<a href="product.html?slug='+p.slug+'" style="display:contents"><span class="glyph" style="color:#fff">'+p.glyph+'</span>'+(p.img?'<img src="'+p.img+'" alt="'+p.name+'" loading="lazy" onerror="this.remove()">':'')+'</a></div>'+
+      '<a href="product.html?slug='+p.slug+'" style="display:contents"><span class="glyph" style="color:#fff">'+p.glyph+'</span>'+(p.img?'<img src="'+thumb(p.img)+'" alt="'+p.name+'" loading="lazy" decoding="async" onerror="this.remove()">':'')+'</a></div>'+
       '<div class="p-body"><div class="p-brand">'+p.brand.toUpperCase()+'</div>'+
       '<h3 class="p-name"><a href="product.html?slug='+p.slug+'">'+p.name+'</a></h3>'+
       '<div class="p-row">'+price+(p.status==="Sold Out"?'<button class="p-add" disabled>Sold Out</button>':'<button class="p-add" data-add="'+p.slug+'">Quick Add</button>')+'</div>'+
@@ -130,7 +131,7 @@
     els.forEach(function(el){ io.observe(el); });
   }
   function qs(name){ return new URLSearchParams(window.location.search).get(name); }
-  window.NC = {products:function(){return D.products.slice();}, collections:function(){return D.collections.slice();}, brands:function(){return D.brands.slice();},
+  window.NC = {products:function(){return D.products.slice();}, collections:function(){return D.collections.slice();}, brands:function(){return D.brands.slice();}, thumb:thumb,
     bySlug:bySlug, money:money, cardHTML:cardHTML, gridHTML:gridHTML, bindCards:bindCards, reveal:reveal,
     cart:cart, wish:wish, addCart:addCart, toggleWish:toggleWish, paintCounts:paintCounts, qs:qs, store:store, mountChrome:mountChrome};
   function scrollBands(){
