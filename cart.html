@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/main.css">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
 <div data-header></div>
@@ -25,7 +26,11 @@
       <div class="row"><span>Shipping</span><span>Calculated at checkout</span></div>
       <div class="row grand"><span>Total</span><span id="ttot">Rs. 0</span></div>
       <p class="note">Free shipping across India on orders above Rs. 2,499.</p>
-      <a class="btn btn-solid" href="contact.html" style="width:100%;text-align:center">Checkout via WhatsApp</a>
+      <div class="field"><label for="cname">Name</label><input id="cname" placeholder="Your full name" autocomplete="name"></div>
+      <div class="field"><label for="cphone">Phone</label><input id="cphone" placeholder="+91 …" autocomplete="tel"></div>
+      <button class="btn btn-solid" id="rzpay" style="width:100%">Pay Online with Razorpay</button>
+      <p class="note" id="rzmsg" style="margin-top:10px"></p>
+      <a class="btn btn-outline" href="contact.html" style="width:100%;text-align:center">Checkout via WhatsApp</a>
       <p style="margin:14px 0 0"><a class="btn btn-outline" href="shop.html" style="width:100%;text-align:center">Continue shopping</a></p>
     </aside>
   </div></section>
@@ -35,6 +40,60 @@
 <script src="assets/js/app.js"></script>
 <script>
 (function(){
+  /* ---- Razorpay setup: paste your keys below ----
+     1. Create account at razorpay.com → get Key ID (Test mode works instantly).
+     2. Create a Google Sheet + Apps Script logger (snippet shared separately),
+        paste its Web-App URL into SHEET_URL to record every order.
+     3. Orders always appear in Razorpay Dashboard → Payments (owner-visible). */
+  var RAZORPAY_KEY_ID = "";   // e.g. "rzp_test_XXXXXXXX"
+  var SHEET_URL = "";         // e.g. "https://script.google.com/macros/s/XXXX/exec"
+  function cartTotal(){
+    return NC.cart().reduce(function(a,l){ var p=NC.bySlug(l.slug); return a + (p&&p.price?p.price*l.qty:0); },0);
+  }
+  function logOrder(payload){
+    if(!SHEET_URL) return;
+    try{
+      fetch(SHEET_URL, {method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain"},
+        body: JSON.stringify(payload)});
+    }catch(e){}
+  }
+  function orderItems(){
+    return NC.cart().map(function(l){
+      var p = NC.bySlug(l.slug) || {};
+      return {name:p.name||l.slug, brand:p.brand||"", qty:l.qty||1, price:(p.price||0)};
+    });
+  }
+  var payBtn = document.getElementById("rzpay"), payMsg = document.getElementById("rzmsg");
+  payBtn.addEventListener("click", function(){
+    var lines = NC.cart();
+    if(!lines.length){ payMsg.textContent = "Your cart is empty."; return; }
+    var name = document.getElementById("cname").value.trim();
+    var phone = document.getElementById("cphone").value.trim();
+    if(!name || !phone){ payMsg.textContent = "Please add your name and phone first."; return; }
+    if(!RAZORPAY_KEY_ID || typeof Razorpay === "undefined"){
+      payMsg.textContent = "Online payments are being set up — please check out via WhatsApp for now.";
+      return;
+    }
+    var total = cartTotal();
+    if(total < 1){ payMsg.textContent = "This cart needs a custom quote — please check out via WhatsApp."; return; }
+    var rzp = new Razorpay({
+      key: RAZORPAY_KEY_ID,
+      amount: total * 100,
+      currency: "INR",
+      name: "Nostalgia Chennai",
+      description: "Collectibles order",
+      prefill: {name: name, contact: phone},
+      theme: {color: "#142033"},
+      handler: function(resp){
+        logOrder({payment_id: resp.razorpay_payment_id, name: name, phone: phone,
+          total: total, items: orderItems(), at: new Date().toISOString()});
+        NC.store.set("nc_cart", []); NC.paintCounts(); render();
+        payMsg.textContent = "Payment successful! ID: " + resp.razorpay_payment_id + " — we will WhatsApp you shortly.";
+      },
+      modal: {ondismiss: function(){ payMsg.textContent = "Payment window closed — no charge made."; }}
+    });
+    rzp.open();
+  });
   function render(){
     var lines = NC.cart();
     var box = document.getElementById("clines");
@@ -46,7 +105,7 @@
         return '<div class="cart-line"><div class="cart-thumb">'+(p.img?'<img src="'+NC.thumb(p.img)+'" alt="'+p.name+'" loading="lazy">':p.glyph)+'</div>'+
         '<div><strong><a href="product.html?slug='+p.slug+'">'+p.name+'</a></strong><div class="note">'+p.brand+' · '+(p.price==null?"price on request":NC.money(p.price))+'</div>'+
         '<div class="qty" style="margin-top:10px"><button data-dec="'+p.slug+'">−</button><span>'+l.qty+'</span><button data-inc="'+p.slug+'">+</button></div></div>'+
-        '<div style="text-align:right"><strong>'+NC.money(p.price*l.qty)+'</strong><div><button data-rem="'+p.slug+'" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:12px;margin-top:8px">Remove</button></div></div></div>';
+        '<div style="text-align:right"><strong>'+(p.price==null?"ON REQUEST":NC.money(p.price*l.qty))+'</strong><div><button data-rem="'+p.slug+'" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:12px;margin-top:8px">Remove</button></div></div></div>';
       }).join("");
     }
     var sub = lines.reduce(function(a,l){ var p=NC.bySlug(l.slug); return a + (p?p.price*l.qty:0); },0);
