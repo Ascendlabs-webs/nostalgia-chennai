@@ -73,6 +73,8 @@ nav.main a.sale{color:var(--sale)}
 .sd-group:last-of-type{border-bottom:none}
 .sd-group .sd-brand{display:block;font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--navy);padding:10px 16px 4px}
 .sd-fly .sd-group a:not(.sd-brand){padding-top:7px;padding-bottom:7px;padding-left:28px;font-size:12.5px}
+.sd-years{display:flex;flex-wrap:wrap;gap:6px;padding:2px 16px 10px 28px}
+.sd-fly .sd-group .sd-years a{font-size:11px;padding:5px 11px;border:1px solid var(--line);border-radius:14px}
 .burger{display:none;background:none;border:1px solid var(--line);border-radius:4px;padding:10px 14px;font-size:12px;letter-spacing:.12em;cursor:pointer}
 /* buttons */
 .btn{display:inline-block;font-size:12.5px;letter-spacing:.08em;font-weight:500;padding:16px 32px;border-radius:4px;border:1px solid transparent;cursor:pointer;transition:background .2s ease}
@@ -127,7 +129,7 @@ nav.main a.sale{color:var(--sale)}
 .fr-gaming .p-brand{color:var(--pink)}.fr-hot-wheels .p-brand{color:var(--orange)}
 .p-fig{aspect-ratio:1/1.05;background:#F4F1EA;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .p-fig .glyph{font-family:var(--serif);font-size:3rem}
-.p-fig img{width:100%;height:100%;object-fit:contain;transition:transform .35s ease}
+.p-fig img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:transform .35s ease}
 .p-card:hover .p-fig img{transform:scale(1.05)}
 .badges{position:absolute;top:10px;left:10px;display:flex;gap:6px}
 .badges span{font-size:10.5px;font-weight:600;letter-spacing:.06em;padding:4px 10px;border-radius:20px;background:#fff;border:1px solid var(--line)}

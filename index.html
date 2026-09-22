@@ -710,6 +710,8 @@
     letter-spacing:.12em !important; color:var(--navy) !important; padding:10px 16px 4px !important;}
   .sd-group a:not(.sd-brand){padding-top:7px !important; padding-bottom:7px !important;
     padding-left:28px !important; font-size:12.5px;}
+  .sd-years{display:flex; flex-wrap:wrap; gap:6px; padding:2px 16px 10px 28px;}
+  .sd-fly .sd-years a{font-size:11px; padding:5px 11px !important; border:1px solid var(--line); border-radius:14px;}
   .sd-fly{max-height:70vh; overflow-y:auto;}
 
   /* buttons */
@@ -908,7 +910,8 @@
   .p-card:hover{transform:translateY(-3px) !important; box-shadow:var(--shadow-soft) !important;}
   .p-figure{aspect-ratio:4/4.4 !important; background:#F4F1EA !important;}
   .p-figure .p-tag, .p-badges span{background:#fff !important; color:var(--navy) !important; border:1px solid var(--line) !important;}
-  .p-figure img{width:100%; height:100%; object-fit:cover; aspect-ratio:4/4.4;}
+  .p-figure img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .p-figure .p-glyph{font-family:var(--serif); font-weight:800; font-size:3rem; color:#fff;}
   .p-figure img[src*="iron-man"]{object-position:22% 50%;}
   /* ---------- Featured-grid pattern: split heads, pills, wishlist ---------- */
   .section-head.split{max-width:none; margin:0 0 34px;}
@@ -1322,6 +1325,15 @@
               </div>
               <div class="sd-group"><a class="sd-brand" href="brand.html?b=topps">TOPPS</a>
                 <a href="search.html?q=Cricket%20Attax">Cricket Attax</a>
+                <div class="sd-years">
+                  <a href="search.html?q=Cricket%20Attax%202011">2011</a>
+                  <a href="search.html?q=Cricket%20Attax%202012">2012</a>
+                  <a href="search.html?q=Cricket%20Attax%202013">2013</a>
+                  <a href="search.html?q=Cricket%20Attax%202014">2014</a>
+                  <a href="search.html?q=Cricket%20Attax%202015">2015</a>
+                  <a href="search.html?q=Cricket%20Attax%202016">2016</a>
+                  <a href="search.html?q=Cricket%20Attax%202017">2017</a>
+                </div>
                 <a href="search.html?q=Slam%20Attax">Slam Attax</a>
                 <a href="search.html?q=Match%20Attax">Match Attax</a>
                 <a href="search.html?q=Hero%20Attax">Hero Attax</a>
@@ -1807,6 +1819,54 @@
           <div class="p-row"><span class="p-price"><span class="sale-price">Rs. 5,499</span><span class="was">Rs. 6,499</span></span><button class="p-add" type="button">Quick Add</button></div>
         </div>
       </div>
+      <div class="p-card">
+        <div class="p-figure" style="background:linear-gradient(140deg,#e07a1f,#f2a545);">
+          <div class="p-badges"><span class="b-sale">SALE</span></div>
+          <span class="p-glyph">F1</span>
+          <img src="assets/img/products/hw-sauber-f1.jpg" alt="Hot Wheels Sauber Formula 1" loading="lazy" onerror="this.remove()">
+        </div>
+        <div class="p-body">
+          <div class="p-line">HOT WHEELS PREMIUMS</div>
+          <h3 class="p-name">Sauber Formula 1 (Black)</h3>
+          <div class="p-row"><span class="p-price"><span class="sale-price">Rs. 600</span><span class="was">Rs. 1,200</span></span><button class="p-add" type="button">Quick Add</button></div>
+        </div>
+      </div>
+      <div class="p-card">
+        <div class="p-figure" style="background:linear-gradient(140deg,#e07a1f,#f2a545);">
+          <div class="p-badges"><span class="b-sale">SALE</span></div>
+          <span class="p-glyph">MC</span>
+          <img src="assets/img/products/hw-mclaren-f1.jpg" alt="Hot Wheels McLaren Formula 1" loading="lazy" onerror="this.remove()">
+        </div>
+        <div class="p-body">
+          <div class="p-line">HOT WHEELS PREMIUMS</div>
+          <h3 class="p-name">McLaren Formula 1</h3>
+          <div class="p-row"><span class="p-price"><span class="sale-price">Rs. 1,399</span><span class="was">Rs. 2,000</span></span><button class="p-add" type="button">Quick Add</button></div>
+        </div>
+      </div>
+      <div class="p-card">
+        <div class="p-figure" style="background:linear-gradient(140deg,#e07a1f,#f2a545);">
+          <div class="p-badges"><span class="b-sale">SALE</span></div>
+          <span class="p-glyph">BR</span>
+          <img src="assets/img/products/hw-bronco.jpg" alt="Hot Wheels Ford Bronco R" loading="lazy" onerror="this.remove()">
+        </div>
+        <div class="p-body">
+          <div class="p-line">HOT WHEELS</div>
+          <h3 class="p-name">Ford Bronco R 5/5</h3>
+          <div class="p-row"><span class="p-price"><span class="sale-price">Rs. 599</span><span class="was">Rs. 899</span></span><button class="p-add" type="button">Quick Add</button></div>
+        </div>
+      </div>
+      <div class="p-card">
+        <div class="p-figure" style="background:linear-gradient(140deg,#3c3f45,#5c6068);">
+          <div class="p-badges"><span class="b-sale">SALE</span></div>
+          <span class="p-glyph">07</span>
+          <img src="assets/img/products/hw-bmw507.jpg" alt="Hot Wheels Vintage Club BMW 507" loading="lazy" onerror="this.remove()">
+        </div>
+        <div class="p-body">
+          <div class="p-line">HOT WHEELS VINTAGE</div>
+          <h3 class="p-name">Vintage Club BMW 507</h3>
+          <div class="p-row"><span class="p-price"><span class="sale-price">Rs. 499</span><span class="was">Rs. 999</span></span><button class="p-add" type="button">Quick Add</button></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1818,7 +1878,6 @@
       <div class="kicker">NEW ARRIVALS</div>
       <h2>New Arrivals</h2>
       </div><a class="view-all" href="new-arrivals.html">View all <span>›</span></a></div>
-    </div>
     </div>
     <div class="shop-grid">
       <div class="p-card">
@@ -1876,7 +1935,6 @@
       <div class="kicker">THE VAULT</div>
       <h2>The Vault</h2>
       </div><a class="view-all" href="best-sellers.html">View all <span>›</span></a></div>
-    </div>
     </div>
     <div class="coll-grid" style="margin-bottom:28px;">
       <div class="coll-tile" style="background:linear-gradient(140deg,#a3211f,#e0483a);"><div>Marvel<small>ACTION FIGURES • STATUES</small></div></div>
@@ -2228,7 +2286,9 @@
     ['luffy','luffy-gear-5'],['tanjiro','tanjiro-1-8'],['optimus','optimus-kit'],
     ['he-man','heman-40th'],['chun-li','chunli-1-12'],['chunli','chunli-1-12'],
     ['spider-man','spiderman-legends'],['spiderman','spiderman-legends'],
-    ['stormtrooper','stormtrooper-vintage'],['track fleet','hotwheels-track-fleet']
+    ['stormtrooper','stormtrooper-vintage'],['track fleet','hotwheels-track-fleet'],
+    ['sauber','hw-sauber-f1'],['mclaren formula','hw-mclaren-f1'],
+    ['bronco','hw-bronco'],['vintage club','hw-bmw507']
   ];
   function slugFor(name){ name = (name||'').toLowerCase(); for(var k=0;k<SLUG_MATCH.length;k++){ if(name.indexOf(SLUG_MATCH[k][0])>-1) return SLUG_MATCH[k][1]; } return null; }
   function paintWish(){
