@@ -7,7 +7,7 @@
     set:function(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
   };
   function money(n){ return "Rs. " + Number(n).toLocaleString("en-IN"); }
-  function thumb(src){ if(!src) return src; var i = src.lastIndexOf("/"); return src.slice(0,i) + "/sm" + src.slice(i); }
+  function thumb(src){ if(!src || src.indexOf("assets/img/") !== 0) return src; return src.replace("assets/img/", "assets/img/sm/"); }
   function bySlug(s){ return D.products.find(function(p){ return p.slug===s; }); }
   function cart(){ return store.get("nc_cart", []); }
   function wish(){ return store.get("nc_wish", []); }
