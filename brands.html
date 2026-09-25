@@ -30,7 +30,7 @@
   var brands = NC.brands().slice().sort(function(a,b){return a.name.localeCompare(b.name);});
   g.innerHTML = brands.map(function(b){
     var n = NC.products().filter(function(p){ return p.brand.toLowerCase().indexOf(b.name.toLowerCase().split(" ")[0])>-1; }).length;
-    return '<a class="brand-card reveal" href="brand.html?b='+b.slug+'"><div class="logo">'+(b.slug==="mcdonalds"?'<img src="assets/img/brands/mcdonalds.svg" alt="McDonald\'s" style="height:52px">':b.name.charAt(0))+'</div><strong>'+b.name+'</strong><p>'+(n?n+" piece"+(n===1?"":"s"):"Explore the label")+'</p></a>';
+    return '<a class="brand-card reveal" href="brand.html?b='+b.slug+'"><div class="logo">'+b.name.charAt(0)+'</div><strong>'+b.name+'</strong><p>'+(n?n+" piece"+(n===1?"":"s"):"Explore the label")+'</p></a>';
   }).join("");
   NC.bindCards(g);
 })();

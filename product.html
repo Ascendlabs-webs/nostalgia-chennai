@@ -55,7 +55,7 @@
   document.getElementById("pbrand").textContent = p.brand.toUpperCase();
   document.getElementById("pname").textContent = p.name;
   var gal = document.getElementById("pglyph"), th = document.getElementById("pgthumbs");
-  var photos = (p.images && p.images.length) ? p.images : (p.img ? [p.img] : []);
+  var photos = (NC.USE_PHOTOS && p.images && p.images.length) ? p.images : ((NC.USE_PHOTOS && p.img) ? [p.img] : []);
   function showPhoto(src, btn){
     gal.innerHTML = '<img src="'+src+'" alt="'+p.name+'">';
     gal.style.background = "#F4F1EA"; gal.style.color = "";
