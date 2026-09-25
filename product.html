@@ -17,7 +17,7 @@
     <div class="crumbs"><a href="index.html">Home</a> / <a href="shop.html">Shop</a> / <span id="pname-crumb">Product</span></div>
   </div></div>
   <section style="padding-top:48px"><div class="wrap pd">
-    <div class="pd-gallery"><div class="main" id="pglyph">N</div></div>
+    <div class="pd-gallery"><div class="main" id="pglyph">N</div><div class="pg-thumbs" id="pgthumbs"></div></div>
     <div class="pd-info">
       <div class="brand" id="pbrand">BRAND</div>
       <h1 id="pname">Product</h1>
@@ -54,8 +54,23 @@
   document.getElementById("pname-crumb").textContent = p.name;
   document.getElementById("pbrand").textContent = p.brand.toUpperCase();
   document.getElementById("pname").textContent = p.name;
-  var gal = document.getElementById("pglyph");
-  if(p.img){ gal.innerHTML = '<img src="'+p.img+'" alt="'+p.name+'">'; gal.style.background = "#F4F1EA"; }
+  var gal = document.getElementById("pglyph"), th = document.getElementById("pgthumbs");
+  var photos = (p.images && p.images.length) ? p.images : (p.img ? [p.img] : []);
+  function showPhoto(src, btn){
+    gal.innerHTML = '<img src="'+src+'" alt="'+p.name+'">';
+    gal.style.background = "#F4F1EA"; gal.style.color = "";
+    if(th){ th.querySelectorAll("img").forEach(function(t){ t.classList.toggle("on", t===btn); }); }
+  }
+  if(photos.length){
+    showPhoto(photos[0]);
+    if(photos.length > 1 && th){
+      th.innerHTML = photos.map(function(s){ return '<img src="'+s+'" alt="thumbnail" loading="lazy">'; }).join("");
+      th.querySelectorAll("img").forEach(function(t, i){
+        if(i===0) t.classList.add("on");
+        t.addEventListener("click", function(){ showPhoto(photos[i], t); });
+      });
+    }
+  }
   else { gal.textContent = p.glyph; gal.style.background = p.bg; gal.style.color = "#fff"; }
   document.getElementById("pprice").innerHTML = (p.price==null) ? "PRICE ON REQUEST — message us on WhatsApp" : (NC.money(p.price) + (p.was ? '<span class="was">'+NC.money(p.was)+'</span>' : ''));
   document.getElementById("pavail").textContent = (p.pre ? "PRE-ORDER · " : "") + p.status + " · " + p.category;
