@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anime Collection — Nostalgia Chennai</title>
+<meta name="description" content="Shop anime collectibles at Nostalgia Chennai: One Piece, Naruto, Demon Slayer, Dragon Ball, Jujutsu Kaisen and Attack on Titan.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>N</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<div data-header></div>
+<main>
+  <div class="page-hero"><div class="wrap">
+    <div class="crumbs"><a href="index.html">Home</a> / Anime</div>
+    <div class="eyebrow">Anime Collection</div>
+    <h1>Anime, kept mint.</h1>
+    <p>One Piece, Naruto, Dragon Ball, Demon Slayer, Jujutsu Kaisen, Attack on Titan and more — no loud gimmicks, just collector-grade pieces.</p>
+  </div></div>
+  <section style="padding-top:56px"><div class="wrap">
+    <div class="eyebrow">Popular franchises</div>
+    <div class="pills" style="margin:16px 0 48px">
+      <span>One Piece</span><span>Naruto</span><span>Dragon Ball</span><span>Demon Slayer</span><span>Jujutsu Kaisen</span><span>Attack on Titan</span>
+    </div>
+    <h2 class="serif" style="margin:0 0 22px">New anime arrivals</h2>
+    <div class="grid" id="anew"></div>
+    <h2 class="serif" style="margin:56px 0 22px">Anime pre-orders</h2>
+    <div class="grid" id="apre"></div>
+    <h2 class="serif" style="margin:56px 0 22px">Anime best sellers</h2>
+    <div class="grid" id="abest"></div>
+  </div></section>
+</main>
+<div data-footer></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  var list = NC.products().filter(function(p){return p.franchise==="Anime";});
+  function put(id, arr){ var g=document.getElementById(id); g.innerHTML = NC.gridHTML(arr.length?arr:list.slice(0,4)); NC.bindCards(g); }
+  put("anew", list.filter(function(p){return p.isNew;}).concat(list).slice(0,4));
+  put("apre", list.filter(function(p){return p.pre;}).concat(list).slice(0,4));
+  put("abest", list.filter(function(p){return p.best;}).concat(list).slice(0,4));
+})();
+</script>
+</body>
+</html>

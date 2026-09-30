@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-Orders — Nostalgia Chennai</title>
+<meta name="description" content="Reserve upcoming collectibles before they reach the shelf. Pre-order figures and statues with WhatsApp updates from Chennai.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>N</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<div data-header></div>
+<main>
+  <div class="page-hero"><div class="wrap">
+    <div class="crumbs"><a href="index.html">Home</a> / Pre-Orders</div>
+    <div class="eyebrow">Pre-Orders · Global sourcing</div>
+    <h1>Reserve what's next.</h1>
+    <p>A deposit secures your unit. We track manufacturer timelines — which can shift — and collect the balance once stock arrives in Chennai.</p>
+  </div></div>
+  <section class="band-beige"><div class="wrap">
+    <div class="card-white">
+      <h2 class="serif" style="margin:0 0 10px">Can't find it anywhere? We'll try to source it.</h2>
+      <p style="color:var(--muted)">WhatsApp us a picture and the details. Our network spans the UK, Germany, Ireland, Sweden, Portugal, USA, Canada &amp; Dubai.</p>
+      <div class="pills" style="margin:18px 0 24px"><span>UK</span><span>Germany</span><span>Ireland</span><span>Sweden</span><span>Portugal</span><span>USA</span><span>Canada</span><span>Dubai</span></div>
+      <a class="btn btn-solid" href="contact.html">Send toy image on WhatsApp</a>
+      <p class="note" style="margin:16px 0 0">Sourcing is subject to availability, seller availability, shipping and import requirements.</p>
+    </div>
+  </div></section>
+  <section style="padding-top:56px"><div class="wrap">
+    <div class="sortbar"><span class="note" id="pcount"></span>
+      <select id="psort" aria-label="Sort"><option value="featured">Featured</option><option value="lo">Price Low → High</option><option value="hi">Price High → Low</option></select>
+    </div>
+    <div class="grid" id="pgrid"></div>
+  </div></section>
+</main>
+<div data-footer></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  function render(){
+    var list = NC.products().filter(function(p){return p.pre;});
+    var s = document.getElementById("psort").value;
+    if(s==="lo") list.sort(function(a,b){return a.price-b.price;});
+    if(s==="hi") list.sort(function(a,b){return b.price-a.price;});
+    var g = document.getElementById("pgrid");
+    g.innerHTML = NC.gridHTML(list); NC.bindCards(g);
+    document.getElementById("pcount").textContent = list.length+" open pre-orders";
+  }
+  document.getElementById("psort").addEventListener("input", render); render();
+})();
+</script>
+</body>
+</html>

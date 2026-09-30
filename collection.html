@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collection — Nostalgia Chennai</title>
+<meta name="description" content="Shop a Nostalgia Chennai collection with filters and sorting.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>N</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<div data-header></div>
+<main>
+  <div class="page-hero" id="chead"><div class="wrap">
+    <div class="crumbs"><a href="index.html">Home</a> / <a href="collections.html">Collections</a> / <span id="cname">Collection</span></div>
+    <div class="eyebrow">Collection</div>
+    <h1 id="ctitle">Collection</h1>
+    <p id="cdesc">Collector-checked pieces from this world.</p>
+  </div></div>
+  <section style="padding-top:56px"><div class="wrap">
+    <div class="sortbar"><span class="note" id="ccount"></span>
+      <select id="csort" aria-label="Sort"><option value="featured">Featured</option><option value="lo">Price Low → High</option><option value="hi">Price High → Low</option></select>
+    </div>
+    <div class="grid" id="cgrid"></div>
+    <div class="empty" id="cempty" hidden><h2 class="serif">Nothing here yet.</h2><p class="note">WhatsApp us — we source internationally. <a href="contact.html">Contact us</a>.</p></div>
+    <h2 class="serif" style="margin:64px 0 22px">Related collections</h2>
+    <div class="coll-grid" id="crel"></div>
+  </div></section>
+</main>
+<div data-footer></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  var MAP = {"marvel":"Marvel","dc":"DC","anime":"Anime","transformers":"Transformers","star-wars":"Star Wars","retro":"Retro","gaming":"Gaming","hot-wheels":"Hot Wheels"};
+  var slug = (NC.qs("c")||"anime").toLowerCase();
+  var coll = NC.collections().find(function(c){return c.slug===slug;});
+  var fran = coll ? (MAP[coll.slug]||coll.name) : slug;
+  var title = coll ? coll.name : slug;
+  document.title = title+" Collection — Nostalgia Chennai";
+  document.getElementById("cname").textContent = title;
+  document.getElementById("ctitle").textContent = title;
+  var head = document.getElementById("chead");
+  if(coll){ head.style.background = coll.bg; head.style.color = "#fff"; head.querySelector("p").style.color="rgba(255,255,255,.85)"; head.querySelector(".eyebrow").style.color="#fff"; }
+  function render(){
+    var list = NC.products().filter(function(p){ return p.franchise===fran; });
+    var s = document.getElementById("csort").value;
+    if(s==="lo") list.sort(function(a,b){return a.price-b.price;});
+    if(s==="hi") list.sort(function(a,b){return b.price-a.price;});
+    var g = document.getElementById("cgrid");
+    g.innerHTML = NC.gridHTML(list); NC.bindCards(g);
+    document.getElementById("cempty").hidden = list.length>0;
+    document.getElementById("ccount").textContent = list.length+" pieces";
+  }
+  document.getElementById("csort").addEventListener("input", render);
+  document.getElementById("crel").innerHTML = NC.collections().filter(function(c){return c.slug!==slug;}).slice(0,4).map(function(c){
+    return '<a class="coll-tile reveal" style="background:'+c.bg+'" href="collection.html?c='+c.slug+'"><div><h3>'+c.name+'</h3><small>'+c.tag+'</small></div></a>';
+  }).join("");
+  NC.bindCards(document.getElementById("crel")); render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Search — Nostalgia Chennai</title>
+<meta name="description" content="Search every collectible at Nostalgia Chennai.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>N</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<div data-header></div>
+<main>
+  <div class="page-hero"><div class="wrap">
+    <div class="crumbs"><a href="index.html">Home</a> / Search</div>
+    <div class="eyebrow">Search the shelf</div>
+    <h1 id="stitle">Search</h1>
+    <div class="field" style="max-width:560px;margin-top:20px"><input id="sq" type="search" placeholder="Try ‘Batman’, ‘Naruto’, ‘Hot Wheels’…"></div>
+  </div></div>
+  <section style="padding-top:48px"><div class="wrap">
+    <p class="note" id="scount" style="margin-bottom:20px"></p>
+    <div class="grid" id="sgrid"></div>
+    <div class="empty" id="sempty" hidden>
+      <h2 class="serif">Nothing found.</h2>
+      <p class="note">Try another spelling — or explore a collection:</p>
+      <div class="pills" style="justify-content:center;margin-top:14px"><span><a href="marvel.html">Marvel</a></span><span><a href="anime.html">Anime</a></span><span><a href="dc.html">DC</a></span><span><a href="collections.html">All collections</a></span></div>
+    </div>
+  </div></section>
+</main>
+<div data-footer></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  var box = document.getElementById("sq");
+  box.value = NC.qs("q")||"";
+  function run(){
+    var q = box.value.trim().toLowerCase();
+    document.getElementById("stitle").textContent = q ? 'Results for "'+box.value.trim()+'"' : "Search";
+    var list = q ? NC.products().filter(function(p){ return (p.name+" "+p.brand+" "+p.franchise+" "+p.category).toLowerCase().indexOf(q)>-1; }) : NC.products();
+    var g = document.getElementById("sgrid");
+    g.innerHTML = NC.gridHTML(list); NC.bindCards(g);
+    document.getElementById("sempty").hidden = list.length>0;
+    document.getElementById("scount").textContent = list.length+" result"+(list.length===1?"":"s");
+  }
+  box.addEventListener("input", run); run();
+})();
+</script>
+</body>
+</html>

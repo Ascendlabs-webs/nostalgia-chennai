@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brand — Nostalgia Chennai</title>
+<meta name="description" content="Shop all products from a single brand at Nostalgia Chennai.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>N</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<div data-header></div>
+<main>
+  <div class="page-hero"><div class="wrap">
+    <div class="crumbs"><a href="index.html">Home</a> / <a href="brands.html">Brands</a> / <span id="bname">Brand</span></div>
+    <div class="eyebrow">Brand</div>
+    <h1 id="btitle">Brand</h1>
+    <p id="bdesc">Every piece we carry from this maker.</p>
+  </div></div>
+  <section style="padding-top:56px"><div class="wrap">
+    <div class="sortbar"><span class="note" id="bcount"></span>
+      <select id="bsort" aria-label="Sort"><option value="featured">Featured</option><option value="lo">Price Low → High</option><option value="hi">Price High → Low</option></select>
+    </div>
+    <div class="grid" id="bgrid"></div>
+    <div class="empty" id="bempty" hidden><h2 class="serif">Nothing here yet.</h2><p class="note">Ask us on WhatsApp — <a href="contact.html">contact us</a>.</p></div>
+  </div></section>
+</main>
+<div data-footer></div>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  function norm(s){ return (s||"").toLowerCase().replace(/[^a-z0-9]/g,""); }
+  var slug = (NC.qs("b")||"").toLowerCase();
+  var brand = NC.brands().find(function(b){return b.slug===slug;});
+  var key = brand ? norm(brand.name.split(" ")[0]) : norm(slug);
+  var title = brand ? brand.name : slug;
+  document.title = title+" — Nostalgia Chennai";
+  document.getElementById("bname").textContent = title;
+  document.getElementById("btitle").textContent = title;
+  function render(){
+    var list = NC.products().filter(function(p){ var nb = norm(p.brand); return nb.indexOf(key)>-1 || key.indexOf(nb.slice(0,5))>-1; });
+    var s = document.getElementById("bsort").value;
+    if(s==="lo") list.sort(function(a,b){return a.price-b.price;});
+    if(s==="hi") list.sort(function(a,b){return b.price-a.price;});
+    var g = document.getElementById("bgrid");
+    g.innerHTML = NC.gridHTML(list); NC.bindCards(g);
+    document.getElementById("bempty").hidden = list.length>0;
+    document.getElementById("bcount").textContent = list.length+" pieces";
+  }
+  document.getElementById("bsort").addEventListener("input", render); render();
+})();
+</script>
+</body>
+</html>
