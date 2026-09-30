@@ -7,7 +7,7 @@
     set:function(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
   };
   function money(n){ return "Rs. " + Number(n).toLocaleString("en-IN"); }
-  var USE_PHOTOS = false; /* flip on when owner-supplied photos land in assets/img */
+  var USE_PHOTOS = true; /* product photography on */
   function thumb(src){ return src; }
   function bySlug(s){ return D.products.find(function(p){ return p.slug===s; }); }
   function cart(){ return store.get("nc_cart", []); }
