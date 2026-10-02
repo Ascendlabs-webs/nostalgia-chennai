@@ -940,6 +940,25 @@
   .marquee-track span:nth-child(4n+2){-webkit-text-stroke:1px var(--dc);}
   .marquee-track span:nth-child(4n+3){-webkit-text-stroke:1px var(--anime);}
   .marquee-track span:nth-child(4n+4){-webkit-text-stroke:1px var(--gold);}
+  .marquee{position:relative;}
+  .marquee-meme{position:absolute; right:26px; top:50%; width:120px; margin:0; z-index:3;
+    background:#fff; padding:7px 7px 9px; border:1.5px solid var(--ink); border-radius:6px;
+    box-shadow:4px 4px 0 var(--ink); transform:translateY(-50%) rotate(6deg);}
+  .marquee-meme img{width:100%; height:92px; object-fit:cover; object-position:top center; border-radius:3px; display:block;}
+  /* ---------- Meme wall trio ---------- */
+  .memewall{padding:0 28px 8px; background:var(--bg);}
+  .meme-row{max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .meme-card{background:#fff; border:1.5px solid var(--ink); border-radius:8px; padding:12px 12px 14px; margin:0;
+    box-shadow:5px 5px 0 var(--ink);}
+  .meme-card:nth-child(1){transform:rotate(-2deg);}
+  .meme-card:nth-child(2){transform:rotate(1.5deg);}
+  .meme-card:nth-child(3){transform:rotate(-1deg);}
+  .meme-card img{width:100%; height:230px; object-fit:cover; border-radius:4px; display:block; background:#F4EFE6;}
+  .meme-card figcaption{font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.14em; text-align:center; padding-top:10px;}
+  @media (max-width:900px){
+    .marquee-meme{display:none;}
+    .meme-row{grid-template-columns:1fr; max-width:420px;}
+  }
   .categories{background:linear-gradient(180deg, var(--bg), #FDEFE3) !important;}
   #collection{background:#F1F4FA !important;}
   #sale{background:#FDF0EE !important;}
@@ -1570,7 +1589,27 @@
   <div class="marquee-track">
     <span>CHILDHOOD NEVER GOES OUTTA STYLE... GIGGITY.</span><span>CHILDHOOD NEVER GOES OUTTA STYLE... GIGGITY.</span><span>CHILDHOOD NEVER GOES OUTTA STYLE... GIGGITY.</span><span>CHILDHOOD NEVER GOES OUTTA STYLE... GIGGITY.</span>
   </div>
+  <figure class="marquee-meme"><img src="assets/img/quagmire.jpg" alt="Quagmire gives a thumbs up" loading="lazy"></figure>
 </div>
+
+<section class="memewall" aria-label="Fresh memes">
+  <div class="wrap">
+    <div class="meme-row">
+      <figure class="meme-card">
+        <img src="assets/img/meme-1.jpg" alt="Stewie Griffin art doll" loading="lazy">
+        <figcaption>VICTORY IS MINE.</figcaption>
+      </figure>
+      <figure class="meme-card">
+        <img src="assets/img/meme-2.jpg" alt="Peter Griffin" loading="lazy">
+        <figcaption>FREAKIN' SWEET.</figcaption>
+      </figure>
+      <figure class="meme-card">
+        <img src="assets/img/meme-3.jpg" alt="Brian Griffin street art" loading="lazy">
+        <figcaption>STAY CLASSY.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
 
 <section class="categories">
   <div class="wrap">
@@ -2383,7 +2422,7 @@
       if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
     });
   }, {threshold:0.12});
-  document.querySelectorAll('.p-card, .cat-card, .cat-photo, .museum, .coll-tile, .voice-card, .source-card, .sale-banner').forEach(function(el){
+  document.querySelectorAll('.p-card, .cat-card, .cat-photo, .museum, .meme-card, .marquee-meme, .coll-tile, .voice-card, .source-card, .sale-banner').forEach(function(el){
     el.classList.add('reveal'); io.observe(el);
   });
 })();
