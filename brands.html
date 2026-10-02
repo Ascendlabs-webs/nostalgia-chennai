@@ -38,10 +38,36 @@
     "majorette": '<span class="wm wm-maj">Majorette</span>',
     "mcdonalds": '<span class="wm wm-mcd">M</span>'
   };
-  g.innerHTML = brands.map(function(b){
-    var n = NC.products().filter(function(p){ return p.brand.toLowerCase().indexOf(b.name.toLowerCase().split(" ")[0])>-1; }).length;
-    var mark = LOGOS[b.slug] || b.name.charAt(0);
-    return '<a class="brand-card reveal" href="brand.html?b='+b.slug+'"><div class="logo">'+mark+'</div><strong>'+b.name+'</strong><p>'+(n?n+" piece"+(n===1?"":"s"):"Explore the label")+'</p></a>';
+  var TILES = [
+    {slug:"hot-wheels", name:"Hot Wheels", logo:"assets/img/brands/hot-wheels.png", href:"brand.html?b=hot-wheels"},
+    {slug:"topps", name:"Topps", logo:"assets/img/brands/topps.png", href:"brand.html?b=topps"},
+    {slug:"wwe", name:"WWE", logo:"assets/img/brands/wwe.png", href:"brand.html?b=wwe"},
+    {slug:"lego", name:"Lego", logo:"assets/img/brands/lego.png", href:"brand.html?b=lego"},
+    {slug:"harry-potter", name:"Harry Potter", logo:"assets/img/brands/harry-potter.png", href:"brand.html?b=harry-potter"},
+    {slug:"dc-comics", name:"DC Comics", logo:"assets/img/brands/dc-comics.png", href:"brand.html?b=dc-comics"},
+    {slug:"majorette", name:"Majorette", logo:"assets/img/brands/majorette.png", href:"brand.html?b=majorette"},
+    {slug:"mcdonalds", name:"McDonald's", logo:"assets/img/brands/mcdonalds.svg", href:"brand.html?b=mcdonalds"},
+    {slug:"nerf", name:"Nerf", logo:"assets/img/brands/nerf.png", href:"brand.html?b=nerf"},
+    {slug:"power-rangers", name:"Power Rangers", logo:"assets/img/brands/power-rangers.png", href:"brand.html?b=power-rangers"},
+    {slug:"playstation", name:"PlayStation", logo:"assets/img/brands/playstation.jpg", href:"brand.html?b=playstation"},
+    {slug:"toy-story", name:"Toy Story", logo:"assets/img/brands/toy-story.jpg", href:"brand.html?b=toy-story"},
+    {slug:"funko", name:"Funko", logo:"assets/img/brands/funko.png", href:"brand.html?b=funko"},
+    {slug:"marvel", name:"Marvel", logo:"assets/img/brands/marvel.png", href:"marvel.html"},
+    {slug:"star-wars", name:"Star Wars", logo:"assets/img/brands/star-wars.png", href:"collection.html?c=star-wars"},
+    {slug:"barbie", name:"Barbie", logo:"assets/img/brands/barbie.png", href:"brand.html?b=barbie"}
+  ];
+  function tileCount(t){
+    var k = t.slug.split("-")[0];
+    return NC.products().filter(function(p){
+      return p.brand.toLowerCase().indexOf(k) > -1 || p.franchise.toLowerCase().indexOf(k) > -1;
+    }).length;
+  }
+  g.innerHTML = TILES.map(function(t){
+    var n = tileCount(t);
+    var mark = t.logo
+      ? '<img src="'+t.logo+'" alt="'+t.name+' logo" loading="lazy" onerror="this.outerHTML='+ "'" + t.name.charAt(0) + "'" + '">'
+      : t.name.charAt(0);
+    return '<a class="brand-card reveal" href="'+t.href+'"><div class="logo">'+mark+'</div><strong>'+t.name+'</strong><p>'+(n?n+" piece"+(n===1?"":"s"):"Explore the label")+'</p></a>';
   }).join("");
   NC.bindCards(g);
 })();
