@@ -28,9 +28,20 @@
 (function(){
   var g = document.getElementById("bgrid");
   var brands = NC.brands().slice().sort(function(a,b){return a.name.localeCompare(b.name);});
+  var LOGOS = {
+    "hot-wheels": '<span class="wm wm-hw">HOT WHEELS</span>',
+    "topps": '<span class="wm wm-topps">Topps</span>',
+    "wwe": '<span class="wm wm-wwe">WWE</span>',
+    "lego": '<span class="wm wm-lego">LEGO</span>',
+    "harry-potter": '<span class="wm wm-hp">Harry Potter</span>',
+    "dc-comics": '<span class="wm wm-dc">DC COMICS</span>',
+    "majorette": '<span class="wm wm-maj">Majorette</span>',
+    "mcdonalds": '<span class="wm wm-mcd">M</span>'
+  };
   g.innerHTML = brands.map(function(b){
     var n = NC.products().filter(function(p){ return p.brand.toLowerCase().indexOf(b.name.toLowerCase().split(" ")[0])>-1; }).length;
-    return '<a class="brand-card reveal" href="brand.html?b='+b.slug+'"><div class="logo">'+b.name.charAt(0)+'</div><strong>'+b.name+'</strong><p>'+(n?n+" piece"+(n===1?"":"s"):"Explore the label")+'</p></a>';
+    var mark = LOGOS[b.slug] || b.name.charAt(0);
+    return '<a class="brand-card reveal" href="brand.html?b='+b.slug+'"><div class="logo">'+mark+'</div><strong>'+b.name+'</strong><p>'+(n?n+" piece"+(n===1?"":"s"):"Explore the label")+'</p></a>';
   }).join("");
   NC.bindCards(g);
 })();
