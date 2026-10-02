@@ -940,10 +940,11 @@
   .marquee-track span:nth-child(4n+2){-webkit-text-stroke:1px var(--dc);}
   .marquee-track span:nth-child(4n+3){-webkit-text-stroke:1px var(--anime);}
   .marquee-track span:nth-child(4n+4){-webkit-text-stroke:1px var(--gold);}
-  .marquee{position:relative;}
-  .marquee-meme{position:absolute; right:26px; top:50%; width:120px; margin:0; z-index:3;
+  .marquee{position:relative; overflow:hidden;}
+  .marquee-holder{position:relative;}
+  .marquee-meme{position:absolute; left:29%; top:50%; width:150px; margin:0; z-index:3;
     background:#fff; padding:7px 7px 9px; border:1.5px solid var(--ink); border-radius:6px;
-    box-shadow:4px 4px 0 var(--ink); transform:translateY(-50%) rotate(6deg);}
+    box-shadow:4px 4px 0 var(--ink); transform:translateY(-58%) rotate(-5deg);}
   .marquee-meme img{width:100%; height:92px; object-fit:cover; object-position:top center; border-radius:3px; display:block;}
   /* ---------- Meme wall trio ---------- */
   .memewall{padding:0 28px 8px; background:var(--bg);}
@@ -1585,10 +1586,12 @@
   </div>
 </div>
 
+<div class="marquee-holder">
 <div class="marquee">
   <div class="marquee-track">
     <span>CHILDHOOD NEVER GOES OUTTA STYLE... GIGGITY.</span><span>CHILDHOOD NEVER GOES OUTTA STYLE... GIGGITY.</span><span>CHILDHOOD NEVER GOES OUTTA STYLE... GIGGITY.</span><span>CHILDHOOD NEVER GOES OUTTA STYLE... GIGGITY.</span>
   </div>
+</div>
   <figure class="marquee-meme"><img src="assets/img/quagmire.jpg" alt="Quagmire gives a thumbs up" loading="lazy"></figure>
 </div>
 

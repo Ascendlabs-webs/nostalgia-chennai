@@ -275,6 +275,16 @@ body{-webkit-tap-highlight-color:transparent}
 .stickybuy .sp-price{font-weight:700}
 .stickybuy .btn{flex:1;text-align:center;padding:14px 10px}
 @media(max-width:768px){.stickybuy.on{display:flex}}
+/* brand wordmarks */
+.brand-card .logo .wm{font-weight:800;letter-spacing:.04em;font-size:1.3rem;white-space:nowrap}
+.wm-hw{font-style:italic;color:#E62429}
+.wm-topps{color:#142033}
+.wm-wwe{color:#D7182A}
+.wm-lego{background:#D01012;color:#fff;padding:6px 14px;border-radius:6px}
+.wm-hp{color:#7A5A00;font-family:var(--serif)}
+.wm-dc{color:#0477F2}
+.wm-maj{font-style:italic;color:#142033}
+.wm-mcd{color:#DAA520;font-size:2rem}
 /* mobile thumb bar */
 .mobilebar{display:none}
 @media(max-width:768px){
